@@ -11,19 +11,32 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         @vite(['resources/css/app.css'])
-        @livewireStyles
+        
     </head>
-    <body class="p-1">
-        <header>
-            @include('layouts._partials.navbar')
-            @include('layouts._partials.searchbar')
-        </header>
-        <main>
-            @include('layouts._partials.messages')
-            {{-- @yield('form') --}}
-            @yield('content')
-        </main>
+    <body class="flex flex-col p-1">
 
-        @livewireScripts
+        <div class="flex m-auto gap-10 flex-row flex-wrap justify-center items-center max-w-7xl h-screen">
+
+            <a href="{{ route('cliente.home') }}" class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                <img src="{{ asset('assets/img/clientes.png') }}" alt="image icon of client">
+            </a>
+
+            <a href="{{ route('cliente.home') }}"class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                <img src="{{ asset('assets/img/almacen.png') }}" alt="image icon of client">
+            </a>
+
+            <a href="{{ route('cliente.home') }}" class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                <img src="{{ asset('assets/img/factura.png') }}" alt="image icon of client">
+            </a>
+
+            <a href="{{ route('cliente.home') }}" class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                <img src="{{ asset('assets/img/proveedor.png') }}" alt="image icon of client">
+            </a>
+
+            <a href="{{ route('cliente.home') }}" class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                <img src="{{ asset('assets/img/producto.png') }}" alt="image icon of client">
+            </a>
+
+        </div>
     </body>
 </html>

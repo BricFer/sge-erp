@@ -16,7 +16,6 @@ class ClienteController extends Controller
 
     public function store(ClienteRequest $request): RedirectResponse
     {   
-        
         $cliente = new Cliente;
         $cliente-> nombre = $request->nombre;
         $cliente-> apellido = $request->apellido;
@@ -39,7 +38,6 @@ class ClienteController extends Controller
     
     public function update(ClienteRequest $request, Cliente $cliente):RedirectResponse
     {
-
         $cliente-> nombre = $request->nombre;
         $cliente-> apellido = $request->apellido;
         $cliente-> nif = $request->nif;
@@ -50,7 +48,6 @@ class ClienteController extends Controller
         $cliente-> telefono = $request->telefono;
         $cliente-> correo = $request->correo;
         $cliente->save();
-
       
         return redirect()->route('cliente.home');
     }
@@ -59,6 +56,6 @@ class ClienteController extends Controller
     {
         $cliente -> delete();
 
-        return redirect() -> route('cliente.home')->with('danger','Cliente deleted succesfully');
+        return redirect()->route('cliente.home')->with('danger','Cliente deleted succesfully');
     }
 }

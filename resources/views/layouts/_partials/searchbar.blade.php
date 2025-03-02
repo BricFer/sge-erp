@@ -29,13 +29,6 @@
         <div class="flex flex-row gap-8 justify-between items-center">
             
             <div class="flex flex-row gap-2 justify-between items-center">
-                <img class="block" src="{{ asset('assets/icons/left-icon.svg') }}" alt="left icon">
-                <p>1-10 /<span class="font-bold"> 37</span></p>
-                <img class="block" src="{{ asset('assets/icons/right-icon.svg') }}" alt="right icon">
-
-            </div>
-
-            <div class="flex flex-row gap-2 justify-between items-center">
                 <a class="block border-2 border-black" href="#">
                     <img class="block" src="{{ asset('assets/icons/char-icon.svg') }}" alt="char icon">
                 </a>

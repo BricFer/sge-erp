@@ -6,7 +6,11 @@ use App\Livewire\Clientes\Listar;
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Listar::class)->name('cliente.home');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/clientes', Listar::class)->name('cliente.home');
 
 Route::get('/cliente/crear', [ClienteController::class, 'create'])-> name('cliente.crear');
 Route::post('/cliente/guardar',[ClienteController::class, 'store'])-> name('cliente.store');

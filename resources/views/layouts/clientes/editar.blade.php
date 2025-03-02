@@ -1,8 +1,16 @@
 @section('title', 'ERP | Editar cliente')
 
-@extends('home')
+
+
+@extends('dashboard')
 
 @section('content')
+    <div>
+
+        @include('layouts._partials.navbar', ['backUrl' => route('cliente.home')])
+
+        @include('layouts._partials.searchbar')
+    </div>
     <form
         method="POST"
         action="{{ route('cliente.update', $cliente->id) }}"
@@ -115,7 +123,7 @@
         <input
             type="submit"
             value="Editar"
-            class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
+            class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96"
         />
     </div>
 

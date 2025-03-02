@@ -1,7 +1,7 @@
 <nav class="flex flex-row justify-between items-center w-full my-6">
     
     <div class="flex flex-row justify-between items-center gap-4">
-        <a href="#">
+        <a href="{{ $backUrl ?? route('home') }}">
             <img class="block" src="{{ asset('assets/icons/left-icon.svg') }}" alt="left icon">
         </a>
         <a href="#">Clientes</a>
