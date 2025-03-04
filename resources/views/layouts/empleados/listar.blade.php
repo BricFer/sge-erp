@@ -3,53 +3,40 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.clientes.buscar')
+        @include('layouts.empleados.buscar')
     </div>
-    {{-- Esta es una forma de pasar la paginación al componente que la renderizará
-        @include('layouts._partials.searchbar', ['clientes' => $clientes])
-    --}}
     
     <div class="w-full">
-
-        @section('campo1', 'NIF')
-        @section('campo2', 'Teléfono')
+        @section('campo1', 'Teléfono')
         @section('campo3', 'Correo')
-        @section('campo4', 'Cod. Postal')
-        @section('campo5', 'Población')
-        @section('campo6', 'Provincia')
-        @section('campo7', 'Dirección')
+        @section('campo4', 'Cargo')
 
         @include('layouts._partials.secciones')
         
-        @forelse ($clientes as $cliente)
+        @forelse ($empleados as $empleado)
             <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                    <p class="w-[175px]">{{ $cliente -> nombre }} {{ $cliente -> apellido }}</p>
-
-                    <p class="w-[95px]">{{ $cliente -> nif }}</p>
-
-                    <p class="w-[95px]">{{ $cliente -> telefono }}</p>
-
-                    <p class="w-[225px]">{{ $cliente -> correo }}</p>
+                    <p class="w-[175px]">{{ $empleado -> nombre }}</p>
                     
-                    <p class="w-[95px]">{{ $cliente -> cod_postal }}</p>
+                    <p class="w-[95px]">{{ $empleado -> telefono }}</p>
                     
-                    <p class="w-[175px]">{{ $cliente -> poblacion }}</p>
+                    <p class="w-[95px]"></p>
 
-                    <p class="w-[95px]">{{ $cliente -> provincia }}</p>
-
-                    <p class="w-[225px]">{{ $cliente -> domicilio }}</p>
+                    <p class="w-[225px]">{{ $empleado -> correo }}</p>
+                    
+                    <p class="w-[175px]">{{ $empleado -> rol }}</p>
+                    
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
-                    <a class="block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                    <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
                         method="POST"
-                        action="{{ route('cliente.destroy', $cliente->id) }}"
+                        action="{{ route('empleado.destroy', $empleado->id) }}"
                     >
                         @csrf
                         @method('DELETE')
@@ -65,7 +52,7 @@
         @endforelse
     </div>
     <div class="mt-4">
-        {{ $clientes->links() }}
+        {{ $empleados->links() }}
         
     </div>
 <div>

@@ -1,70 +1,59 @@
-@section('title', 'ERP | Editar cliente')
+@section('title', 'ERP | Editar proveedor')
 
 @extends('dashboard')
 
 @section('content')
     <div>
 
-        @include('layouts._partials.nav-bar', ['backUrl' => route('cliente.home')])
+        @include('layouts._partials.nav-bar', ['backUrl' => route('proveedor.home')])
 
-        @include('layouts.clientes.buscar')
+        @include('layouts.proveedores.buscar')
     </div>
     <form
         method="POST"
-        action="{{ route('cliente.update', $cliente->id) }}"
+        action="{{ route('proveedor.update', $proveedor->id) }}"
         class="flex flex-col px-2 w-full gap-6 xl:flex-row xl:flex-wrap xl:gap-1 xl:justify-between xl:max-w-7xl xl:m-auto"
     >
 
     @method('PUT')
     @csrf
-    <div class="flex flex-col gap-1 lg:w-[628px]">
-        <label for="nombre">Nombre(s):</label>
+    <div class="flex flex-col gap-1 xl:w-[728px]">
+        <label for="nombre">Nombre proveedor:</label>
         <input
             name="nombre"
-            value="{{ $cliente->nombre }}"
+            value="{{ $proveedor->nombre }}"
             type="text"
             id="nombre"
             readonly
         />
     </div>
 
-    <div class="flex flex-col gap-1 lg:w-[628px]">
-        <label>Apellido(s):</label>
+    <div class="flex flex-col gap-1 w-[532px]">
+        <label>CIF</label>
         <input
-            name="apellido"
-            value="{{ $cliente->apellido }}"
+            name="cif"
+            value="{{ $proveedor->cif }}"
             type="text"
-            id="apellido"
+            id="cif"
             readonly
         />
     </div>
 
-    <div class="flex flex-col gap-1">
-        <label>NIF</label>
-        <input
-            name="nif"
-            value="{{ $cliente->nif }}"
-            type="text"
-            id="nif"
-            readonly
-        />
-    </div>
-
-    <div class="flex flex-col gap-1 lg:w-2/3">
+    <div class="flex flex-col gap-1 xl:w-[828px]">
         <label>Domicilio:</label>
         <input
             name="domicilio"
-            value="{{ $cliente->domicilio }}"
+            value="{{ $proveedor->domicilio }}"
             type="text"
             id="domicilio"
         />
     </div>
 
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1 xl:w-[432px]">
         <label>Codigo postal</label>
         <input
             name="cod_postal"
-            value="{{ $cliente->cod_postal }}"
+            value="{{ $proveedor->cod_postal }}"
             type="text"
             id="cod_postal"
         />
@@ -74,7 +63,7 @@
         <label>Poblacion</label>
         <input
             name="poblacion"
-            value="{{ $cliente->poblacion }}"
+            value="{{ $proveedor->poblacion }}"
             type="text"
             id="poblacion"
         />
@@ -84,7 +73,7 @@
         <label>Provincia</label>
         <input
             name="provincia"
-            value="{{ $cliente->provincia }}"
+            value="{{ $proveedor->provincia }}"
             type="text"
             id="provincia"
         />
@@ -94,7 +83,7 @@
         <label>Teléfono</label>
         <input
             name="telefono"
-            value="{{ $cliente->telefono }}"
+            value="{{ $proveedor->telefono }}"
             type="tel"
             id="telefono"
         />
@@ -104,7 +93,7 @@
         <label>Correo</label>
         <input
             name="correo"
-            value="{{ $cliente->correo }}"
+            value="{{ $proveedor->correo }}"
             type="email"
             id="correo"
         />
@@ -112,7 +101,7 @@
 
     <div class="flex flex-col w-full gap-4 my-6 md:flex-row">
         <a
-            href="{{ route('cliente.home') }}"
+            href="{{ route('proveedor.home') }}"
             class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
         >
             Cancelar

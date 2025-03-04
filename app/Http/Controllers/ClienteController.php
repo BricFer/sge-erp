@@ -28,7 +28,7 @@ class ClienteController extends Controller
         $cliente-> correo = $request->correo;
         $cliente->save();
 
-        return redirect()->route('cliente.home')->with('success', 'Client created successfully');
+        return redirect()->route('cliente.home')->with('success', 'Cliente creado correctamente');
     }
 
     public function edit(Cliente $cliente):View
@@ -49,13 +49,13 @@ class ClienteController extends Controller
         $cliente-> correo = $request->correo;
         $cliente->save();
       
-        return redirect()->route('cliente.home');
+        return redirect()->route('cliente.home')->with('success', 'Cliente modificado correctamente');
     }
 
     public function destroy(Cliente $cliente):RedirectResponse
     {
         $cliente -> delete();
 
-        return redirect()->route('cliente.home')->with('danger','Cliente deleted succesfully');
+        return redirect()->route('cliente.home')->with('danger','Cliente eliminado correctamente');
     }
 }

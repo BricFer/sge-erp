@@ -1,22 +1,22 @@
-@section('title', 'ERP | Crear cliente')
+@section('title', 'ERP | Crear proveedor')
 
 @extends('dashboard')
 
 @section('content')
     <div>
 
-        @include('layouts._partials.nav-bar', ['backUrl' => route('cliente.home')])
+        @include('layouts._partials.nav-bar', ['backUrl' => route('proveedor.home')])
 
-        @include('layouts.clientes.buscar')
+        @include('layouts.proveedores.buscar')
     </div>
     <form
         method="POST"
-        action="{{ route('cliente.store') }}"
+        action="{{ route('proveedor.store') }}"
         class="flex flex-col px-2 w-full gap-6 xl:flex-row xl:flex-wrap xl:gap-1 xl:justify-between xl:max-w-7xl xl:m-auto"
     >
     @csrf
-    <div class="flex flex-col gap-1 xl:w-[628px]">
-        <label for="nombre">Nombre(s):</label>
+    <div class="flex flex-col gap-1 xl:w-[728px]">
+        <label for="nombre">Nombre proveedor:</label>
         <input name="nombre" type="text" class="form-control" id="nombre">
     </div>
     
@@ -24,25 +24,16 @@
         <p style="color:red">{{$message}}</p>
     @enderror
 
-    <div class="flex flex-col gap-1 xl:w-[628px]">
-        <label>Apellido(s):</label>
-        <input name="apellido" type="text">
+    <div class="flex flex-col gap-1 w-[532px]">
+        <label>CIF</label>
+        <input name="cif" type="text">
     </div>
-    
-    @error('apellido')
+
+    @error('cif')
         <p style="color:red">{{$message}}</p>
     @enderror
 
-    <div class="flex flex-col gap-1">
-        <label>NIF</label>
-        <input name="nif" type="text">
-    </div>
-
-    @error('nif')
-        <p style="color:red">{{$message}}</p>
-    @enderror
-
-    <div class="flex flex-col gap-1 xl:w-2/3">
+    <div class="flex flex-col gap-1 xl:w-[828px]">
         <label>Domicilio:</label>
         <input name="domicilio" type="text">
     </div>
@@ -51,7 +42,7 @@
         <p style="color:red">{{$message}}</p>
     @enderror
 
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1 xl:w-[432px]">
         <label>Codigo postal</label>
         <input name="cod_postal" type="text">
     </div>
@@ -94,7 +85,7 @@
 
     <div class="flex flex-col w-full gap-4 my-6 md:flex-row">
         <a
-            href="{{ route('cliente.home') }}"
+            href="{{ route('proveedor.home') }}"
             class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
         >
             Cancel

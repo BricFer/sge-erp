@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title', 'Home')</title>
+        <title>@yield('title', 'Dashboard')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,10 +14,9 @@
         @livewireStyles
     </head>
     <body class="p-1">
-        <main>
+        
             @include('layouts._partials.messages')
             @yield('content')
-        </main>
 
         @livewireScripts
     </body>
