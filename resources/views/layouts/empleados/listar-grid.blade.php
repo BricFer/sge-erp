@@ -1,35 +1,31 @@
 <div>
     <div>
-
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
         @include('layouts.empleados.buscar')
     </div>
-    
-    <div class="w-full">
-        @section('campo1', 'Teléfono')
-        @section('campo3', 'Correo')
-        @section('campo4', 'Cargo')
 
-        @include('layouts._partials.secciones')
-        
+    <div class="w-full flex flex-row gap-8 p-2">
+
         @forelse ($empleados as $empleado)
-            <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
+            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[384px]">
+                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre }}</h2>
 
-                <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                    <p class="w-[175px]">{{ $empleado -> nombre }}</p>
-                    
-                    <p class="w-[95px]">{{ $empleado -> telefono }}</p>
-                    
-                    <div class="w-[95px]"></div>
+                <p>
+                    <span class="font-bold">Cargo:</span> {{ $empleado-> rol}}
+                </p>
+                <p>
+                    <span class="font-bold">Teléfono:</span> {{ $empleado-> telefono}}
+                </p>
+                <p>
+                    <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
+                </p>
 
-                    <p class="w-[225px]">{{ $empleado -> correo }}</p>
-                    
-                    <p class="w-[175px]">{{ $empleado -> rol }}</p>
-                    
-                </div>
+                <div class="flex flex-row gap-2 mt-4">
+                    <a class="block" href="{{ route('empleado.show', ['empleado' => $empleado->id]) }}">
+                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
+                    </a>
 
-                <div class="flex flex-row items-center gap-2">
                     <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
@@ -50,9 +46,6 @@
         @empty
             <p>Aún no hay registros</p>
         @endforelse
+
     </div>
-    <div class="mt-4">
-        {{ $empleados->links() }}
-        
-    </div>
-<div>
+</div>

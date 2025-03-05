@@ -31,4 +31,12 @@ class ListarClientes extends Component
             ->extends('dashboard')
             ->section('content');
     }
+
+    public function listarGrid()
+    {
+        $clientes = Cliente::all();
+        return view('layouts.clientes.listar-grid', compact('clientes'))
+            ->extends('dashboard')
+            ->section('content');
+    }
 }

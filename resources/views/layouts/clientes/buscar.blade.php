@@ -32,10 +32,10 @@
                 <a class="block border-2 border-black" href="#">
                     <img class="block" src="{{ asset('assets/icons/char-icon.svg') }}" alt="char icon">
                 </a>
-                <a class="block border-2 border-black" href="#">
+                <a class="block border-2 border-black" href="{{ route('cliente.home') }}">
                     <img class="block" src="{{ asset('assets/icons/list-icon.svg') }}" alt="list icon">
                 </a>
-                <a class="block border-2 border-black" href="#">
+                <a class="block border-2 border-black" href="{{ route('cliente.grid') }}">
                     <img class="block" src="{{ asset('assets/icons/grid-icon.svg') }}" alt="char icon">
                 </a>
             </div>

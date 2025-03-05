@@ -55,11 +55,22 @@
             </div>
 
             <div class="w-full">
-                <h2 class="w-full my-2 border-b-solid border-b-4 border-b-indigo-600/25 mb-8 text-lg font-semibold uppercase tracking-wider text-indigo-600 drop-shadow-lg">Facturas</h2>
+                <h2 class="w-full my-2 border-b-solid border-b-4 border-b-indigo-600/25 mb-8 text-lg font-semibold uppercase tracking-wider text-indigo-600 drop-shadow-lg">Presupuesto | Albarán | Factura</h2>
 
-                <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                    <img src="{{ asset('assets/img/factura.png') }}" alt="image icon of client">
-                </a>
+                {{-- Añadir los links a cada interface --}}
+                <div class="flex flex gap-4">
+                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                        <img src="{{ asset('assets/img/presupuesto.png') }}" alt="image icon of client">
+                    </a>
+    
+                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                        <img src="{{ asset('assets/img/albaran.png') }}" alt="image icon of client">
+                    </a>
+    
+                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                        <img src="{{ asset('assets/img/factura.png') }}" alt="image icon of client">
+                    </a>
+                </div>
             </div>
 
         </div>

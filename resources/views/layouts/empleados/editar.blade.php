@@ -27,7 +27,17 @@
             readonly
         />
     </div>
-
+    
+    <div class="flex flex-col gap-1 xl:w-[628px]">
+        <label>Cargo que ocupa:</label>
+        <input
+            name="rol"
+            value="{{ $empleado->rol }}"
+            type="text"
+            id="rol"
+        />
+    </div>
+    
     <div class="flex flex-col gap-1 xl:w-[412px]">
         <label>Teléfono</label>
         <input
@@ -46,16 +56,6 @@
             type="email"
             id="correo"
             readonly
-        />
-    </div>
-    
-    <div class="flex flex-col gap-1 xl:w-[628px]">
-        <label>Cargo que ocupa:</label>
-        <input
-            name="rol"
-            value="{{ $empleado->rol }}"
-            type="text"
-            id="rol"
         />
     </div>
 

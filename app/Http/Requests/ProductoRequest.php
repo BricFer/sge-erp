@@ -23,10 +23,10 @@ class ProductoRequest extends FormRequest
     {
         return  [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
-            'id_almacen' => ['required'],
             'precio_compra' => ['required'],
             'precio_venta' => ['required'],
             'iva' => ['required'],
+            'descripcion' => ['string'],
         ];
     }
 }

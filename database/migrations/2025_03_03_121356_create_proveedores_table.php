@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('poblacion', 25);
             $table->string('provincia', 25);
             $table->string('telefono', 25)->nullable();
-            $table->string('correo', 120);
+            $table->string('correo', 120)->unique();
             $table->timestamps();
         });
     }

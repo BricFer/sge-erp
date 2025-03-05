@@ -17,7 +17,7 @@
 
     @method('PUT')
     @csrf
-    <div class="flex flex-col gap-1 lg:w-[628px]">
+    <div class="flex flex-col gap-1 lg:w-full">
         <label for="nombre">Nombre del producto:</label>
         <input
             name="nombre"
@@ -28,17 +28,7 @@
         />
     </div>
 
-    <div class="flex flex-col gap-1 xl:w-[628px]">
-        <label>Almacen:</label>
-        <input
-            name="id_almacen"
-            value="{{ $producto->id_almacen }}"
-            type="text"
-            id="id_almacen"
-        />
-    </div>
-
-    <div class="flex flex-col gap-1 lg:w-[628px]">
+    <div class="flex flex-col gap-1 lg:w-[415px]">
         <label>Precio de compra:</label>
         <input
             name="precio_compra"
@@ -49,7 +39,7 @@
         />
     </div>
 
-    <div class="flex flex-col gap-1 xl:w-[628px]">
+    <div class="flex flex-col gap-1 xl:w-[415px]">
         <label>Precio de venta</label>
         <input
             name="precio_venta"
@@ -59,13 +49,23 @@
         />
     </div>
 
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1 xl:w-[415px]">
         <label>IVA</label>
         <input
             name="iva"
             value="{{ $producto->iva }}"
             type="text"
             id="iva"
+        />
+    </div>
+
+    <div class="flex flex-col gap-1 xl:w-full">
+        <label>Descripcion:</label>
+        <input
+            name="descripcion"
+            value="{{ $producto->descripcion }}"
+            type="text"
+            id="descripcion"
         />
     </div>
 

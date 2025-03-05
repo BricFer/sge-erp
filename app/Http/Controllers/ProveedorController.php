@@ -56,4 +56,9 @@ class ProveedorController extends Controller
 
         return redirect()->route('proveedor.home')->with('danger','Proveedor eliminado correctamente');
     }
+
+    public function showSupplier(Proveedor $proveedor):View
+    {
+        return view('layouts.proveedores.proveedor', compact('proveedor'));
+    }
 }

@@ -58,4 +58,9 @@ class ClienteController extends Controller
 
         return redirect()->route('cliente.home')->with('danger','Cliente eliminado correctamente');
     }
+
+    public function showClient(Cliente $cliente):View
+    {
+        return view('layouts.clientes.cliente', compact('cliente'));
+    }
 }

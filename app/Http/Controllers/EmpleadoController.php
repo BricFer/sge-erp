@@ -49,4 +49,9 @@ class EmpleadoController extends Controller
 
         return redirect()->route('empleado.home')->with('danger','Empleado eliminado correctamente');
     }
+    
+    public function showEmployee(Empleado $empleado):View
+    {
+        return view('layouts.empleados.empleado', compact('empleado'));
+    }
 }

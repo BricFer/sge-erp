@@ -6,12 +6,11 @@
         @include('layouts.productos.buscar')
     </div>
 
-    
     <div class="w-full">
-        @section('campo1', 'Almacen')
-        @section('campo2', 'IVA')
-        @section('campo3', 'Precio Compra')
-        @section('campo4', 'Precio Venta')
+        @section('campo1', 'Precio Compra')
+        @section('campo2', 'Precio Venta')
+        @section('campo3', 'IVA')
+        @section('campo4', 'Descripcion')
 
         @include('layouts._partials.secciones')
         
@@ -21,17 +20,23 @@
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
                     <p class="w-[175px]">{{ $producto -> nombre }}</p>
 
-                    <p class="w-[95px]">{{ $producto -> id_almacen }}</p>
-
-                    <p class="w-[95px]">{{ ($producto -> iva) * 100 }}%</p>
-                    
-                    <p class="w-[225px]">{{ $producto -> precio_compra }}€</p>
+                    <p class="w-[95px]">{{ $producto -> precio_compra }}€</p>
 
                     <p class="w-[95px]">{{ $producto -> precio_venta }}€</p>
+                    
+                    <p class="w-[225px]">{{ ($producto -> iva) * 100 }}%</p>
+                    
+                    <p class="w-[425px]">{{ $producto ->  descripcion}}</p>
 
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
+
+                    {{-- Pasar el producto a almacen y que muestre un listado de los almacenes donde se encuentra el producto --}}
+                    <a class="block" href="{{ route('producto.edit', ['producto' => $producto->id]) }}">
+                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show button">
+                    </a>
+
                     <a class="block" href="{{ route('producto.edit', ['producto' => $producto->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
