@@ -44,7 +44,7 @@
                 <h2 class="w-full my-2 border-b-solid border-b-4 border-b-indigo-600/25 mb-8 text-lg font-semibold uppercase tracking-wider text-indigo-600 drop-shadow-lg">Almacen | Productos</h2>
 
                 <div class="flex flex gap-4">
-                    <a href="#"class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                    <a href="{{ route('almacen.home')}}"class="block w-[175px] border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
                         <img src="{{ asset('assets/img/almacen.png') }}" alt="image icon of client">
                     </a>
     

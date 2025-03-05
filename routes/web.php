@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 
+use App\Livewire\Almacenes\ListarAlmacenes;
+use App\Livewire\Almacenes\ListarAlmacenesGrid;
+use App\Http\Controllers\AlmacenController;
+
 use App\Livewire\Clientes\ListarClientes;
 use App\Livewire\Clientes\ListarGrid;
 use App\Http\Controllers\ClienteController;
@@ -25,6 +29,23 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Almacenes
+//Listar
+Route::get('/almacenes', ListarAlmacenes::class)->name('almacen.home');
+Route::get('/lalmacenes', ListarAlmacenesGrid::class)->name('almacen.grid');
+Route::get('/almacen/mostar/{almacen}', [AlmacenController::class, 'showStorage'])->name('almacen.show');
+
+// Crear/Guardar
+Route::get('/almacen/crear', [AlmacenController::class, 'create'])-> name('almacen.crear');
+Route::post('/almacen/guardar',[AlmacenController::class, 'store'])-> name('almacen.store');
+
+// Modificar/Guardar
+Route::get('/almacen/edit/{almacen}',[AlmacenController::class,'edit'])->name('almacen.edit');
+Route::put('/almacen/update/{almacen}',[AlmacenController::class, 'update'])-> name('almacen.update');
+
+// Eliminar
+Route::delete('almacen/destroy/{almacen}',[AlmacenController::class, 'destroy'])->name('almacen.destroy');
+
 // Clientes
 //Listar
 Route::get('/clientes', ListarClientes::class)->name('cliente.home');
@@ -42,44 +63,56 @@ Route::put('/cliente/update/{cliente}',[ClienteController::class, 'update'])-> n
 // Eliminar
 Route::delete('cliente/destroy/{cliente}',[ClienteController::class, 'destroy'])->name('cliente.destroy');
 
-// Proveedores
-Route::get('/proveedores', ListarProveedores::class)->name('proveedor.home');
-Route::get('/lproveedores', ListarProveedoresGrid::class)->name('proveedor.grid');
-Route::get('/proveedor/mostar/{proveedor}', [ProveedorController::class, 'showSupplier'])->name('proveedor.show');
-
-Route::get('/proveedor/crear', [ProveedorController::class, 'create'])-> name('proveedor.crear');
-Route::post('/proveedor/guardar',[ProveedorController::class, 'store'])-> name('proveedor.store');
-
-Route::get('/proveedor/edit/{proveedor}',[ProveedorController::class,'edit'])->name('proveedor.edit');
-Route::put('/proveedor/update/{proveedor}',[ProveedorController::class, 'update'])-> name('proveedor.update');
-
-Route::delete('proveedor/destroy/{proveedor}',[ProveedorController::class, 'destroy'])->name('proveedor.destroy');
-
-// Productos
-Route::get('/productos', ListarProductos::class)->name('producto.home');
-Route::get('/lproductos', ListarProductosGrid::class)->name('producto.grid');
-Route::get('/producto/mostar/{producto}', [ProductoController::class, 'showProduct'])->name('producto.show');
-
-Route::get('/producto/crear', [ProductoController::class, 'create'])-> name('producto.crear');
-Route::post('/producto/guardar',[ProductoController::class, 'store'])-> name('producto.store');
-
-Route::get('/producto/edit/{producto}',[ProductoController::class,'edit'])->name('producto.edit');
-Route::put('/producto/update/{producto}',[ProductoController::class, 'update'])-> name('producto.update');
-
-Route::delete('producto/destroy/{producto}',[ProductoController::class, 'destroy'])->name('producto.destroy');
-
 // Empleados
+//Listar
 Route::get('/empleados', ListarEmpleados::class)->name('empleado.home');
 Route::get('/lempleados', ListarEmpleadosGrid::class)->name('empleado.grid');
 Route::get('/empleado/mostar/{empleado}', [EmpleadoController::class, 'showEmployee'])->name('empleado.show');
 
+// Crear/Guardar
 Route::get('/empleado/crear', [EmpleadoController::class, 'create'])-> name('empleado.crear');
 Route::post('/empleado/guardar',[EmpleadoController::class, 'store'])-> name('empleado.store');
 
+// Modificar/Guardar
 Route::get('/empleado/edit/{empleado}',[EmpleadoController::class,'edit'])->name('empleado.edit');
 Route::put('/empleado/update/{empleado}',[EmpleadoController::class, 'update'])-> name('empleado.update');
 
+// Eliminar
 Route::delete('empleado/destroy/{empleado}',[EmpleadoController::class, 'destroy'])->name('empleado.destroy');
+
+// Productos
+//Listar
+Route::get('/productos', ListarProductos::class)->name('producto.home');
+Route::get('/lproductos', ListarProductosGrid::class)->name('producto.grid');
+Route::get('/producto/mostar/{producto}', [ProductoController::class, 'showProduct'])->name('producto.show');
+
+// Crear/Guardar
+Route::get('/producto/crear', [ProductoController::class, 'create'])-> name('producto.crear');
+Route::post('/producto/guardar',[ProductoController::class, 'store'])-> name('producto.store');
+
+// Modificar/Guardar
+Route::get('/producto/edit/{producto}',[ProductoController::class,'edit'])->name('producto.edit');
+Route::put('/producto/update/{producto}',[ProductoController::class, 'update'])-> name('producto.update');
+
+// Eliminar
+Route::delete('producto/destroy/{producto}',[ProductoController::class, 'destroy'])->name('producto.destroy');
+
+// Proveedores
+//Listar
+Route::get('/proveedores', ListarProveedores::class)->name('proveedor.home');
+Route::get('/lproveedores', ListarProveedoresGrid::class)->name('proveedor.grid');
+Route::get('/proveedor/mostar/{proveedor}', [ProveedorController::class, 'showSupplier'])->name('proveedor.show');
+
+// Crear/Guardar
+Route::get('/proveedor/crear', [ProveedorController::class, 'create'])-> name('proveedor.crear');
+Route::post('/proveedor/guardar',[ProveedorController::class, 'store'])-> name('proveedor.store');
+
+// Modificar/Guardar
+Route::get('/proveedor/edit/{proveedor}',[ProveedorController::class,'edit'])->name('proveedor.edit');
+Route::put('/proveedor/update/{proveedor}',[ProveedorController::class, 'update'])-> name('proveedor.update');
+
+// Eliminar
+Route::delete('proveedor/destroy/{proveedor}',[ProveedorController::class, 'destroy'])->name('proveedor.destroy');
 
 // Facturas
 // Route::get('/facturas', ListarClientes::class)->name('factura.home');
