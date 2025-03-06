@@ -51,6 +51,7 @@ Route::delete('almacen/destroy/{almacen}',[AlmacenController::class, 'destroy'])
 Route::get('/clientes', ListarClientes::class)->name('cliente.home');
 Route::get('/lclientes', ListarGrid::class)->name('cliente.grid');
 Route::get('/cliente/mostar/{cliente}', [ClienteController::class, 'showClient'])->name('cliente.show');
+Route::get('/clientes/buscar', [ClienteController::class, 'buscar'])->name('cliente.buscar'); // Devuelve los clientes según la búsqueda
 
 // Crear/Guardar
 Route::get('/cliente/crear', [ClienteController::class, 'create'])-> name('cliente.crear');

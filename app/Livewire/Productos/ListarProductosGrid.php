@@ -4,15 +4,16 @@ namespace App\Livewire\Productos;
 
 use App\Models\Producto;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ListarProductosGrid extends Component
 {
-    use WithPagination;
+    public $buscar = '';
+
 
     public function render()
     {
-        $productos = Producto::paginate(15);
+        $productos = $this->buscar ? Producto::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Producto::all();
+
         return view('layouts.productos.listar-grid', compact('productos'))
             ->extends('dashboard')
             ->section('content');

@@ -17,11 +17,10 @@
                 alt="search icon"
             />
             <input
-                type="search"
-                name="nombre"
-                id="search"
-                class="border-none p-0 w-full placeholder:italic"
+                wire:model.live="buscar"
+                type="text"
                 placeholder="Buscar . . ."
+                class="border-none p-0 w-full placeholder:italic"
             />
         </form>
     

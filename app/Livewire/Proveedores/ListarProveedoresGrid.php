@@ -4,15 +4,15 @@ namespace App\Livewire\Proveedores;
 
 use App\Models\Proveedor;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ListarProveedoresGrid extends Component
 {
-    use WithPagination;
+    public $buscar = ''; // Propiedad para la búsqueda
 
     public function render()
     {
-        $proveedores = Proveedor::paginate(15);
+        $proveedores = $this->buscar ? Proveedor::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Proveedor::all();
+
         return view('layouts.proveedores.listar-grid', compact('proveedores'))
             ->extends('dashboard')
             ->section('content');

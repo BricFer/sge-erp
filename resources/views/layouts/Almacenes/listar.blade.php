@@ -26,11 +26,11 @@
 
                 {{-- Me redirige a una vista con todos los productos de ese almacen --}}
 
-                    <a class="block" href="{{ route('almacen.show', ['almacen' => $almacen->id]) }}">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('almacen.show', ['almacen' => $almacen->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
 
-                    <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
@@ -50,9 +50,5 @@
         @empty
             <p>Aún no hay registros</p>
         @endforelse
-    </div>
-    <div class="mt-4">
-        {{ $almacenes ->links() }}
-        
     </div>
 <div>

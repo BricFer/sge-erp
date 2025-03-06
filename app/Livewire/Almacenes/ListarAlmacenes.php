@@ -4,25 +4,16 @@ namespace App\Livewire\Almacenes;
 
 use App\Models\Almacen;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ListarAlmacenes extends Component
 {
-    use WithPagination;
+    public $buscar = ''; // Propiedad para la búsqueda
 
     public function render()
     {
-        $almacenes = Almacen::paginate(15);
+        $almacenes = $this->buscar ? Almacen::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Almacen::all();
 
         return view('layouts.almacenes.listar', compact('almacenes'))
-            ->extends('dashboard')
-            ->section('content');
-    }
-
-    public function listarGrid()
-    {
-        $almacenes = Almacen::all();
-        return view('layouts.almacenes.listar-grid', compact('almacenes'))
             ->extends('dashboard')
             ->section('content');
     }

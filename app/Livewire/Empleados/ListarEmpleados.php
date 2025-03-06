@@ -8,13 +8,12 @@ use Livewire\WithPagination;
 
 class ListarEmpleados extends Component
 {
-    use WithPagination;
-
+    public $buscar = '';
 
     public function render()
     {
-        $empleados = Empleado::paginate(15);
-
+        $empleados = $this->buscar ? Empleado::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Empleado::all();
+        
         return view('layouts.empleados.listar', compact('empleados'))
             ->extends('dashboard')
             ->section('content');

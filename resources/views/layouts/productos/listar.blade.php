@@ -58,8 +58,4 @@
             <p>Aún no hay registros</p>
         @endforelse
     </div>
-    <div class="mt-4">
-        {{ $productos->links() }}
-        
-    </div>
 <div>

@@ -10,20 +10,19 @@
             </a>
         </div>
     
-        <form class="flex flex-row gap-2 items-center border-2 w-full h-8 p-1 my-4  md:w-[728px]">
+        <div class="flex flex-row gap-2 items-center border-2 w-full h-8 p-1 my-4  md:w-[728px]">
             <img
                 class="block"
                 src="{{ asset('assets/icons/search-icon.svg') }}"
                 alt="search icon"
             />
             <input
-                type="search"
-                name="nombre"
-                id="search"
-                class="border-none p-0 w-full placeholder:italic"
+                wire:model.live="buscar"
+                type="text"
                 placeholder="Buscar . . ."
+                class="border-none p-0 w-full placeholder:italic"
             />
-        </form>
+        </div>
     
         
         <div class="flex flex-row gap-8 justify-between items-center">

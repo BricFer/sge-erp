@@ -4,15 +4,15 @@ namespace App\Livewire\Empleados;
 
 use App\Models\Empleado;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class ListarEmpleadosGrid extends Component
 {
-    use WithPagination;
+    public $buscar = '';
 
     public function render()
     {
-        $empleados = Empleado::paginate(15);
+        $empleados = $this->buscar ? Empleado::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Empleado::all();
+        
         return view('layouts.empleados.listar-grid', compact('empleados'))
             ->extends('dashboard')
             ->section('content');

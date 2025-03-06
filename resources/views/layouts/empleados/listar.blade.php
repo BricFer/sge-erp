@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
-                    <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
@@ -50,9 +50,5 @@
         @empty
             <p>Aún no hay registros</p>
         @endforelse
-    </div>
-    <div class="mt-4">
-        {{ $empleados->links() }}
-        
     </div>
 <div>

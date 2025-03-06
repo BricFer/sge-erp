@@ -5,8 +5,9 @@
 
         @include('layouts.clientes.buscar')
     </div>
+
     {{-- Esta es una forma de pasar la paginación al componente que la renderizará
-        @include('layouts._partials.searchbar', ['clientes' => $clientes])
+        @include('layouts._partials.buscar', ['clientes' => $clientes])
     --}}
     
     <div class="w-full">
@@ -43,7 +44,7 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
-                    <a class="block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                    <a class="w-[24px] h-[24px] block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
@@ -63,9 +64,5 @@
         @empty
             <p>Aún no hay registros</p>
         @endforelse
-    </div>
-    <div class="mt-4">
-        {{ $clientes->links() }}
-        
     </div>
 <div>

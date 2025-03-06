@@ -8,7 +8,7 @@
     <div class="w-full flex flex-row gap-8 p-2">
 
         @forelse ($clientes as $cliente)
-            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[384px]">
+            <div class="flex flex-col justify-between text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[384px]">
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $cliente -> nombre }} {{ $cliente -> apellido }}</h2>
 
                 <p>
@@ -21,12 +21,12 @@
                     <span class="font-bold">Correo:</span> {{ $cliente-> correo}}
                 </p>
 
-                <div class="flex flex-row items-center gap-2 mt-4">
-                    <a class="block" href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">
+                <div class="flex flex-row gap-2 mt-4">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show button">
                     </a>
 
-                    <a class="block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
