@@ -3,7 +3,10 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.proveedores.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('proveedor.crear'),
+            'listUrl' => route('proveedor.home'),
+            'gridUrl' => route('proveedor.grid')])
     </div>
 
     <div class="w-full">
@@ -42,7 +45,7 @@
 
                 <div class="flex flex-row items-center gap-2">
                     <a class="block" href="{{ route('proveedor.edit', ['proveedor' => $proveedor->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
@@ -59,7 +62,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
     </div>
 <div>

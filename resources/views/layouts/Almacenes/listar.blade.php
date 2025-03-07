@@ -3,7 +3,10 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.almacenes.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('almacen.crear'),
+            'listUrl' => route('almacen.home'),
+            'gridUrl' => route('almacen.grid')])
     </div>
 
     <div class="w-full">
@@ -26,12 +29,12 @@
 
                 {{-- Me redirige a una vista con todos los productos de ese almacen --}}
 
-                    <a class="block w-[24px] h-[24px]" href="{{ route('almacen.show', ['almacen' => $almacen->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
+                    <a class="block" href="{{ route('almacen.show', ['almacen' => $almacen->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
 
-                    <a class="block w-[24px] h-[24px]" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
@@ -48,7 +51,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
     </div>
 <div>

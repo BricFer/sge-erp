@@ -15,7 +15,6 @@
     </head>
     <body class="p-1">
         
-            @include('layouts._partials.messages')
             @yield('content')
 
         @livewireScripts

@@ -2,7 +2,10 @@
     <div>
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.productos.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('producto.crear'),
+            'listUrl' => route('producto.home'),
+            'gridUrl' => route('producto.grid')])
     </div>
 
     <div class="w-full flex flex-row gap-8 p-2">
@@ -44,7 +47,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
 
     </div>

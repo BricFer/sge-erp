@@ -26,4 +26,12 @@ class AlmacenRequest extends FormRequest
             'ubicacion' => ['required', 'string', 'min:3', 'max:255'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'Es obligatorio el nombre/alias del almacen.',
+            'ubicacion.required' => 'Es obligatoria la ubicación del almacen.',
+        ];
+    }
 }

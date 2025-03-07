@@ -2,7 +2,10 @@
     <div>
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.empleados.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('empleado.crear'),
+            'listUrl' => route('empleado.home'),
+            'gridUrl' => route('empleado.grid')])
     </div>
 
     <div class="w-full flex flex-row gap-8 p-2">
@@ -23,11 +26,11 @@
 
                 <div class="flex flex-row gap-2 mt-4">
                     <a class="block" href="{{ route('empleado.show', ['empleado' => $empleado->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
 
                     <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
@@ -44,7 +47,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
 
     </div>

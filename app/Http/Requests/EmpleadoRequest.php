@@ -25,7 +25,18 @@ class EmpleadoRequest extends FormRequest
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'rol' => ['required', 'string', 'min:3', 'max:120'],
             'telefono' => ['required', 'string'],
-            'correo' => ['required', 'string', 'min:3', 'max:120']
+            'correo' => ['required', 'string','unique:empleados,correo', 'min:3', 'max:120']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El nombre del empleado es obligatorio.',
+            'rol.required' => 'Es obligatorio el cargo que ocupa el empleado.',
+            'telefono.required' => 'Es obligatorio un telefono de contacto.',
+            'correo.required' => 'Es obligatorio un correo de contacto.',
+            'correo.unique' => 'El correo electrónico ya se encuentra registrado.',
         ];
     }
 }

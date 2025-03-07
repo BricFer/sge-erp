@@ -29,4 +29,14 @@ class ProductoRequest extends FormRequest
             'descripcion' => ['string'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'Por favor, incluye un nombre de producto.',
+            'precio_compra.required' => 'Es obligatorio incluir el precio de compra por unidad.',
+            'precio_venta.required' => 'Es obligatorio incluir el precio de venta por unidad.',
+            'iva.required' => 'Incluye el porcentaje (%) de iva del género.',
+        ];
+    }
 }

@@ -3,7 +3,10 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.productos.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('producto.crear'),
+            'listUrl' => route('producto.home'),
+            'gridUrl' => route('producto.grid')])
     </div>
 
     <div class="w-full">
@@ -55,7 +58,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
     </div>
 <div>

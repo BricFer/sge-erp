@@ -7,8 +7,12 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('producto.home')])
 
-        @include('layouts.productos.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('producto.crear'),
+            'listUrl' => route('producto.home'),
+            'gridUrl' => route('producto.grid')])
     </div>
+    
     <div class="text-sm/7 w-full flex flex-col items-center">
 
         <div>
@@ -33,7 +37,7 @@
             <div class="flex flex-row gap-2 mt-4">
 
                 <a class="block" href="{{ route('producto.edit', ['producto' => $producto->id]) }}">
-                    <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                 </a>
     
                 <form

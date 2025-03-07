@@ -2,7 +2,10 @@
     <div>
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.clientes.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('cliente.crear'),
+            'listUrl' => route('cliente.home'),
+            'gridUrl' => route('cliente.grid')])
     </div>
 
     <div class="w-full flex flex-row gap-8 p-2">
@@ -22,12 +25,12 @@
                 </p>
 
                 <div class="flex flex-row gap-2 mt-4">
-                    <a class="block w-[24px] h-[24px]" href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show button">
+                    <a class="block" href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show button">
                     </a>
 
-                    <a class="block w-[24px] h-[24px]" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    <a class="block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
@@ -44,7 +47,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
 
     </div>

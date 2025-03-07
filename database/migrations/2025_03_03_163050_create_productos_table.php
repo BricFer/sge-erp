@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('precio_compra', 10, 2);
             $table->decimal('precio_venta', 10, 2);
             $table->decimal('iva', 2, 2);
-            $table->string('descripcion', 255);
+            $table->string('descripcion', 255)->nullable();
             $table->timestamps();
         });
     }

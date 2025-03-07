@@ -3,7 +3,10 @@
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
-        @include('layouts.clientes.buscar')
+        @include('layouts._partials.buscar', [
+            'addUrl' => route('cliente.crear'),
+            'listUrl' => route('cliente.home'),
+            'gridUrl' => route('cliente.grid')])
     </div>
 
     {{-- Esta es una forma de pasar la paginación al componente que la renderizará
@@ -44,8 +47,8 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
-                    <a class="w-[24px] h-[24px] block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    <a class="block" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <form
@@ -62,7 +65,7 @@
                 </div>
             </div>
         @empty
-            <p>Aún no hay registros</p>
+            <p>No hay registros</p>
         @endforelse
     </div>
 <div>
