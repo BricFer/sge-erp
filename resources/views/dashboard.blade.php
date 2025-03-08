@@ -17,6 +17,7 @@
         
             @yield('content')
 
+            @include('layouts._partials.advertencia')
         @livewireScripts
     </body>
 </html>

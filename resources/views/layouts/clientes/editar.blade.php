@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('cliente.home')])
 
@@ -12,8 +13,6 @@
             'listUrl' => route('cliente.home'),
             'gridUrl' => route('cliente.grid')])
     </div>
-
-    @include('layouts._partials.messages')
 
     <form
         method="POST"

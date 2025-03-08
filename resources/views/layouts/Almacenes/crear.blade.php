@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('almacen.home')])
 
@@ -12,8 +13,6 @@
             'listUrl' => route('almacen.home'),
             'gridUrl' => route('almacen.grid')])
     </div>
-
-    @include('layouts._partials.messages')
 
     <form
         method="POST"

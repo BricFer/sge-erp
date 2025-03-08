@@ -14,22 +14,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-            keyframes: {
-                fadeInOpacity: {
-                    "0%": {
-                        opacity: "1",
-                        display: "block",
-                    },
-                    "to": {
-                        opacity: "0",
-                        display: "hidden",
-                    }
-                }
-            },
         },
-        animation: {
-            "fade-message": "fadeInOpacity 2s ease-in",
-        }
     },
     
     plugins: [forms],

@@ -36,25 +36,19 @@
                     <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                 </a>
     
-                <form
-                    method="POST"
-                    action="{{ route('empleado.destroy', $empleado->id) }}"
+                <img
+                    data-action="{{ route('empleado.destroy', $empleado->id) }}"
+                    src="{{ asset('assets/icons/trash-icon.svg') }}"
+                    alt="delete icon"
+                    class="warning-img w-[24px] h-[24px] cursor-pointer"
                 >
-                    @csrf
-                    @method('DELETE')
-                    <input
-                        type="submit"
-                        class="w-[24px] h-[24px] bg-[url('../../../../public/assets/icons/trash-icon.svg')] bg-no-repeat bg-cover bg-center text-transparent font-bold rounded-lg cursor-pointer border-none"
-                    />
-                </form>
+                <a
+                    href="{{ route('empleado.grid') }}"
+                    class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
+                >
+                    Regresar
+                </a>
             </div>
-
-            <a
-                href="{{ route('empleado.grid') }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
-            >
-                Regresar
-            </a>
         </div>
     </div>
 

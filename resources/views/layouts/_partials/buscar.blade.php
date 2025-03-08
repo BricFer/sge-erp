@@ -1,7 +1,7 @@
 <div>
     <div class="md:flex md:flex-row md:justify-between md:items-center w-full my-6">
         
-        <div class="flex flex-row gap-2 justify-between items-center my-4">
+        <div class="flex flex-row gap-2 items-center my-4">
             <a class="block border-2 border-black/30" href="{{ $addUrl ?? route('home') }}">
                 <img class="block w-[32px]" src="{{ asset('assets/icons/add-icon.svg') }}" alt="Add icon">
             </a>

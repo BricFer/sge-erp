@@ -1,5 +1,6 @@
 <div>
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
@@ -33,21 +34,20 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
+                    <a class="block" href="{{ route('empleado.show', ['empleado' => $empleado->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
+                    </a>
+                    
                     <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
-                    <form
-                        method="POST"
-                        action="{{ route('empleado.destroy', $empleado->id) }}"
+                    <img
+                        data-action="{{ route('empleado.destroy', $empleado->id) }}"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        alt="delete icon"
+                        class="warning-img w-[24px] h-[24px] cursor-pointer"
                     >
-                        @csrf
-                        @method('DELETE')
-                        <input
-                            type="submit"
-                            class="w-[24px] h-[24px] bg-[url('../../../../public/assets/icons/trash-icon.svg')] bg-no-repeat bg-cover bg-center text-transparent font-bold rounded-lg cursor-pointer border-none"
-                        />
-                    </form>
                 </div>
             </div>
         @empty

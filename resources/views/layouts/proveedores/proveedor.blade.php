@@ -52,17 +52,12 @@
                     <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                 </a>
     
-                <form
-                    method="POST"
-                    action="{{ route('proveedor.destroy', $proveedor->id) }}"
+                <img
+                    data-action="{{ route('proveedor.destroy', $proveedor->id) }}"
+                    src="{{ asset('assets/icons/trash-icon.svg') }}"
+                    alt="delete icon"
+                    class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"
                 >
-                    @csrf
-                    @method('DELETE')
-                    <input
-                        type="submit"
-                        class="w-[24px] h-[24px] bg-[url('../../../../public/assets/icons/trash-icon.svg')] bg-no-repeat bg-cover bg-center text-transparent font-bold rounded-lg cursor-pointer border-none"
-                    />
-                </form>
             </div>
 
             <a

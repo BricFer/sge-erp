@@ -1,5 +1,6 @@
 <div>
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
@@ -16,7 +17,8 @@
         @include('layouts._partials.secciones')
         
         @forelse ($almacenes as $almacen)
-            <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
+
+            <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
                     <p class="w-[175px]">{{ $almacen -> nombre }}</p>
@@ -37,19 +39,16 @@
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
-                    <form
-                        method="POST"
-                        action="{{ route('almacen.destroy', $almacen->id) }}"
+                    <img
+                        data-action="{{ route('almacen.destroy', $almacen->id) }}"
+                        id="warning-img"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        class="warning-img w-[24px] h-[24px] rounded-lg cursor-pointer"
                     >
-                        @csrf
-                        @method('DELETE')
-                        <input
-                            type="submit"
-                            class="w-[24px] h-[24px] bg-[url('../../../../public/assets/icons/trash-icon.svg')] bg-no-repeat bg-cover bg-center text-transparent font-bold rounded-lg cursor-pointer border-none"
-                        />
-                    </form>
                 </div>
+
             </div>
+            
         @empty
             <p>No hay registros</p>
         @endforelse

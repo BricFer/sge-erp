@@ -1,5 +1,6 @@
 <div>
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
@@ -36,25 +37,20 @@
                 <div class="flex flex-row items-center gap-2">
 
                     {{-- Pasar el producto a almacen y que muestre un listado de los almacenes donde se encuentra el producto --}}
-                    <a class="block w-[24px] h-[24px]" href="{{ route('producto.edit', ['producto' => $producto->id]) }}">
-                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show button">
+                    <a class="block w-[24px] h-[24px]" href="{{ route('producto.show', ['producto' => $producto->id]) }}">
+                        <img class="block" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
 
                     <a class="block w-[24px] h-[24px]" href="{{ route('producto.edit', ['producto' => $producto->id]) }}">
                         <img class="block" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
-                    <form
-                        method="POST"
-                        action="{{ route('producto.destroy', $producto->id) }}"
+                    <img
+                        data-action="{{ route('producto.destroy', $producto->id) }}"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        alt="delete icon"
+                        class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"
                     >
-                        @csrf
-                        @method('DELETE')
-                        <input
-                            type="submit"
-                            class="w-[24px] h-[24px] bg-[url('../../../../public/assets/icons/trash-icon.svg')] bg-no-repeat bg-cover bg-center text-transparent font-bold rounded-lg cursor-pointer border-none"
-                        />
-                    </form>
                 </div>
             </div>
         @empty

@@ -1,13 +1,41 @@
 @if ($message = Session::get('success'))
-    <div class="animate-fade-message" style="padding:15px; background-color:green; color:white">
+    <div id="success-message" class="absolute bg-green-600 inset-x-0 top-0 p-4 text-white text-center">
         <p>{{$message}}</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            setTimeout( () => {
+                let successMessage = document.getElementById('success-message');
+
+                if( successMessage ) {
+                    
+                    successMessage.remove();
+                }
+            }, 3000);
+        })
+    </script>
 @endif
 
 @if ($message = Session::get('danger'))
-    <div class="animate-fade-message" style="padding:15px; background-color:red; color:white">
+    <div id="danger-message" class="absolute bg-red-600 inset-x-0 top-0 p-4 text-white text-center">
         <p>{{$message}}</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            setTimeout( () => {
+                let dangerMessage = document.getElementById('danger-message');
+
+                if( dangerMessage ) {
+                    
+                    dangerMessage.remove();
+                }
+            }, 3000);
+        })
+    </script>
 @endif
 
 @if ($errors->any())
