@@ -16,6 +16,21 @@
     </head>
     <body class="flex flex-col p-1">
 
+        <nav class="flex flex-row justify-between items-center w-full p-4">
+            
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[98px]">
+            
+            <div class="flex flex-row justify-between items-center gap-2">
+                <p>Briceida</p>
+                <a href="#">
+                    <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
+                </a>
+                <a href="">
+                    <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
+                </a>
+            </div>
+        </nav>
+
         <div class="flex flex-col gap-10 flex-row max-w-7xl h-screen p-16 m-auto w-full">
 
             <div class="w-full">
