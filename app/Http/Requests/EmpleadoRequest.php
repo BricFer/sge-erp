@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Empleado;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EmpleadoRequest extends FormRequest
 {
@@ -21,11 +23,19 @@ class EmpleadoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $empleadoId = $this->route('empleado') ? $this->route('empleado')->id : null;
+
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'rol' => ['required', 'string', 'min:3', 'max:120'],
             'telefono' => ['required', 'string'],
-            'correo' => ['required', 'string','unique:empleados,correo', 'min:3', 'max:120']
+            'correo' => [
+                'required',
+                'string',
+                Rule::unique(Empleado::class)->ignore($empleadoId),
+                'min:3',
+                'max:120'
+            ],
         ];
     }
 

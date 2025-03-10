@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Cliente;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClienteRequest extends FormRequest
 {
@@ -21,16 +23,31 @@ class ClienteRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Obtiene el ID del cliente actual si está disponible (solo en actualización)
+        $clienteId = $this->route('cliente') ? $this->route('cliente')->id : null;
+
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:120'],
             'apellido' => ['required', 'string', 'min:3', 'max:120'],
-            'nif' => ['required', 'string', 'unique:clientes,nif', 'min:3', 'max:12'],
+            'nif' => [
+                'required',
+                'string',
+                Rule::unique(Cliente::class)->ignore($clienteId),
+                'min:3',
+                'max:12',
+            ],
             'domicilio' => ['required', 'string', 'min:3', 'max:120'],
             'cod_postal' => ['required', 'string', 'min:3', 'max:12'],
             'poblacion' => ['required', 'string', 'min:3', 'max:25'],
             'provincia' => ['required', 'string', 'min:3', 'max:25'],
             'telefono',
-            'correo' => ['required', 'string','unique:clientes,correo', 'min:3', 'max:120']
+            'correo' => [
+                'required',
+                'string',
+                Rule::unique(Cliente::class)->ignore($clienteId),
+                'min:3',
+                'max:120',
+            ]
         ];
     }
 

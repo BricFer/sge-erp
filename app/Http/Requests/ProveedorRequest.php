@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Proveedor;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProveedorRequest extends FormRequest
 {
@@ -21,15 +23,28 @@ class ProveedorRequest extends FormRequest
      */
     public function rules(): array
     {
+        $idProveedor = $this->route('proveedor') ? $this->route('proveedor')->id : null;
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
-            'cif' => ['required', 'string', 'unique:proveedores,cif', 'min:3', 'max:12'],
+            'cif' => [
+                'required',
+                'string',
+                Rule::unique(Proveedor::class)->ignore($idProveedor),
+                'min:3',
+                'max:12',
+            ],
             'domicilio' => ['required', 'string', 'min:3', 'max:255'],
             'cod_postal' => ['required', 'string', 'min:3', 'max:12'],
             'poblacion' => ['required', 'string', 'min:3', 'max:25'],
             'provincia' => ['required', 'string', 'min:3', 'max:25'],
             'telefono' => ['required'],
-            'correo' => ['required', 'string', 'unique:proveedores,correo', 'min:3', 'max:120'],
+            'correo' => [
+                'required',
+                'string',
+                Rule::unique(Proveedor::class)->ignore($idProveedor),
+                'min:3',
+                'max:120',
+            ],
         ];
     }
 
