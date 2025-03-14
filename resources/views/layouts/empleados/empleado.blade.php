@@ -43,7 +43,7 @@
                     class="warning-img w-[24px] h-[24px] cursor-pointer"
                 >
                 <a
-                    href="{{ route('empleado.grid') }}"
+                    href="{{ url()->previous() }}"
                     class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
                 >
                     Regresar

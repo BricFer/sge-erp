@@ -1,10 +1,6 @@
 <nav class="flex flex-row justify-between items-center w-full my-6">
     
     <div class="flex flex-row justify-between items-center gap-8">
-        
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[78px]">
-        </a>
 
         <a href="{{ $backUrl ?? route('home') }}" class="inline-block">
             <img class="block" src="{{ asset('assets/icons/left-icon.svg') }}" alt="left icon">
@@ -21,6 +17,10 @@
     </div>
     
     <div class="flex flex-row justify-between items-center gap-2">
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[48px]">
+        </a>
+        
         <p>Briceida</p>
         <a href="#">
             <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">

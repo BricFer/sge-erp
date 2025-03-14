@@ -49,7 +49,7 @@
             />
 
             <a
-                href="{{ route('empleado.home') }}"
+                href="{{ url()->previous() }}"
                 class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
             >
                 Cancel

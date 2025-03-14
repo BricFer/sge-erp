@@ -60,7 +60,7 @@
             </div>
 
             <a
-                href="{{ route('cliente.grid') }}"
+                href="{{ url()->previous() }}"
                 class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
             >
                 Regresar
