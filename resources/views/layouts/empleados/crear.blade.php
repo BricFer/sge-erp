@@ -26,18 +26,33 @@
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label for="rol">Cargo que ocupa:</label>
-            <input name="rol" type="text" class="form-control" id="rol">
+            <label for="dni_nif">DNI/NIF:</label>
+            <input name="dni_nif" type="text" class="form-control" id="dni_nif">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label>Teléfono</label>
+            <label>Teléfono:</label>
             <input name="telefono" type="tel">
         </div>
 
         <div class="flex flex-col gap-1 w-[845px]">
             <label>Correo</label>
             <input name="correo" type="email">
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label for="cargo">Cargo del empleado:</label>
+            <input name="cargo" type="text" id="cargo">
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label for="fecha_contratacion">Fecha de alta:</label>
+            <input name="fecha_contratacion" type="date" id="fecha_contratacion">
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label for="estado">Estado del empleado:</label>
+            <input name="estado" type="text" id="estado">
         </div>
 
         <div class="flex flex-col w-full gap-4 my-6 md:flex-row">

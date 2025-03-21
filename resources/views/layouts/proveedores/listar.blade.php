@@ -27,11 +27,11 @@
             <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                    <p class="w-[175px]">{{ $proveedor -> nombre }}</p>
+                    <p class="w-[175px] text-wrap">{{ $proveedor -> nombre }}</p>
 
                     <p class="w-[95px]">{{ $proveedor -> cif }}</p>
 
-                    <p class="w-[95px]">{{ $proveedor -> telefono }}</p>
+                    <p class="w-[115px]">{{ $proveedor -> telefono }}</p>
 
                     <p class="w-[225px]">{{ $proveedor -> correo }}</p>
 
@@ -39,7 +39,7 @@
 
                     <p class="w-[175px]">{{ $proveedor -> poblacion }}</p>
 
-                    <p class="w-[95px]">{{ $proveedor -> provincia }}</p>
+                    <p class="w-[95px] text-wrap">{{ $proveedor -> provincia }}</p>
 
                     <p class="w-[225px]">{{ $proveedor -> domicilio }}</p>
 

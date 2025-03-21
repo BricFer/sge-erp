@@ -24,6 +24,8 @@ class AlmacenRequest extends FormRequest
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'ubicacion' => ['required', 'string', 'min:3', 'max:255'],
+            'capacidad',
+            'estado' => ['required', 'string', 'min:3'],
         ];
     }
 

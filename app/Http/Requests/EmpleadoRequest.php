@@ -27,7 +27,13 @@ class EmpleadoRequest extends FormRequest
 
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
-            'rol' => ['required', 'string', 'min:3', 'max:120'],
+            'dni_nif' => [
+                'required',
+                'string',
+                Rule::unique(Empleado::class)->ignore($empleadoId),
+                'min:3',
+                'max:12',
+            ],
             'telefono' => ['required', 'string'],
             'correo' => [
                 'required',
@@ -36,6 +42,12 @@ class EmpleadoRequest extends FormRequest
                 'min:3',
                 'max:120'
             ],
+            'cargo' => ['required', 'string', 'min:3', 'max:120'],
+            'fecha_contratacion',
+            'estado' => [
+                'required',
+                Rule::in(['activo', 'excendencia', 'baja voluntaria', 'despido']),  // Usando Rule::in() para validar el enum
+            ],
         ];
     }
 
@@ -43,7 +55,8 @@ class EmpleadoRequest extends FormRequest
     {
         return [
             'nombre.required' => 'El nombre del empleado es obligatorio.',
-            'rol.required' => 'Es obligatorio el cargo que ocupa el empleado.',
+            'dni_nif.required' => 'Indica el número de documento del empleado.',
+            'cargo.required' => 'Es obligatorio indicar el cargo que ocupa el empleado.',
             'telefono.required' => 'Es obligatorio un telefono de contacto.',
             'correo.required' => 'Es obligatorio un correo de contacto.',
             'correo.unique' => 'El correo electrónico ya se encuentra registrado.',

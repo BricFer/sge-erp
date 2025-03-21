@@ -15,6 +15,7 @@ class Factura extends Model
     protected $fillable = [
         'facturable_id',
         'facturable_type',
+        'referencia',
         'id_empleado',
         'fecha_emision',
         'monto_total',

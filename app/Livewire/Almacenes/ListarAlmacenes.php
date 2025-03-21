@@ -11,7 +11,7 @@ class ListarAlmacenes extends Component
 
     public function render()
     {
-        $almacenes = $this->buscar ? Almacen::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Almacen::all();
+        $almacenes = $this->buscar ? Almacen::where('nombre', 'LIKE', '%'.$this->buscar.'%')->orWhere('ubicacion', 'LIKE','%'.$this->buscar.'%')->get() : Almacen::all();
 
         return view('layouts.almacenes.listar', compact('almacenes'))
             ->extends('dashboard')

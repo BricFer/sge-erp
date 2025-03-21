@@ -13,9 +13,9 @@
             'gridUrl' => route('proveedor.grid')])
     </div>
 
-    <div class="text-sm/7 w-full flex flex-col items-center">
+    <div class="max-w-7xl h-screen p-16 m-auto w-full">
 
-        <div>
+        <div class="text-sm/7 w-full flex flex-col gap-2">
             <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $proveedor -> nombre }}</h2>
         
             <p>
@@ -62,7 +62,7 @@
 
             <a
                 href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
+                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36 ml-auto"
             >
                 Regresar
             </a>

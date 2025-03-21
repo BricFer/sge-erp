@@ -10,10 +10,10 @@
             'gridUrl' => route('almacen.grid')])
     </div>
 
-    <div class="w-full flex flex-row flex-wrap gap-6 p-2">
+    <div class="w-full flex flex-row flex-wrap gap-4 p-2">
 
         @forelse ($almacenes as $almacen)
-            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px]">
+            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
 
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $almacen -> nombre }}</h2>
 
@@ -23,7 +23,7 @@
 
                 <div class="flex flex-row gap-2 mt-4">
 
-                    <a class="block" href="{{ route('almacen.show', ['almacen' => $almacen->id]) }}">
+                    <a class="block" href="{{ route('almacen.productos', ['almacen' => $almacen->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
 

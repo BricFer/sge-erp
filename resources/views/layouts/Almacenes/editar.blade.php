@@ -22,13 +22,23 @@
 
         @method('PUT')
         @csrf
-        <div class="flex flex-col gap-1 w-full">
+        <div class="flex flex-col gap-1 xl:w-[768px]">
             <label for="nombre">Nombre/Alias:</label>
             <input
                 name="nombre"
                 value="{{ $almacen->nombre }}"
                 type="text"
                 id="nombre"
+            />
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[475px]">
+            <label for="capacidad">Capacidad de almacenamiento:</label>
+            <input
+                name="capacidad"
+                value="{{ $almacen->capacidad }}"
+                type="text"
+                id="capacidad"
             />
         </div>
 
@@ -40,6 +50,31 @@
                 type="text"
                 id="ubicacion"
             />
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <p>Estado del almacen:</p>
+
+            <label class="flex gap-2 items-center" for="inactivo">
+                <input
+                    type="radio"
+                    name="estado"
+                    id="inactivo"
+                    value="inactivo"
+                    {{ $almacen->estado == 'inactivo' ? 'checked' : '' }} >
+                Inactivo
+            </label>
+
+            <label class="flex gap-2 items-center" for="activo">
+                <input
+                    type="radio"
+                    name="estado"
+                    id="activo"
+                    value="activo"
+                    {{ $almacen->estado == 'activo' ? 'checked' : '' }} >
+                Activo
+            </label>
+            
         </div>
 
         <div class="flex flex-col w-full gap-4 my-6 md:flex-row">

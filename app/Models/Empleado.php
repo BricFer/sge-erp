@@ -17,9 +17,12 @@ class Empleado extends Model
 
     protected $fillable = [
         'nombre',
-        'rol',
+        'dni_nif',
         'telefono',
         'correo',
+        'cargo',
+        'fecha_contratacion',
+        'estado',
     ];
 
     public function presupuestos(): HasMany

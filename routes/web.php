@@ -1,28 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-
-use App\Livewire\Almacenes\ListarAlmacenes;
-use App\Livewire\Almacenes\ListarAlmacenesGrid;
-use App\Http\Controllers\AlmacenController;
-
-use App\Livewire\Clientes\ListarClientes;
-use App\Livewire\Clientes\ListarGrid;
-use App\Http\Controllers\ClienteController;
-
-use App\Livewire\Empleados\ListarEmpleados;
-use App\Livewire\Empleados\ListarEmpleadosGrid;
-use App\Http\Controllers\EmpleadoController;
-
-use App\Livewire\Productos\ListarProductos;
-use App\Livewire\Productos\ListarProductosGrid;
-use App\Http\Controllers\ProductoController;
-
-use App\Livewire\Proveedores\ListarProveedores;
-use App\Livewire\Proveedores\ListarProveedoresGrid;
-use App\Http\Controllers\ProveedorController;
-
 use Illuminate\Support\Facades\Route;
+
+// Cargar las importaciones desde el archivo barril (imports.php)
+$imports = require app_path('Http/imports.php');
 
 // Home page
 Route::get('/', function () {
@@ -30,104 +11,92 @@ Route::get('/', function () {
 })->name('home');
 
 // Almacenes
-//Listar
-Route::get('/almacenes', ListarAlmacenes::class)->name('almacen.home');
-Route::get('/lalmacenes', ListarAlmacenesGrid::class)->name('almacen.grid');
-Route::get('/almacen/mostar/{almacen}', [AlmacenController::class, 'showStorage'])->name('almacen.show');
-
-// Crear/Guardar
-Route::get('/almacen/crear', [AlmacenController::class, 'create'])-> name('almacen.crear');
-Route::post('/almacen/guardar',[AlmacenController::class, 'store'])-> name('almacen.store');
-
-// Modificar/Guardar
-Route::get('/almacen/edit/{almacen}',[AlmacenController::class,'edit'])->name('almacen.edit');
-Route::put('/almacen/update/{almacen}',[AlmacenController::class, 'update'])-> name('almacen.update');
-
-// Eliminar
-Route::delete('almacen/destroy/{almacen}',[AlmacenController::class, 'destroy'])->name('almacen.destroy');
+Route::prefix('almacen')->name('almacen.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarAlmacenes'])->name('home');
+    Route::get('/grid', $imports['ListarAlmacenesGrid'])->name('grid');
+    Route::get('/{almacen}/productos', [$imports['AlmacenController'], 'listarAlmacen'])->name('productos');
+    
+    Route::get('/crear', [$imports['AlmacenController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['AlmacenController'], 'store'])->name('store');
+    
+    Route::get('/edit/{almacen}', [$imports['AlmacenController'], 'edit'])->name('edit');
+    Route::put('/update/{almacen}', [$imports['AlmacenController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{almacen}', [$imports['AlmacenController'], 'destroy'])->name('destroy');
+});
 
 // Clientes
-//Listar
-Route::get('/clientes', ListarClientes::class)->name('cliente.home');
-Route::get('/lclientes', ListarGrid::class)->name('cliente.grid');
-Route::get('/cliente/mostar/{cliente}', [ClienteController::class, 'showClient'])->name('cliente.show');
-Route::get('/clientes/buscar', [ClienteController::class, 'buscar'])->name('cliente.buscar'); // Devuelve los clientes según la búsqueda
-
-// Crear/Guardar
-Route::get('/cliente/crear', [ClienteController::class, 'create'])-> name('cliente.crear');
-Route::post('/cliente/guardar',[ClienteController::class, 'store'])-> name('cliente.store');
-
-// Modificar/Guardar
-Route::get('/cliente/edit/{cliente}',[ClienteController::class,'edit'])->name('cliente.edit');
-Route::put('/cliente/update/{cliente}',[ClienteController::class, 'update'])-> name('cliente.update');
-
-// Eliminar
-Route::delete('cliente/destroy/{cliente}',[ClienteController::class, 'destroy'])->name('cliente.destroy');
+Route::prefix('cliente')->name('cliente.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarClientes'])->name('home');
+    Route::get('/grid', $imports['ListarClientesGrid'])->name('grid');
+    Route::get('/mostrar/{cliente}', [$imports['ClienteController'], 'showClient'])->name('show');
+    Route::get('/buscar', [$imports['ClienteController'], 'buscar'])->name('buscar');
+    
+    Route::get('/crear', [$imports['ClienteController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['ClienteController'], 'store'])->name('store');
+    
+    Route::get('/edit/{cliente}', [$imports['ClienteController'], 'edit'])->name('edit');
+    Route::put('/update/{cliente}', [$imports['ClienteController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{cliente}', [$imports['ClienteController'], 'destroy'])->name('destroy');
+});
 
 // Empleados
-//Listar
-Route::get('/empleados', ListarEmpleados::class)->name('empleado.home');
-Route::get('/lempleados', ListarEmpleadosGrid::class)->name('empleado.grid');
-Route::get('/empleado/mostar/{empleado}', [EmpleadoController::class, 'showEmployee'])->name('empleado.show');
-
-// Crear/Guardar
-Route::get('/empleado/crear', [EmpleadoController::class, 'create'])-> name('empleado.crear');
-Route::post('/empleado/guardar',[EmpleadoController::class, 'store'])-> name('empleado.store');
-
-// Modificar/Guardar
-Route::get('/empleado/edit/{empleado}',[EmpleadoController::class,'edit'])->name('empleado.edit');
-Route::put('/empleado/update/{empleado}',[EmpleadoController::class, 'update'])-> name('empleado.update');
-
-// Eliminar
-Route::delete('empleado/destroy/{empleado}',[EmpleadoController::class, 'destroy'])->name('empleado.destroy');
+Route::prefix('empleado')->name('empleado.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarEmpleados'])->name('home');
+    Route::get('/grid', $imports['ListarEmpleadosGrid'])->name('grid');
+    Route::get('/mostrar/{empleado}', [$imports['EmpleadoController'], 'showEmployee'])->name('show');
+    
+    Route::get('/crear', [$imports['EmpleadoController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['EmpleadoController'], 'store'])->name('store');
+    
+    Route::get('/edit/{empleado}', [$imports['EmpleadoController'], 'edit'])->name('edit');
+    Route::put('/update/{empleado}', [$imports['EmpleadoController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{empleado}', [$imports['EmpleadoController'], 'destroy'])->name('destroy');
+});
 
 // Productos
-//Listar
-Route::get('/productos', ListarProductos::class)->name('producto.home');
-Route::get('/lproductos', ListarProductosGrid::class)->name('producto.grid');
-Route::get('/producto/mostar/{producto}', [ProductoController::class, 'showProduct'])->name('producto.show');
-
-// Crear/Guardar
-Route::get('/producto/crear', [ProductoController::class, 'create'])-> name('producto.crear');
-Route::post('/producto/guardar',[ProductoController::class, 'store'])-> name('producto.store');
-
-// Modificar/Guardar
-Route::get('/producto/edit/{producto}',[ProductoController::class,'edit'])->name('producto.edit');
-Route::put('/producto/update/{producto}',[ProductoController::class, 'update'])-> name('producto.update');
-
-// Eliminar
-Route::delete('producto/destroy/{producto}',[ProductoController::class, 'destroy'])->name('producto.destroy');
+Route::prefix('producto')->name('producto.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarProductos'])->name('home');
+    Route::get('/grid', $imports['ListarProductosGrid'])->name('grid');
+    Route::get('/mostrar/{producto}', [$imports['ProductoController'], 'showProduct'])->name('show');
+    
+    Route::get('/crear', [$imports['ProductoController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['ProductoController'], 'store'])->name('store');
+    
+    Route::get('/edit/{producto}', [$imports['ProductoController'], 'edit'])->name('edit');
+    Route::put('/update/{producto}', [$imports['ProductoController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{producto}', [$imports['ProductoController'], 'destroy'])->name('destroy');
+});
 
 // Proveedores
-//Listar
-Route::get('/proveedores', ListarProveedores::class)->name('proveedor.home');
-Route::get('/lproveedores', ListarProveedoresGrid::class)->name('proveedor.grid');
-Route::get('/proveedor/mostar/{proveedor}', [ProveedorController::class, 'showSupplier'])->name('proveedor.show');
+Route::prefix('proveedor')->name('proveedor.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarProveedores'])->name('home');
+    Route::get('/grid', $imports['ListarProveedoresGrid'])->name('grid');
+    Route::get('/mostrar/{proveedor}', [$imports['ProveedorController'], 'showSupplier'])->name('show');
+    
+    Route::get('/crear', [$imports['ProveedorController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['ProveedorController'], 'store'])->name('store');
+    
+    Route::get('/edit/{proveedor}', [$imports['ProveedorController'], 'edit'])->name('edit');
+    Route::put('/update/{proveedor}', [$imports['ProveedorController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{proveedor}', [$imports['ProveedorController'], 'destroy'])->name('destroy');
+});
 
-// Crear/Guardar
-Route::get('/proveedor/crear', [ProveedorController::class, 'create'])-> name('proveedor.crear');
-Route::post('/proveedor/guardar',[ProveedorController::class, 'store'])-> name('proveedor.store');
-
-// Modificar/Guardar
-Route::get('/proveedor/edit/{proveedor}',[ProveedorController::class,'edit'])->name('proveedor.edit');
-Route::put('/proveedor/update/{proveedor}',[ProveedorController::class, 'update'])-> name('proveedor.update');
-
-// Eliminar
-Route::delete('proveedor/destroy/{proveedor}',[ProveedorController::class, 'destroy'])->name('proveedor.destroy');
-
-// Facturas
-// Route::get('/facturas', ListarClientes::class)->name('factura.home');
-
-// Almacenes
-// Route::get('/almacenes', ListarClientes::class)->name('almacen.home');
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// require __DIR__.'/auth.php';
+// Servicios
+Route::prefix('servicio')->name('servicio.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarServicios'])->name('home');
+    Route::get('/grid', $imports['ListarServiciosGrid'])->name('grid');
+    Route::get('/mostrar/{servicio}', [$imports['ServicioController'], 'showSupplier'])->name('show');
+    
+    Route::get('/crear', [$imports['ServicioController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['ServicioController'], 'store'])->name('store');
+    
+    Route::get('/edit/{servicio}', [$imports['ServicioController'], 'edit'])->name('edit');
+    Route::put('/update/{servicio}', [$imports['ServicioController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{servicio}', [$imports['ServicioController'], 'destroy'])->name('destroy');
+});

@@ -26,9 +26,9 @@
 
                     <p class="w-[95px]">{{ $producto -> precio_compra }}€</p>
 
-                    <p class="w-[95px]">{{ $producto -> precio_venta }}€</p>
+                    <p class="w-[115px]">{{ $producto -> precio_venta }}€</p>
                     
-                    <p class="w-[225px]">{{ ($producto -> iva) * 100 }}%</p>
+                    <p class="w-[225px]">{{ $producto -> iva}}%</p>
                     
                     <p class="w-[425px] text-wrap">{{ $producto ->  descripcion}}</p>
 

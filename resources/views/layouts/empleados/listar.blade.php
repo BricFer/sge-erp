@@ -11,9 +11,12 @@
     </div>
     
     <div class="w-full">
-        @section('campo1', 'Teléfono')
+        @section('campo1', 'DNI//NIF')
+        @section('campo2', 'Teléfono')
         @section('campo3', 'Correo')
-        @section('campo4', 'Cargo')
+        @section('campo4', 'Fecha Alta')
+        @section('campo5', 'Cargo')
+        @section('campo6', 'Estado')
 
         @include('layouts._partials.secciones')
         
@@ -23,13 +26,17 @@
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
                     <p class="w-[175px]">{{ $empleado -> nombre }}</p>
                     
-                    <p class="w-[95px]">{{ $empleado -> telefono }}</p>
+                    <p class="w-[95px]">{{ $empleado -> dni_nif }}</p>
                     
-                    <div class="w-[95px]"></div>
+                    <div class="w-[115px]">{{ $empleado -> telefono }}</div>
 
                     <p class="w-[225px]">{{ $empleado -> correo }}</p>
                     
-                    <p class="w-[175px]">{{ $empleado -> rol }}</p>
+                    <p class="w-[95px]">{{ $empleado -> fecha_contratacion }}</p>
+
+                    <p class="w-[175px] text-wrap">{{ $empleado -> cargo }}</p>
+                    
+                    <p class="w-[95px]">{{ $empleado -> estado }}</p>
                     
                 </div>
 

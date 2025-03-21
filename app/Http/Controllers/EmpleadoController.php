@@ -18,9 +18,12 @@ class EmpleadoController extends Controller
     {   
         $empleado = new Empleado;
         $empleado-> nombre = $request->nombre;
-        $empleado-> rol = $request->rol;
+        $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;
         $empleado-> correo = $request->correo;
+        $empleado-> cargo = $request->cargo;
+        $empleado-> fecha_contratacion = $request->fecha_contratacion;
+        $enmpleado-> estado = $request->estado;
         $empleado->save();
 
         return redirect()->route('empleado.home')->with('success', 'Empleado agregado correctamente');
@@ -33,10 +36,14 @@ class EmpleadoController extends Controller
     
     public function update(EmpleadoRequest $request, Empleado $empleado):RedirectResponse
     {
+        $empleado = new Empleado;
         $empleado-> nombre = $request->nombre;
-        $empleado-> rol = $request->rol;
+        $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;
         $empleado-> correo = $request->correo;
+        $empleado-> cargo = $request->cargo;
+        $empleado-> fecha_contratacion = $request->fecha_contratacion;
+        $enmpleado-> estado = $request->estado;
         $empleado->save();
       
         return redirect()->route('empleado.home')->with('success', 'Empleado modificado correctamente');

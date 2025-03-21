@@ -13,7 +13,7 @@
     <div class="w-full flex flex-row flex-wrap gap-6 p-2">
 
         @forelse ($empleados as $empleado)
-            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px]">
+            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
                 
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre }}</h2>
 
@@ -25,6 +25,9 @@
                 </p>
                 <p>
                     <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
+                </p>
+                <p>
+                    <span class="font-bold">Estado:</span> {{ $empleado-> estado}}
                 </p>
 
                 <div class="flex flex-row gap-2 mt-4">

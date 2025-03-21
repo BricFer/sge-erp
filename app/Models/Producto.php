@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'nombre',
@@ -18,10 +18,9 @@ class Producto extends Model
         'descripcion',
     ];
 
-    public function almacenes() {
-        
-        return $this->belongsToMany(Almacen::class, 'almacen_producto')
-                    ->withPivot('stock')
-                    ->withTimestamps();
+    public function almacenes()
+    {
+        return $this->belongsToMany(Almacen::class, 'almacen_producto', 'id_producto', 'id_almacen')
+                    ->withPivot('stock');
     }
 }

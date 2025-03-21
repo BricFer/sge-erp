@@ -16,10 +16,12 @@ class AlmacenController extends Controller
 
     public function store(AlmacenRequest $request): RedirectResponse
     {   
-        $cliente = new Almacen;
-        $cliente-> nombre = $request->nombre;
-        $cliente-> ubicacion = $request->ubicacion;
-        $cliente->save();
+        $almacen = new Almacen;
+        $almacen-> nombre = $request->nombre;
+        $almacen-> ubicacion = $request->ubicacion;
+        $almacen-> capacidad = $request->capacidad;
+        $almacen-> estado = $request->estado;
+        $almacen->save();
 
         return redirect()->route('almacen.home')->with('success', 'Almacen creado correctamente');
     }
@@ -33,6 +35,8 @@ class AlmacenController extends Controller
     {
         $almacen-> nombre = $request->nombre;
         $almacen-> ubicacion = $request->ubicacion;
+        $almacen-> capacidad = $request->capacidad;
+        $almacen-> estado = $request->estado;
         $almacen->save();
       
         return redirect()->route('almacen.home')->with('success', 'Almacen modificado correctamente');
@@ -45,8 +49,10 @@ class AlmacenController extends Controller
         return redirect()->route('almacen.home')->with('danger','Almacen eliminado correctamente');
     }
 
-    public function showStorage(Almacen $almacen):View
+    public function listarAlmacen(Almacen $almacen):View
     {
+        $almacen->load('productos');
+
         return view('layouts.almacenes.almacen', compact('almacen'));
     }
 }

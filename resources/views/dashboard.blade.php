@@ -13,7 +13,7 @@
         @livewireStyles
         @vite(['resources/css/app.css'])
     </head>
-    <body class="p-1">
+    <body class="p-1 relative">
         
             @yield('content')
 

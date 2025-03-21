@@ -17,9 +17,9 @@
     <body class="flex flex-col p-1">
 
         <nav class="flex flex-row justify-between items-center w-full p-4">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
             
             <div class="flex flex-row justify-between items-center gap-2 ml-auto">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[46px]">
 
                 <p>Briceida</p>
                 <a href="#">

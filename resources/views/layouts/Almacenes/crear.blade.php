@@ -17,17 +17,37 @@
     <form
         method="POST"
         action="{{ route('almacen.store') }}"
-        class="flex flex-col px-2 w-full gap-6 xl:flex-row xl:flex-wrap xl:gap-1 xl:justify-between xl:max-w-7xl xl:m-auto"
+        class="flex flex-col px-2 w-full gap-6 xl:gap-4 xl:flex-row xl:flex-wrap xl:justify-between xl:max-w-7xl xl:m-auto"
     >
         @csrf
-        <div class="flex flex-col gap-1 w-full">
+        <div class="flex flex-col gap-1 xl:w-[768px]">
             <label for="nombre">Nombre/Alias:</label>
             <input name="nombre" type="text" class="form-control" id="nombre">
+        </div>
+        
+        <div class="flex flex-col gap-1 xl:w-[475px]">
+            <label for="capacidad">Capacidad de almacenamiento:</label>
+            <input name="capacidad" type="text" class="form-control" id="capacidad">
         </div>
 
         <div class="flex flex-col gap-1 w-full">
             <label>Ubicación:</label>
             <input name="ubicacion" type="text">
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <p>Estado del almacen:</p>
+
+            <label class="flex gap-2 items-center" for="inactivo">
+                <input type="radio" name="estado" id="inactivo" value="inactivo" checked>
+                Inactivo
+            </label>
+
+            <label class="flex gap-2 items-center" for="activo">
+                <input type="radio" name="estado" id="activo" value="activo">
+                Activo
+            </label>
+            
         </div>
 
         <div class="flex flex-col w-full gap-4 my-6 md:flex-row">

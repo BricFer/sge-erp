@@ -34,7 +34,7 @@
 
                     <p class="w-[95px]">{{ $cliente -> nif }}</p>
 
-                    <p class="w-[95px]">{{ $cliente -> telefono }}</p>
+                    <p class="w-[115px]">{{ $cliente -> telefono }}</p>
 
                     <p class="w-[225px]">{{ $cliente -> correo }}</p>
                     

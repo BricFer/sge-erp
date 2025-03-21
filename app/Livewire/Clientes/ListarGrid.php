@@ -11,7 +11,7 @@ class ListarGrid extends Component
 
     public function render()
     {
-        $clientes = $this->buscar ? Cliente::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Cliente::all();
+        $clientes = $this->buscar ? Cliente::where('nombre', 'LIKE', '%'.$this->buscar.'%')->orWhere('apellido', 'LIKE', '%'.$this->buscar.'%')->get() : Cliente::all();
 
         return view('layouts.clientes.listar-grid', compact('clientes'))
             ->extends('dashboard')

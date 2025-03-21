@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 255);
-            $table->string('rol', 120);
+            $table->string('dni_nif', 75)->unique();
             $table->string('telefono', 25);
             $table->string('correo', 120)->unique();
+            $table->string('cargo', 120);
+            $table->date('fecha_contratacion');
+            $table->enum('estado', ['activo', 'excendencia', 'baja voluntaria', 'despido']);
             $table->timestamps();
         });
     }

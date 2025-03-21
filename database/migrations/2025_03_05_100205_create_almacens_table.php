@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 120);
             $table->string('ubicacion', 255);
+            $table->unsignedInteger('capacidad')->nullable();
+            $table->string('estado', 55)->default('Inactivo');
             $table->timestamps();
         });
     }

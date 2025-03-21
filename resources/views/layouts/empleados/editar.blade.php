@@ -31,14 +31,15 @@
                 readonly
             />
         </div>
-        
-        <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label>Cargo que ocupa:</label>
+
+        <div class="flex flex-col gap-1 lg:w-[628px]">
+            <label for="dni_nif">DNI/NIF:</label>
             <input
-                name="rol"
-                value="{{ $empleado->rol }}"
+                name="dni_nif"
+                value="{{ $empleado->dni_nif }}"
                 type="text"
-                id="rol"
+                id="dni_nif"
+                readonly
             />
         </div>
         
@@ -60,6 +61,34 @@
                 type="email"
                 id="correo"
                 readonly
+            />
+        </div>
+                
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label>Cargo que ocupa:</label>
+            <input
+                name="cargo"
+                value="{{ $empleado->cargo }}"
+                type="text"
+                id="cargo"
+            />
+                
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label>Fecha alta:</label>
+            <input
+                name="fecha_alta"
+                value="{{ $empleado->fecha_alta }}"
+                type="text"
+                id="fecha_alta"
+            />
+                
+        <div class="flex flex-col gap-1 xl:w-[412px]">
+            <label>Estado del empleado:</label>
+            <input
+                name="estado"
+                value="{{ $empleado->estado }}"
+                type="text"
+                id="estado"
             />
         </div>
 

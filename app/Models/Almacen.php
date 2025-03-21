@@ -12,12 +12,13 @@ class Almacen extends Model
     protected $fillable = [
         'nombre',
         'ubicacion',
+        'capacidad',
+        'estado'
     ];
 
     public function productos() {
         
-        return $this->belongsToMany(Producto::class, 'almacen_producto')
-                    ->withPivot('stock')
-                    ->withTimestamps();
+        return $this->belongsToMany(Producto::class, 'almacen_producto', 'id_almacen', 'id_producto')
+                    ->withPivot('stock');
     }
 }
