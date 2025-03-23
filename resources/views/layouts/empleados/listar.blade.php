@@ -11,7 +11,7 @@
     </div>
     
     <div class="w-full">
-        @section('campo1', 'DNI//NIF')
+        @section('campo1', 'DNI/NIF')
         @section('campo2', 'Teléfono')
         @section('campo3', 'Correo')
         @section('campo4', 'Fecha Alta')
@@ -21,6 +21,20 @@
         @include('layouts._partials.secciones')
         
         @forelse ($empleados as $empleado)
+
+        @php
+            // Dependendiendo del estado del empleado asignamos un color diferente
+        
+            $estado = match ($empleado->estado) {
+                'baja voluntaria' => 'text-blue-700',
+                'excedencia' => 'text-orange-500',
+                'despido' => 'text-red-600',
+                'activo' => 'text-green-500',
+                default => 'text-gray-600',
+            };
+        
+        @endphp
+
             <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
@@ -36,7 +50,7 @@
 
                     <p class="w-[175px] text-wrap">{{ $empleado -> cargo }}</p>
                     
-                    <p class="w-[95px]">{{ $empleado -> estado }}</p>
+                    <p class="w-[95px] font-bold {{ $estado }}">{{ ucfirst($empleado-> estado) }}</p>
                     
                 </div>
 

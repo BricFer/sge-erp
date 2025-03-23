@@ -50,9 +50,11 @@ class ProductoController extends Controller
 
         return redirect()->route('producto.home')->with('danger','Producto eliminado correctamente');
     }
-    
-    public function showProduct(Producto $producto):View
+
+    public function listarProducto(Producto $producto): View
     {
-        return view('layouts.productos.producto', compact('producto'));
+        $producto->load('almacenes');
+
+        return view('layouts.productos.producto', compact('producto') );
     }
 }

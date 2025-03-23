@@ -19,6 +19,7 @@ class ProveedorController extends Controller
         $proveedor = new Proveedor;
         $proveedor-> nombre = $request->nombre;
         $proveedor-> cif = $request->cif;
+        $proveedor-> razon_social = $request->razon_social;
         $proveedor-> domicilio = $request->domicilio;
         $proveedor-> cod_postal = $request->cod_postal;
         $proveedor-> poblacion = $request->poblacion;
@@ -39,6 +40,7 @@ class ProveedorController extends Controller
     {
         $proveedor-> nombre = $request->nombre;
         $proveedor-> cif = $request->cif;
+        $proveedor-> razon_social = $request->razon_social;
         $proveedor-> domicilio = $request->domicilio;
         $proveedor-> cod_postal = $request->cod_postal;
         $proveedor-> poblacion = $request->poblacion;
@@ -60,5 +62,12 @@ class ProveedorController extends Controller
     public function showSupplier(Proveedor $proveedor):View
     {
         return view('layouts.proveedores.proveedor', compact('proveedor'));
+    }
+
+    public function listarFacturas(Proveedor $proveedor): View
+    {
+        $factura->load('facturas');
+
+        return view('layouts.facturas.factura', compact('factura'));
     }
 }

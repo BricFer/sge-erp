@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Servicio extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'id_servicio',
@@ -27,7 +27,7 @@ class Servicio extends Model
         return $this->belongsTo(Factura::class, 'id_factura');
     }
 
-    // Relación con el empleado
+    // Relación con el servicio
     public function servicio(): BelongsTo
     {
         return $this->belongsTo(Servicio::class, 'id_servicio');

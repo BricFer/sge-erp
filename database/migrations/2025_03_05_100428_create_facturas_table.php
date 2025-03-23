@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
             $table->morphs('facturable'); // Relación polimórfica (cliente o proveedor)
-            $table->string('referencia',255);
+            $table->string('serie',255);
             $table->foreignId('id_empleado')->constrained('empleados', 'id')->onDelete('cascade');
             $table->timestamp('fecha_emision')->nullable();
             $table->decimal('monto_total', 8,2);

@@ -64,7 +64,7 @@
             />
         </div>
                 
-        <div class="flex flex-col gap-1 xl:w-[412px]">
+        <div class="flex flex-col gap-1 xl:w-[417px]">
             <label>Cargo que ocupa:</label>
             <input
                 name="cargo"
@@ -72,23 +72,27 @@
                 type="text"
                 id="cargo"
             />
-                
-        <div class="flex flex-col gap-1 xl:w-[412px]">
+        </div>       
+            
+        <div class="flex flex-col gap-1 xl:w-[417px]">
             <label>Fecha alta:</label>
             <input
-                name="fecha_alta"
-                value="{{ $empleado->fecha_alta }}"
+                name="fecha_contratacion"
+                value="{{ $empleado->fecha_contratacion }}"
                 type="text"
-                id="fecha_alta"
+                id="fecha_contratacion"
+                readonly
             />
-                
-        <div class="flex flex-col gap-1 xl:w-[412px]">
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[417px]">
             <label>Estado del empleado:</label>
             <input
                 name="estado"
-                value="{{ $empleado->estado }}"
+                value="{{ ucfirst($empleado->estado) }}"
                 type="text"
                 id="estado"
+                {{ $empleado->estado == 'despido' ? 'readonly' : ''}}
             />
         </div>
 
@@ -97,12 +101,12 @@
             <input
                 type="submit"
                 value="Editar"
-                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96"
+                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer hover:bg-teal-500 hover:border-teal-500 md:w-96"
             />
 
             <a
                 href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
+                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg hover:bg-teal-500 hover:border-teal-500 md:w-96"
             >
                 Cancelar
             </a>

@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Livewire\Almacenes;
+namespace App\Livewire\Facturas;
 
-use App\Models\Almacen;
+use App\Models\Factura;
 use Livewire\Component;
 
-class ListarAlmacenes extends Component
+class ListarFacturas extends Component
 {
     public $buscar = ''; // Propiedad para la búsqueda
 
     public function render()
     {
-        $almacenes = Almacen::with('empleados') // Cargar relación de empleado
+        // Revisar la relación para que muestre el cliente/proveedor
+        /* $facturas = Factura::with('empleados') // Cargar relación de empleado
                     ->when($this->buscar, function ($query) {
                         // when($this->buscar, function ($query) { ... }) → Filtra solo si hay una búsqueda.
                         $query->where('nombre', 'LIKE', '%'.$this->buscar.'%')
                             ->orWhere('ubicacion', 'LIKE', '%'.$this->buscar.'%');
                     })
-                    ->get();
+                    ->get(); */
 
-        // $almacenes = $this->buscar ? Almacen::where('nombre', 'LIKE', '%'.$this->buscar.'%')->orWhere('ubicacion', 'LIKE','%'.$this->buscar.'%')->get() : Almacen::all();
-
-        return view('layouts.almacenes.listar', compact('almacenes'))
+        return view('layouts.facturas.listar', compact('facturas'))
             ->extends('dashboard')
             ->section('content');
     }

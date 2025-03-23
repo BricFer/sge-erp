@@ -63,4 +63,11 @@ class ClienteController extends Controller
     {
         return view('layouts.clientes.cliente', compact('cliente'));
     }
+
+    public function listarFacturas(Cliente $cliente): View
+    {
+        $factura->load('facturas');
+
+        return view('layouts.facturas.factura', compact('factura'));
+    }
 }

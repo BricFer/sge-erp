@@ -61,4 +61,11 @@ class EmpleadoController extends Controller
     {
         return view('layouts.empleados.empleado', compact('empleado'));
     }
+
+    public function listarFacturas(Empleado $empleado): View
+    {
+        $factura->load('facturas');
+
+        return view('layouts.facturas.factura', compact('factura'));
+    }
 }

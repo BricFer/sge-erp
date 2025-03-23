@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Presupuesto extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'facturable_id',

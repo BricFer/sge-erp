@@ -23,4 +23,9 @@ class Producto extends Model
         return $this->belongsToMany(Almacen::class, 'almacen_producto', 'id_producto', 'id_almacen')
                     ->withPivot('stock');
     }
+
+    public function stockTotal()
+    {
+        return $this->almacenes->sum('pivot.stock'); // Suma de los stocks de todos los almacenes
+    }
 }

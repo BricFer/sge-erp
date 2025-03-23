@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Albaran extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'facturable_id',

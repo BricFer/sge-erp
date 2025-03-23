@@ -26,7 +26,7 @@ class FacturaRequest extends FormRequest
         $facturaId = $this->route('factura') ? $this->route('factura')->id : null;
 
         return [
-            'referencia' => [
+            'serie' => [
                 'required',
                 'string',
                 'max:255',

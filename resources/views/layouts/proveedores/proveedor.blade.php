@@ -62,7 +62,7 @@
 
             <a
                 href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36 ml-auto"
+                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 ml-auto hover:bg-teal-500 hover:border-teal-500"
             >
                 Regresar
             </a>

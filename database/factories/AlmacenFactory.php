@@ -23,7 +23,7 @@ class AlmacenFactory extends Factory
             'nombre'=> $this->faker->company(),
             'ubicacion' => $this->faker->address(),
             'capacidad' => $this->faker->numberBetween(100, 10000),
-            'estado' =>$this->faker->randomElement(['Activo', 'Inactivo']),
+            'estado' =>$this->faker->randomElement(['activo', 'inactivo']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

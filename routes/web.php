@@ -56,11 +56,26 @@ Route::prefix('empleado')->name('empleado.')->group(function () use ($imports) {
     Route::delete('/destroy/{empleado}', [$imports['EmpleadoController'], 'destroy'])->name('destroy');
 });
 
+// Facturas
+Route::prefix('factura')->name('factura.')->group(function () use ($imports) {
+    Route::get('/', $imports['ListarFacturas'])->name('home');
+    Route::get('/grid', $imports['ListarFacturasGrid'])->name('grid');
+    Route::get('/mostrar/{factura}', [$imports['FacturaController'], 'showInvoice'])->name('show');
+    
+    Route::get('/crear', [$imports['FacturaController'], 'create'])->name('crear');
+    Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
+    
+    Route::get('/edit/{factura}', [$imports['FacturaController'], 'edit'])->name('edit');
+    Route::put('/update/{factura}', [$imports['FacturaController'], 'update'])->name('update');
+    
+    Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
+});
+
 // Productos
 Route::prefix('producto')->name('producto.')->group(function () use ($imports) {
     Route::get('/', $imports['ListarProductos'])->name('home');
     Route::get('/grid', $imports['ListarProductosGrid'])->name('grid');
-    Route::get('/mostrar/{producto}', [$imports['ProductoController'], 'showProduct'])->name('show');
+    Route::get('/{producto}/almacenes', [$imports['ProductoController'], 'listarProducto'])->name('almacenes');
     
     Route::get('/crear', [$imports['ProductoController'], 'create'])->name('crear');
     Route::post('/guardar', [$imports['ProductoController'], 'store'])->name('store');

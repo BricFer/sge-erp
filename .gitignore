@@ -23,3 +23,5 @@ yarn-error.log
 /.zed
 
 notas.txt
+/resources/views/dashboard2.blade.php
+/routes/web_1_0.php

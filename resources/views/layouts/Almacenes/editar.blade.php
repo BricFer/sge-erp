@@ -17,7 +17,7 @@
     <form
         method="POST"
         action="{{ route('almacen.update', $almacen->id) }}"
-        class="flex flex-col px-2 w-full gap-6 xl:flex-row xl:flex-wrap xl:gap-1 xl:justify-between xl:max-w-7xl xl:m-auto"
+        class="flex flex-col px-2 w-full gap-6 xl:gap-4 xl:flex-row xl:flex-wrap xl:justify-between xl:max-w-7xl xl:m-auto"
     >
 
         @method('PUT')
@@ -33,7 +33,7 @@
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[475px]">
-            <label for="capacidad">Capacidad de almacenamiento:</label>
+            <label for="capacidad">Vol. del almacen:</label>
             <input
                 name="capacidad"
                 value="{{ $almacen->capacidad }}"
@@ -42,7 +42,26 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
+        <div class="flex flex-col gap-1 xl:w-[475px]">
+            <label>Responsable del almacen:</label>
+            <select
+                name="id_empleado"
+                value="{{ $almacen->id_empleado }}"
+                type="text"
+                id="id_empleado"
+            >
+            @foreach($empleados as $empleado)
+
+                <option value="{{ $empleado->id }}" 
+                    {{ $almacen->empleado_id == $empleado->id ? 'selected' : '' }}>
+                    {{ $empleado-> nombre }} - {{ $empleado-> cargo}}
+                </option>
+
+            @endforeach
+            </select>
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[768px]">
             <label>Ubicación</label>
             <input
                 name="ubicacion"
@@ -82,12 +101,12 @@
             <input
                 type="submit"
                 value="Editar"
-                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96"
+                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96 hover:bg-teal-500 hover:border-teal-500"
             />
             
             <a
                 href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
+                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96 hover:bg-teal-500 hover:border-teal-500"
             >
                 Cancelar
             </a>

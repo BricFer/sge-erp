@@ -26,7 +26,7 @@ class EmpleadoFactory extends Factory
             'correo' => $this->faker->unique()->safeEmail(),
             'cargo' => $this->faker->jobTitle(),
             'fecha_contratacion' => $this->faker->date(),
-            'estado' => $this->faker->randomElement(['activo', 'excendencia', 'baja voluntaria', 'despido']),
+            'estado' => $this->faker->randomElement(['activo', 'excedencia', 'baja voluntaria', 'despido']),
         ];
     }
 }

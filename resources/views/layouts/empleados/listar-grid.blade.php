@@ -10,9 +10,23 @@
             'gridUrl' => route('empleado.grid')])
     </div>
 
-    <div class="w-full flex flex-row flex-wrap gap-6 p-2">
+    <div class="w-full flex flex-row flex-wrap gap-4 p-2">
 
         @forelse ($empleados as $empleado)
+
+            @php
+                // Dependendiendo del estado del empleado asignamos un color diferente
+            
+                $estado = match ($empleado->estado) {
+                    'baja voluntaria' => 'text-blue-700',
+                    'excedencia' => 'text-orange-500',
+                    'despido' => 'text-red-600',
+                    'activo' => 'text-green-500',
+                    default => 'text-gray-600',
+                };
+            
+            @endphp
+
             <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
                 
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre }}</h2>
@@ -27,7 +41,10 @@
                     <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
                 </p>
                 <p>
-                    <span class="font-bold">Estado:</span> {{ $empleado-> estado}}
+                    <span class="font-bold">Estado: </span>
+                    <span class="font-bold {{ $estado }}">
+                        {{ ucfirst($empleado-> estado) }}
+                    </span>
                 </p>
 
                 <div class="flex flex-row gap-2 mt-4">

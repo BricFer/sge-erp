@@ -15,15 +15,29 @@
     
     <div class="text-sm/7 w-full flex flex-col">
         <div class="container">
-            <div class="flex flex-row gap-4 items-center mb-4">
+            <div class="flex flex-col gap-4 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
                 <h2 class="text-base">
                     <span class="font-bold">Almacén: </span>
                     {{ $almacen->nombre }}
                 </h2>
     
                 <p class="text-base">
-                    <span class="font-bold">Ubicación: </span>
-                    {{ $almacen->ubicacion }}
+                    <span class="font-bold">Responsable: </span>
+                    {{ $almacen->empleado ? $almacen->empleado->nombre : 'Sin responsable' }}
+                </p>
+
+                <p class="text-base">
+                    <span class="font-bold">Vol. almacen: </span>
+                    {{ $almacen->capacidad }}m³
+                </p>
+
+                <p class="text-base">
+                    <span class="font-bold">Estado: </span>
+                    <span
+                        class="{{ $almacen->estado == 'activo' ? 'text-green-500 font-bold' : '' }}"
+                    >
+                        {{ $almacen->estado }}
+                    </span>
                 </p>
             </div>
     
@@ -79,40 +93,12 @@
                 
             @endif
         </div>
-        {{-- @section('campo1', 'Producto')
-        @section('campo2', 'Stock')
-        @section('campo4', 'P. Venta')
-        @section('campo5', 'P. Compra')
-        @section('campo6', 'IVA')
 
-        @include('layouts._partials.secciones')
-
-        @foreach($almacen->producto as $producto)
-
-        <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-            <p class="w-[175px]">{{ $almacen -> nombre }}</p>
-
-            <p class="w-[190px]">{{ $producto -> nombre }}</p>
-
-            <p class="w-[95px]">{{ $producto->pivot-> stock }}</p>
-            
-            <p class="w-[225px]">{{ $producto-> precio_compra }}</p>
-
-            <p class="w-[225px]">{{ $producto-> precio_venta }}</p>
-
-            <p class="w-[225px]">{{ $producto-> iva }}</p>
-
-        </div>
-
-        @empty
-            <p>No hay registros</p>
-        @endforelse --}}
-            <a
-                href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36"
-            >
-                Regresar
-            </a>
-        </div>
+        <a
+            href="{{ url()->previous() }}"
+            class="block ml-auto text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
+        >
+            Regresar
+        </a>
     </div>
 @endsection

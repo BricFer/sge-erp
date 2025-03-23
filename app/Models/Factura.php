@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Factura extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'facturable_id',
         'facturable_type',
-        'referencia',
+        'serie',
         'id_empleado',
         'fecha_emision',
         'monto_total',
@@ -30,5 +30,11 @@ class Factura extends Model
     public function facturable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function servicios()
+    {
+        return $this->belongsToMany(Servicio::class, 'detalle_factura_servicio', 'id_factura', 'id_servicio')
+                    ->withPivot('fecha_inicio', 'fecha_fin', 'estado', 'prioridad', 'descuento', 'subtotal');
     }
 }

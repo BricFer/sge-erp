@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Albaran;
+use App\Models\Almacen;
 use App\Models\Factura;
 use App\Models\Presupuesto;
 use App\Models\Servicio;
@@ -13,8 +14,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Empleado extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
+    protected $table = 'empleados';
+    
     protected $fillable = [
         'nombre',
         'dni_nif',
@@ -25,6 +28,10 @@ class Empleado extends Model
         'estado',
     ];
 
+    public function almacenes(): HasMany
+    {
+        return $this->hasMany(Almacen::class, 'id_empleado');
+    }
     public function presupuestos(): HasMany
     {
         return $this->hasMany(Presupuesto::class, 'id_empleado');

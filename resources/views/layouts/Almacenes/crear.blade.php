@@ -3,15 +3,10 @@
 @extends('dashboard')
 
 @section('content')
-    <div>
+    <div class="border-b-solid border-b-2 border-b-indigo-600/25 mb-16">
         @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('almacen.home')])
-
-        @include('layouts._partials.buscar', [
-            'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
     </div>
 
     <form
@@ -22,15 +17,27 @@
         @csrf
         <div class="flex flex-col gap-1 xl:w-[768px]">
             <label for="nombre">Nombre/Alias:</label>
-            <input name="nombre" type="text" class="form-control" id="nombre">
+            <input name="nombre" type="text" id="nombre">
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[475px]">
-            <label for="capacidad">Capacidad de almacenamiento:</label>
-            <input name="capacidad" type="text" class="form-control" id="capacidad">
+            <label for="capacidad">Vol. del almacen:</label>
+            <input name="capacidad" type="text" id="capacidad">
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
+        <div class="flex flex-col gap-1 xl:w-[475px]">
+            <label for="responsable_almacen">Responsable del almacen:</label>
+            <select name="responsable_almacen" type="text"   id="responsable_almacen">
+            
+                <option class="font-bold" value="" disabled selected>Asignar responsable</option>
+                @foreach ($empleados as $empleado)
+                    <option value="{{ $empleado->id }}">{{ $empleado->nombre }} - {{ $empleado->cargo }}</option>
+                @endforeach
+
+            </select>
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[768px]">
             <label>Ubicación:</label>
             <input name="ubicacion" type="text">
         </div>
@@ -55,12 +62,12 @@
             <input
                 type="submit"
                 value="Crear"
-                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96"
+                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer md:w-96 hover:bg-teal-500 hover:border-teal-500"
             />
             
             <a
                 href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96"
+                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg md:w-96 hover:bg-teal-500 hover:border-teal-500"
             >
                 Cancel
             </a>

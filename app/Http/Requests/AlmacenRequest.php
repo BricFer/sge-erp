@@ -26,6 +26,7 @@ class AlmacenRequest extends FormRequest
             'ubicacion' => ['required', 'string', 'min:3', 'max:255'],
             'capacidad',
             'estado' => ['required', 'string', 'min:3'],
+            'id_empleado',
         ];
     }
 

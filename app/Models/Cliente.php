@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Cliente extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'nombre',

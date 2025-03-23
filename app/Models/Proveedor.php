@@ -12,13 +12,14 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Proveedor extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $table = 'proveedores';
     
     protected $fillable = [
         'nombre',
         'cif',
+        'razon_social',
         'domicilio',
         'cod_postal',
         'poblacion',

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('correo', 120)->unique();
             $table->string('cargo', 120);
             $table->date('fecha_contratacion');
-            $table->enum('estado', ['activo', 'excendencia', 'baja voluntaria', 'despido']);
+            $table->enum('estado', ['activo', 'excedencia', 'baja voluntaria', 'despido']);
             $table->timestamps();
         });
     }

@@ -33,6 +33,13 @@ class ProveedorRequest extends FormRequest
                 'min:3',
                 'max:12',
             ],
+            'razon_social' => [
+                'required',
+                'string',
+                Rule::unique(Proveedor::class)->ignore($idProveedor),
+                'min:3',
+                'max:12',
+            ],
             'domicilio' => ['required', 'string', 'min:3', 'max:255'],
             'cod_postal' => ['required', 'string', 'min:3', 'max:12'],
             'poblacion' => ['required', 'string', 'min:3', 'max:25'],

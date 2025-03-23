@@ -1,10 +1,11 @@
-@section('title', 'ERP | Servicio')
+@section('title', 'ERP | Factura')
 
 @extends('dashboard')
 
 @section('content')
     <div>
 
+        {{-- Revisar que de estas secciones se queda y que se va --}}
         @include('layouts._partials.nav-bar', ['backUrl' => route('servicio.home')])
 
         @include('layouts._partials.buscar', [

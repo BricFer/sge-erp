@@ -17,6 +17,7 @@ class AlmacenProducto extends Model
     protected $fillable = [
         'id_producto',
         'id_almacen',
+        'id_empleado',
         'stock',
     ];
 
@@ -25,7 +26,7 @@ class AlmacenProducto extends Model
         return $this->belongsTo(Almacen::class);
     }
 
-    public function producto()
+    public function producto(): BelongsTo
     {
         return $this->belongsTo(Producto::class);
     }

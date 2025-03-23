@@ -6,6 +6,7 @@ namespace App\Http;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProveedorController;
@@ -18,6 +19,8 @@ use App\Livewire\Clientes\ListarClientes;
 use App\Livewire\Clientes\ListarGrid;
 use App\Livewire\Empleados\ListarEmpleados;
 use App\Livewire\Empleados\ListarEmpleadosGrid;
+use App\Livewire\Facturas\ListarFacturas;
+use App\Livewire\Facturas\ListarFacturasGrid;
 use App\Livewire\Productos\ListarProductos;
 use App\Livewire\Productos\ListarProductosGrid;
 use App\Livewire\Proveedores\ListarProveedores;
@@ -30,6 +33,7 @@ return [
     'AlmacenController' => AlmacenController::class,
     'ClienteController' => ClienteController::class,
     'EmpleadoController' => EmpleadoController::class,
+    'FacturaController' => FacturaController::class,
     'ProductoController' => ProductoController::class,
     'ProveedorController' => ProveedorController::class,
     'ServicioController' => ServicioController::class,
@@ -40,6 +44,8 @@ return [
     'ListarClientesGrid' => ListarGrid::class,
     'ListarEmpleados' => ListarEmpleados::class,
     'ListarEmpleadosGrid' => ListarEmpleadosGrid::class,
+    'ListarFacturas' => ListarFacturas::class,
+    'ListarFacturasGrid' => ListarFacturasGrid::class,
     'ListarProductos' => ListarProductos::class,
     'ListarProductosGrid' => ListarProductosGrid::class,
     'ListarProveedores' => ListarProveedores::class,

@@ -1,3 +1,16 @@
+@php
+    // Dependendiendo del estado del empleado asignamos un color diferente
+
+    $estado = match ($empleado->estado) {
+        'baja voluntaria' => 'text-blue-700',
+        'excedencia' => 'text-orange-500',
+        'despido' => 'text-red-600',
+        'activo' => 'text-green-600',
+        default => 'text-gray-600',
+    };
+
+@endphp
+
 @section('title', 'ERP | Empleado')
 
 @extends('dashboard')
@@ -39,7 +52,8 @@
             </p>
 
             <p>
-                <span class="font-bold">Estado:</span> {{ $empleado-> correo}}
+                <span class="font-bold">Estado: </span>
+                <span class="font-bold {{ $estado }}">{{ ucfirst($empleado-> estado) }}</span>
             </p>
 
             <div class="flex flex-row gap-2 mt-4">
@@ -56,7 +70,7 @@
                 >
                 <a
                     href="{{ url()->previous() }}"
-                    class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36 ml-auto"
+                    class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36 ml-auto hover:bg-teal-500 hover:border-teal-500"
                 >
                     Regresar
                 </a>
