@@ -118,22 +118,7 @@
             <input type="text">
         </div>
 
-        <div class="flex flex-col w-full gap-4 p-6 md:flex-row">
-            
-            <input
-                type="submit"
-                value="Crear"
-                class="border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg cursor-pointer hover:bg-teal-500 hover:border-teal-500 md:w-96"
-            />
-
-            <a
-                href="{{ url()->previous() }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 w-full text-white rounded-lg hover:bg-teal-500 hover:border-teal-500 md:w-96"
-            >
-                Cancel
-            </a>
-
-        </div>
+        @include('layouts._partials.submit-cancel')
     </form>
 
     <script>
@@ -143,7 +128,7 @@
             const clienteSeleccionado = selectList.options[selectList.selectedIndex];
 
             const clienteData = clienteSeleccionado.getAttribute("data-info");
-            
+
             try {
                 const cliente = JSON.parse(clienteData);
 
