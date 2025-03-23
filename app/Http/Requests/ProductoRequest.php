@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Producto;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductoRequest extends FormRequest
@@ -21,7 +22,16 @@ class ProductoRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Obtiene el ID del cliente actual si está disponible (solo en actualización)
+        $productoId = $this->route('producto') ? $this->route('producto')->id : null;
+
         return  [
+            'codigo' => [
+                'required',
+                'string',
+                Rule::unique(Producto::class)->ignore($productoId),
+                'min:3',
+                'max:255'],
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'precio_compra' => ['required'],
             'precio_venta' => ['required'],

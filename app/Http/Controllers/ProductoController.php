@@ -17,6 +17,7 @@ class ProductoController extends Controller
     public function store(ProductoRequest $request): RedirectResponse
     {   
         $producto = new Producto;
+        $producto-> codigo = $request->codigo;
         $producto-> nombre = $request->nombre;
         $producto-> precio_compra = $request->precio_compra;
         $producto-> precio_venta = $request->precio_venta;

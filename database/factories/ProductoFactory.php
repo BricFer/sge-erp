@@ -19,6 +19,7 @@ class ProductoFactory extends Factory
     public function definition(): array
     {
         return [
+            'codigo' => $this->faker->bothify('PROD-####-???'),
             'nombre' => $this->faker->word(), // Un nombre aleatorio de producto
             'precio_compra' => $this->faker->randomFloat(2, 10, 1000), // Precio de compra entre 10 y 1000 con 2 decimales
             'precio_venta' => $this->faker->randomFloat(2, 20, 2000), // Precio de venta entre 20 y 2000 con 2 decimales

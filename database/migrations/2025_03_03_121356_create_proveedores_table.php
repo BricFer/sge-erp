@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 255);
             $table->string('cif', 12)->unique();
-            $table->string('razon_social', 120)->unique();
+            $table->string('razon_social', 255)->unique();
             $table->string('domicilio', 255);
             $table->string('cod_postal', 12);
             $table->string('poblacion', 25);

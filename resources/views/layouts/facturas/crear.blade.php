@@ -17,10 +17,10 @@
     >
         @csrf
         
-        <div class="w-full border-b-solid border-b-2 border-b-indigo-600/25 p-6">
+        <div class="w-full p-6">
 
             <div class="flex flex-col gap-1">
-                <label for="nombre">Cliente:</label>
+                <label for="clientes">Cliente:</label>
                 <input
                     name="id_cliente"
                     type="text"
@@ -39,12 +39,12 @@
 
                     @foreach ($clientes as $cliente)
                         <option
-                            value="{{ $cliente->id }}"
+                            value="nombre_completo"
                             readonly
                             {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
                             data-info='@json($cliente)'
                         >
-                            {{ $cliente->nombre }} {{ $cliente->apellido }}
+                            {{ $cliente->nombre_completo }}
                         </option>
                     @endforeach
     
@@ -101,50 +101,107 @@
                 <label for="cod_postal">Cod. Postal</label>
                 <input name="cod_postal" type="text" id="cod_postal" >
             </div>
+            
+            <div class="flex flex-col gap-1">
+                <label for="descuento">Descuento (%)</label>
+                <input name="descuento" type="text" id="descuento" class="calcularSubtotal">
+            </div>
 
         </div>
 
-        <div class="w-full border-b-solid border-b-2 border-b-indigo-600/25 flex flex-row justify-between items-center font-bold p-2">
-            <p>Producto</p>
-            <p>Código</p>
-            <p>Descripción</p>
-            <p>Cant.</p>
-            <p>Precio</p>
-            <p>%Dto.</p>
-            <p>Subtotal</p>
+        <div class="w-full border-y-solid border-y-2 border-y-indigo-600/25 flex flex-row gap-1 justify-between items-center font-bold py-2 px-4">
+            <p class="w-[295px]">Producto</p>
+            <p class="w-[175px]">Código</p>
+            <p class="w-[325px]">Descripción</p>
+            <p class="w-[75px]">Cant.</p>
+            <p class="w-[75px]">Precio (€)</p>
+            <p class="w-[75px]">Dto. (%)</p>
+            <p class="w-[95px]">Subtotal</p>
         </div>
 
-        <div>
-            <input type="text">
+        <div class="w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+            <select
+                name="productos"
+                id="productos"
+                onchange="completarDetalleFactura()"
+                class="w-[295px] border-none p-0"
+            >
+                <option
+                    value=""
+                    name="default_value"
+                    disabled
+                    selected
+                >
+                    Lista productos
+                </option>
+
+                @foreach($productos as $producto)
+                
+                    <option
+                        name="id_producto"
+                        value="{{ $producto->id}}"
+                        data-info='@json($producto)'
+                    >
+                        {{ $producto->nombre }}
+                    </option>
+
+                @endforeach
+            </select>
+
+            <input
+                type="text"
+                id="codigo"
+                name="codigo"
+                placeholder="Código producto"
+                class="w-[175px] border-none p-0"
+            />
+
+            <input
+                type="text"
+                id="descripcion"
+                name="descripcion"
+                placeholder="Descripcion"
+                class="w-[325px] border-none p-0"
+            />
+
+            <input
+                type="number"
+                id="cantidad"
+                name="cantidad"
+                placeholder="Cant."
+                min="1"
+                max="99"
+                class="calcularSubtotal w-[75px] border-none p-0"
+            />
+
+            <input
+                type="text"
+                id="precio_venta"
+                name="precio_venta"
+                placeholder="P.V"
+                class="w-[75px] border-none p-0"
+            />
+
+            <input
+                type="text"
+                id="descuento_producto"
+                name="descuento_producto"
+                placeholder="%"
+                class="calcularSubtotal w-[75px] border-none p-0"
+            />
+            
+            <input
+                type="text"
+                id="subtotal"
+                name="subtotal"
+                placeholder="Subtotal"
+                class="w-[95px] border-none p-0"
+
+            />
         </div>
 
         @include('layouts._partials.submit-cancel')
     </form>
 
-    <script>
-        const autocompletarInputs = () => {
-            const selectList = document.getElementById("clientes");
-
-            const clienteSeleccionado = selectList.options[selectList.selectedIndex];
-
-            const clienteData = clienteSeleccionado.getAttribute("data-info");
-
-            try {
-                const cliente = JSON.parse(clienteData);
-
-                console.log(cliente);
-
-                document.getElementById("id_cliente").value = cliente.id || "";
-                document.getElementById("dni_nif").value = cliente.nif || "";
-                document.getElementById("razon_social").value = `${cliente.nombre} ${ cliente.apellido}` || "";
-                document.getElementById("domicilio").value = cliente.domicilio || "";
-                document.getElementById("poblacion").value = cliente.poblacion || "";
-                document.getElementById("provincia").value = cliente.provincia || "";
-                document.getElementById("cod_postal").value = cliente.cod_postal || "";
-
-            } catch (error) {
-                console.error("Error al parsear JSON:", error);
-            }
-        }
-    </script>
+    <script src="{{ asset('js/factura.js') }}" defer></script>
 @endsection

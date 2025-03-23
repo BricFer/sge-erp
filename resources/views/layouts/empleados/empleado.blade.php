@@ -68,13 +68,9 @@
                     alt="delete icon"
                     class="warning-img w-[24px] h-[24px] cursor-pointer"
                 >
-                <a
-                    href="{{ url()->previous() }}"
-                    class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 mt-8 text-white rounded-lg w-36 ml-auto hover:bg-teal-500 hover:border-teal-500"
-                >
-                    Regresar
-                </a>
             </div>
+
+            @include('layouts._partials.regresar')
         </div>
     </div>
 

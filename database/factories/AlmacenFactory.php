@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Almacen;
+use App\Models\Empleado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 
@@ -19,11 +20,19 @@ class AlmacenFactory extends Factory
      */
     public function definition(): array
     {
+            // Obtener los IDs de empleados que cumplen la condición
+            $empleadoIds = Empleado::all() //whereIn('cargo', ['Command Control Center Specialist', 'MARCOM Manager'])
+            ->pluck('id')
+            ->toArray();
+
+            // pluck('columna') devuelve una colección o un array con los valores de una columna específica de los resultados obtenidos de la base de datos.
+
         return [
             'nombre'=> $this->faker->company(),
             'ubicacion' => $this->faker->address(),
             'capacidad' => $this->faker->numberBetween(100, 10000),
             'estado' =>$this->faker->randomElement(['activo', 'inactivo']),
+            'id_empleado' => $this->faker->randomElement($empleadoIds), // Selecciona un ID aleatorio
             'created_at' => now(),
             'updated_at' => now(),
         ];

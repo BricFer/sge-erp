@@ -17,9 +17,10 @@ class ClienteController extends Controller
     public function store(ClienteRequest $request): RedirectResponse
     {   
         $cliente = new Cliente;
-        $cliente-> nombre = $request->nombre;
+        $cliente-> nombre_completo = $request->nombre_completo;
         $cliente-> apellido = $request->apellido;
         $cliente-> nif = $request->nif;
+        $cliente-> razon_social = $request->razon_social;
         $cliente-> domicilio = $request->domicilio;
         $cliente-> cod_postal = $request->cod_postal;
         $cliente-> poblacion = $request->poblacion;
@@ -38,9 +39,10 @@ class ClienteController extends Controller
     
     public function update(ClienteRequest $request, Cliente $cliente):RedirectResponse
     {
-        $cliente-> nombre = $request->nombre;
+        $cliente-> nombre_completo = $request->nombre_completo;
         $cliente-> apellido = $request->apellido;
         $cliente-> nif = $request->nif;
+        $cliente-> razon_social = $request->razon_social;
         $cliente-> domicilio = $request->domicilio;
         $cliente-> cod_postal = $request->cod_postal;
         $cliente-> poblacion = $request->poblacion;

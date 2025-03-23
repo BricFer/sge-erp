@@ -18,7 +18,7 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $producto -> nombre }}</h2>
 
                 <p>
-                    <span class="font-bold">Precio compra:</span> {{ $producto-> precio_compra}}€
+                    <span class="font-bold">Codigo:</span> {{ $producto-> codigo}}
                 </p>
                 <p>
                     <span class="font-bold">Precio venta:</span> {{ $producto-> precio_venta}}€

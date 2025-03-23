@@ -35,11 +35,11 @@
                     
                     <p class="w-[95px]"></p>
 
-                    <p class="w-[175px]">{{ $almacen->empleado ? $almacen->empleado->nombre : 'Sin responsable' }}</p>
+                    <p class="w-[175px]">{{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}</p>
 
                     <p class="w-[95px]"></p>
                     
-                    <p class="w-[225px]">{{ $almacen-> estado }}</p>
+                    <p class="w-[225px]">{{ ucfirst($almacen-> estado) }}</p>
                     
 
                 </div>

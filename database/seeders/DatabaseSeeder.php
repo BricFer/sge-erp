@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            AlmacenSeeder::class,
             ClienteSeeder::class,
-            EmpleadoSeeder::class,
-            ProductoSeeder::class,
             ProveedorSeeder::class,
+            EmpleadoSeeder::class,
+            AlmacenSeeder::class,
+            ProductoSeeder::class,
             AlmacenProductoSeeder::class,
         ]);
     }

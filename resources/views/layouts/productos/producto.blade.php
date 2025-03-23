@@ -67,7 +67,7 @@
                 
                 @foreach($producto->almacenes as $almacen)
 
-                    <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between w-full md:flex-nowrap">
+                    <div class="flex flex-row items-center gap-4 py-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between w-full md:flex-nowrap">
 
                         <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
                             <p class="w-[175px] text-wrap">{{ $almacen-> nombre }}</p>
@@ -102,12 +102,7 @@
             @endif
         </div>
         
-        <a
-            href="{{ url()->previous() }}"
-            class="block ml-auto my-4 text-center border-2 border-indigo-600 p-2 bg-indigo-600 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500"
-        >
-            Regresar
-        </a>
+        @include('layouts._partials.regresar')
     </div>
 
 @endsection

@@ -23,7 +23,7 @@
     
                 <p class="text-base">
                     <span class="font-bold">Responsable: </span>
-                    {{ $almacen->empleado ? $almacen->empleado->nombre : 'Sin responsable' }}
+                    {{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}
                 </p>
 
                 <p class="text-base">
@@ -94,11 +94,7 @@
             @endif
         </div>
 
-        <a
-            href="{{ url()->previous() }}"
-            class="block ml-auto text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
-        >
-            Regresar
-        </a>
+        @include('layouts._partials.regresar')
+
     </div>
 @endsection

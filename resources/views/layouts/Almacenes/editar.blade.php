@@ -52,7 +52,7 @@
             >
             @foreach($empleados as $empleado)
 
-                <option value="{{ $empleado->id }}" 
+                <option name="id_empleado" value="{{ $empleado->id }}" 
                     {{ $almacen->empleado_id == $empleado->id ? 'selected' : '' }}>
                     {{ $empleado-> nombre }} - {{ $empleado-> cargo}}
                 </option>

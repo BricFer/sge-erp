@@ -30,7 +30,7 @@
             <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                    <p class="w-[175px]">{{ $cliente -> nombre }} {{ $cliente -> apellido }}</p>
+                    <p class="w-[175px]">{{ $cliente -> nombre_completo }}</p>
 
                     <p class="w-[95px]">{{ $cliente -> nif }}</p>
 

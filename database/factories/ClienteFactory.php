@@ -20,9 +20,9 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->firstName(),
-            'apellido' => $this->faker->lastName(),
+            'nombre_completo' => $this->faker->name(),
             'nif' => $this->faker->unique()->regexify('[0-9]{8}[A-Z]'),
+            'razon_social' => $this->faker->name(),
             'domicilio' => $this->faker->streetAddress(),
             'cod_postal' => $this->faker->postCode(),
             'poblacion' => $this->faker->city(),

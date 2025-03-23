@@ -21,6 +21,7 @@ class ProveedorFactory extends Factory
         return [
             'nombre' => $this->faker->company(),
             'cif' => $this->faker->unique()->regexify('[0-9A-Z]{8}'),
+            'razon_social' => $this->faker->name(),
             'domicilio' => $this->faker->streetAddress(),
             'cod_postal' => $this->faker->postCode(),
             'poblacion' => $this->faker->city(),

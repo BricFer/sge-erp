@@ -27,8 +27,7 @@ class ClienteRequest extends FormRequest
         $clienteId = $this->route('cliente') ? $this->route('cliente')->id : null;
 
         return [
-            'nombre' => ['required', 'string', 'min:3', 'max:120'],
-            'apellido' => ['required', 'string', 'min:3', 'max:120'],
+            'nombre_completo' => ['required', 'string', 'min:3', 'max:255'],
             'nif' => [
                 'required',
                 'string',
@@ -36,6 +35,7 @@ class ClienteRequest extends FormRequest
                 'min:3',
                 'max:12',
             ],
+            'razon_social' => ['string', 'min:3', 'max:255'],
             'domicilio' => ['required', 'string', 'min:3', 'max:120'],
             'cod_postal' => ['required', 'string', 'min:3', 'max:12'],
             'poblacion' => ['required', 'string', 'min:3', 'max:25'],

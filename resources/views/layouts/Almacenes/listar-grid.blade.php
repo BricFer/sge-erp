@@ -18,7 +18,7 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $almacen -> nombre }}</h2>
 
                 <p>
-                    <span class="font-bold">Responsable:</span> {{ $almacen->empleado ? $almacen->empleado->nombre : 'Sin responsable' }}
+                    <span class="font-bold">Responsable:</span> {{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}
                 </p>
 
                 <p>

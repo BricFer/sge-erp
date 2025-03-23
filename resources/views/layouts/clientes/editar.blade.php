@@ -22,23 +22,23 @@
         @method('PUT')
         @csrf
         <div class="flex flex-col gap-1 lg:w-[628px]">
-            <label for="nombre">Nombre(s):</label>
+            <label for="nombre_completo">Nombre del cliente</label>
             <input
-                name="nombre"
-                value="{{ $cliente->nombre }}"
+                name="nombre_completo"
+                value="{{ $cliente->nombre_completo }}"
                 type="text"
-                id="nombre"
+                id="nombre_completo"
                 readonly
             />
         </div>
 
         <div class="flex flex-col gap-1 lg:w-[628px]">
-            <label>Apellido(s):</label>
+            <label>Razon social</label>
             <input
-                name="apellido"
-                value="{{ $cliente->apellido }}"
+                name="razon_social"
+                value="{{ $cliente->razon_social }}"
                 type="text"
-                id="apellido"
+                id="razon_social"
                 readonly
             />
         </div>

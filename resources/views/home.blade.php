@@ -83,7 +83,7 @@
                         <img src="{{ asset('assets/img/albaran.png') }}" alt="image icon of client">
                     </a>
     
-                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
+                    <a href="{{ route('factura.home') }}" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
                         <img src="{{ asset('assets/img/factura.png') }}" alt="image icon of client">
                     </a>
                 </div>

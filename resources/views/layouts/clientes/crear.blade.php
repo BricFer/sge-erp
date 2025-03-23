@@ -21,13 +21,13 @@
     >
         @csrf
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label for="nombre">Nombre(s):</label>
-            <input name="nombre" type="text" class="form-control" id="nombre">
+            <label for="nombre_completo">Nombre del cliente</label>
+            <input name="nombre_completo" type="text" id="nombre_completo">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label>Apellido(s):</label>
-            <input name="apellido" type="text">
+            <label>Razón social</label>
+            <input name="razon_social" type="text" id="razon_social">
         </div>
 
         <div class="flex flex-col gap-1">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="flex flex-col gap-1 xl:w-2/3">
-            <label>Domicilio:</label>
+            <label>Domicilio</label>
             <input name="domicilio" type="text">
         </div>
 
