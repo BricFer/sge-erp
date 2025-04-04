@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalle_factura__servicio', function (Blueprint $table) {
+        Schema::create('detalle_factura_producto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_servicio')->constrained('servicios', 'id')->onDelete('cascade');
+            $table->foreignId('id_producto')->constrained('productos', 'id')->onDelete('cascade');
             $table->foreignId('id_factura')->constrained('facturas', 'id')->onDelete('cascade');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin')->nullable();
-            $table->enum('estado', ['activo', 'pendiente', 'completado']);
-            $table->enum('prioridad', ['baja', 'media', 'alta']);
-            $table->unsignedInteger('iva');
+            $table->decimal('precio', 8, 2);
+            $table->unsignedInteger('iva')->default(0);
+            $table->unsignedInteger('cantidad');
             $table->decimal('descuento', 8, 2);
             $table->decimal('subtotal', 10, 2);
             $table->timestamps();
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalle_factura__servicio');
+        Schema::dropIfExists('detalle_factura_producto');
     }
 };

@@ -14,8 +14,8 @@
         @vite(['resources/css/app.css'])
         
     </head>
-    <body class="flex flex-col p-1">
-
+    <body class="relative flex flex-col p-1">
+        
         <nav class="flex flex-row justify-between items-center w-full p-4">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
             
@@ -75,20 +75,40 @@
 
                 {{-- Añadir los links a cada interface --}}
                 <div class="flex flex gap-4">
-                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                        <img src="{{ asset('assets/img/presupuesto.png') }}" alt="image icon of client">
-                    </a>
+                    <button
+                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
+                    >
+                        <img
+                            id="presupuesto"
+                            src="{{ asset('assets/img/presupuesto.png') }}"
+                            alt="image icon of client"
+                        />
+                    </button>
     
-                    <a href="#" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                        <img src="{{ asset('assets/img/albaran.png') }}" alt="image icon of client">
-                    </a>
+                    <button
+                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
+                    >
+                        <img
+                            id="albaran"
+                            src="{{ asset('assets/img/albaran.png') }}"
+                            alt="image icon of client"
+                        />
+                    </button>
     
-                    <a href="{{ route('factura.home') }}" class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                        <img src="{{ asset('assets/img/factura.png') }}" alt="image icon of client">
-                    </a>
+                    <button
+                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
+                    >
+                        <img
+                            id="factura"
+                            src="{{ asset('assets/img/factura.png') }}"
+                            alt="image icon of client"
+                        />
+                    </button>
                 </div>
             </div>
 
         </div>
+
+        @include('layouts._partials.crear-registrar')
     </body>
 </html>

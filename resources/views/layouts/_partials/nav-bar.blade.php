@@ -10,7 +10,7 @@
             <a href="#">
                 <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
             </a>
-            <a href="">
+            <a href="#">
                 <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
             </a>
         </div>

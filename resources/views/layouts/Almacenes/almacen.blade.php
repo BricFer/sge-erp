@@ -36,7 +36,7 @@
                     <span
                         class="{{ $almacen->estado == 'activo' ? 'text-green-500 font-bold' : '' }}"
                     >
-                        {{ $almacen->estado }}
+                        {{ ucfirst($almacen->estado) }}
                     </span>
                 </p>
             </div>

@@ -16,9 +16,12 @@ return new class extends Migration
             $table->morphs('facturable'); // Relación polimórfica (cliente o proveedor)
             $table->string('serie',255);
             $table->foreignId('id_empleado')->constrained('empleados', 'id')->onDelete('cascade');
-            $table->timestamp('fecha_emision')->nullable();
-            $table->decimal('monto_total', 8,2);
-            $table->string('estado', 120);
+            $table->timestamp('fecha_emision')->useCurrent();
+            $table->decimal('monto_subtotal', 8,2)->default(0.00);
+            $table->decimal('monto_descuento', 8,2)->default(0.00);
+            $table->decimal('monto_iva', 8,2)->default(0.00);
+            $table->decimal('monto_total', 8,2)->default(0.00);
+            $table->enum('estado', ['borrador', 'emitida', 'pendiente', 'cancelada', 'pagada'])->default('emitida');
             $table->timestamps();
         });
     }

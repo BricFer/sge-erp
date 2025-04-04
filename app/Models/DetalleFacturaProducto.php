@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DetalleFacturaServicio extends Model
+class DetalleFacturaProducto extends Model
 {
     use HasFactory;
 
-    protected $table = 'detalle_factura_servicio';
+    protected $table = 'detalle_factura_producto';
 
     protected $fillable = [
-        'id_servicio',
+        'id_producto',
         'id_factura',
-        'fecha_inicio',
-        'fecha_fin',
-        'estado',
-        'prioridad',
+        'precio',
+        'iva',
+        'cantidad',
         'descuento',
         'subtotal',
     ];
@@ -29,9 +28,9 @@ class DetalleFacturaServicio extends Model
         return $this->belongsTo(Factura::class, 'id_factura');
     }
 
-    // Relación con el servicio
-    public function servicio(): BelongsTo
+    // Relación con el producto
+    public function producto(): BelongsTo
     {
-        return $this->belongsTo(Servicio::class, 'id_servicio');
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 }

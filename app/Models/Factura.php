@@ -18,6 +18,9 @@ class Factura extends Model
         'serie',
         'id_empleado',
         'fecha_emision',
+        'monto_subtotal',
+        'monto_descuento',
+        'monto_iva',
         'monto_total',
         'estado',
     ];
@@ -36,5 +39,10 @@ class Factura extends Model
     {
         return $this->belongsToMany(Servicio::class, 'detalle_factura_servicio', 'id_factura', 'id_servicio')
                     ->withPivot('fecha_inicio', 'fecha_fin', 'estado', 'prioridad', 'descuento', 'subtotal');
+    }
+
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('estado', 'precio', 'descuento', 'subtotal');
     }
 }
