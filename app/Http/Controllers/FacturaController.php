@@ -78,17 +78,24 @@ class FacturaController extends Controller
 
     public function edit(Factura $factura):View
     {
-        return view('layouts.facturas.editar', compact('factura'));
+        $clientes = Cliente::all()->sortBy('nombre_completo');
+        $empleados = Empleado::all()->sortBy('nombre');
+        $productos = Producto::with(['almacenes'])->get()->sortBy('nombre');
+
+        return view('layouts.facturas.editar-producto', compact(['factura', 'clientes', 'empleados', 'productos']));
     }
     
     public function update(FacturaRequest $request, Factura $factura):RedirectResponse
     {
-        $factura-> serie = $request->serie;
-        $factura-> facturable_id = $request->facturable_id;
-        $factura-> id_empleado = $request->id_empleado;
-        $factura-> fecha_emision = $request->fecha_emision;
-        $factura-> monto_total = $request->monto_total;
-        $factura-> estado = $request->estado;
+        $factura->facturable_type = $request->facturable_type;
+        $factura->facturable_id = $request->facturable_id;
+        $factura->serie = $request->serie;
+        $factura->id_empleado = $request->id_empleado;
+        $factura->fecha_emision = $request->fecha_emision;
+        $factura->monto_subtotal = $request->monto_subtotal;
+        $factura->monto_descuento = $request->monto_descuento;
+        $factura->monto_iva = $request->monto_iva;
+        $factura->monto_total = $request->monto_total;
         $factura->save();
       
         return redirect()->route('factura.home')->with('success', 'Factura modificada correctamente');

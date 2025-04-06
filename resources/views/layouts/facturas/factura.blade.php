@@ -6,18 +6,18 @@
     <div>
 
         {{-- Revisar que de estas secciones se queda y que se va --}}
-        @include('layouts._partials.nav-bar', ['backUrl' => route('servicio.home')])
+        @include('layouts._partials.nav-bar', ['backUrl' => route('factura.home')])
 
         @include('layouts._partials.buscar', [
-            'addUrl' => route('servicio.crear'),
-            'listUrl' => route('servicio.home'),
-            'gridUrl' => route('servicio.grid')])
+            'addUrl' => route('factura.crear'),
+            'listUrl' => route('factura.home'),
+            'gridUrl' => route('factura.grid')])
     </div>
     
     <div class="max-w-7xl h-screen p-16 m-auto w-full">
 
         <div class="text-sm/7 w-full flex flex-col gap-2">
-            <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $servicio -> nombre }}</h2>
+            <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $factura->facturable->nombre_completo }}</h2>
             
             <p>
                 <span class="font-bold">Tipo de servicio:</span> {{ $servicio-> tipo_servicio}}

@@ -12,6 +12,7 @@ class ListarFacturas extends Component
     public function render()
     {
         $facturas = $this->buscar ? Factura::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Factura::all();
+        
         // Revisar la relación para que muestre el cliente/proveedor
         /* $facturas = Factura::with('empleados') // Cargar relación de empleado
                     ->when($this->buscar, function ($query) {

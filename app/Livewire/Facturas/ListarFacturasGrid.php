@@ -11,7 +11,7 @@ class ListarFacturasGrid extends Component
 
     public function render()
     {
-        /*$facturas = $this->buscar ? Factura::where('serie', 'LIKE', '%'.$this->buscar.'%')->orWhere('estado', 'LIKE','%'.$this->buscar.'%')->get() : Factura::all(); */
+        $facturas = $this->buscar ? Factura::where('serie', 'LIKE', '%'.$this->buscar.'%')->orWhere('estado', 'LIKE','%'.$this->buscar.'%')->get() : Factura::all();
         
         return view('layouts.facturas.listar-grid', compact('facturas'))
             ->extends('dashboard')

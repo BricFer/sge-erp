@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Actualizar los enlaces dinámicamente
         document.getElementById('crear-link').href = `/${section}/crear`;
         document.getElementById('agregar-link').href = `/${section}/registrar`;
-        document.getElementById('listar-link').href = `/${section}/listar`;
+        document.getElementById('listar-link').href = `/${section}`;
     }
     
     document.querySelector('.exit').addEventListener('click', () => {

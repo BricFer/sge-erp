@@ -22,7 +22,7 @@
                 href="#"
                 class="block uppercase w-[256px] p-2 text-center rounded-lg bg-indigo-600/50 text-white"
             >
-                crear
+                emitir
             </a>
 
             <a
@@ -30,7 +30,7 @@
                 href="#"
                 class="block uppercase w-[256px] p-2 text-center rounded-lg bg-indigo-600/50 text-white"
             >
-                registrar
+                recepcionar
             </a>
 
             <a
