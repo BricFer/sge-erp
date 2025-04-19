@@ -13,7 +13,7 @@ class AlmacenController extends Controller
     public function create():View
     {
         // Filtrar empleados según el cargo (ejemplo: 'Jefe de Almacén')
-        $empleados = Empleado::whereIn('cargo', ['Extraction Worker', 'Technical Specialist', 'Pest Control Worker'])->get();
+        $empleados = Empleado::whereIn('cargo', ['Encargado de Almacén', 'Responsable de Inventario', 'Supervisor de Almacén'])->get();
 
         return view('layouts.almacenes.crear', compact('empleados'));
     }
@@ -34,7 +34,7 @@ class AlmacenController extends Controller
     public function edit(Almacen $almacen):View
     {
         // Filtrar empleados según el cargo (ejemplo: 'Jefe de Almacén')
-        $empleados = Empleado::whereIn('cargo', ['Extraction Worker', 'Technical Specialist', 'Pest Control Worker'])->get();
+        $empleados = Empleado::whereIn('cargo', ['Encargado de Almacén', 'Responsable de Inventario', 'Supervisor de Almacén'])->get();
 
         return view('layouts.almacenes.editar', compact(['almacen', 'empleados']));
     }

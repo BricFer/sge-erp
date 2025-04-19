@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('telefono', 25);
             $table->string('correo', 120)->unique();
             $table->string('cargo', 120);
+            $table->string('departamento', 120);
             $table->date('fecha_contratacion');
+            $table->date('fecha_fin')->nullable();
             $table->enum('estado', ['activo', 'excedencia', 'baja voluntaria', 'despido']);
+            $table->unsignedBigInteger('user_id')->unique(); // clave foránea y única (1:1)
             $table->timestamps();
         });
     }

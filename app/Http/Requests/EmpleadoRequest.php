@@ -44,10 +44,12 @@ class EmpleadoRequest extends FormRequest
             ],
             'cargo' => ['required', 'string', 'min:3', 'max:120'],
             'fecha_contratacion',
+            'fecha_fin',
             'estado' => [
                 'required',
                 Rule::in(['activo', 'excendencia', 'baja voluntaria', 'despido']),  // Usando Rule::in() para validar el enum
             ],
+            'user_id',
         ];
     }
 

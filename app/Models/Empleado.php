@@ -7,6 +7,7 @@ use App\Models\Almacen;
 use App\Models\Factura;
 use App\Models\Presupuesto;
 use App\Models\Servicio;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,8 +25,11 @@ class Empleado extends Model
         'telefono',
         'correo',
         'cargo',
+        'departamento',
         'fecha_contratacion',
+        'fecha_fin',
         'estado',
+        'user_id',
     ];
 
     public function almacenes(): HasMany
@@ -50,5 +54,9 @@ class Empleado extends Model
     public function servicios(): BelongsTo
     {
         return $this->belongsTo(Empleado::class, 'id_servicio');
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

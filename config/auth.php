@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        /*Provider en caso de usar otra clase diferente a la de user (creada y detectada automáticamente por lavarel para la autenticación)
+        'empleado' => [
+            'driver' => 'session',
+            'provider' => 'empleados',
+        ],*/
     ],
 
     /*
@@ -69,6 +75,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        // Provider en caso de usar otra clase diferente a la de user (creada y detectada automáticamente por lavarel para la autenticación)
+        /*'empleados' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Empleado::class,
+        ],*/
     ],
 
     /*

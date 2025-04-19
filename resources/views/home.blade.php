@@ -19,16 +19,22 @@
         <nav class="flex flex-row justify-between items-center w-full p-4">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
             
-            <div class="flex flex-row justify-between items-center gap-2 ml-auto">
-
-                <p>Briceida</p>
-                <a href="#">
-                    <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
-                </a>
-
-                <a href="">
-                    <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
-                </a>
+            <div class="flex flex-row justify-between items-center gap-2">
+                
+                <div class="flex flex-row justify-between items-center gap-2">
+                    <p>{{ Auth::user()->user }}</p>
+                    <a href="#">
+                        <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
+                    </a>
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
+                    </a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </div>
             </div>
         </nav>
 

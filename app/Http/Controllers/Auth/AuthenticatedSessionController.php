@@ -28,7 +28,26 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('home', absolute: false));
+
+        // Validación en caso de usar otro modelo que no sea el de autenticación que viene por defecto con Laravel
+        // $request->validate([
+        //     'correo' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+    
+        // if (Auth::guard('empleado')->attempt([
+        //     'correo' => $request->correo,
+        //     'password' => $request->password,
+        // ], $request->boolean('remember'))) {
+        //     $request->session()->regenerate();
+    
+        //     return redirect()->intended(route('home'));
+        // }
+    
+        // return back()->withErrors([
+        //     'correo' => 'Las credenciales no coinciden',
+        // ]);
     }
 
     /**

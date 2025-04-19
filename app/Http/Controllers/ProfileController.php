@@ -11,6 +11,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function show()
+    {
+        $user = Auth::user(); // Usuario autenticado
+        // $empleado = $user->empleado; // Relación 1:1
+
+        return view('layouts.profile.profile', compact('user'));
+    }
+    
     /**
      * Display the user's profile form.
      */

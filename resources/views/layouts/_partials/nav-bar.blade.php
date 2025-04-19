@@ -6,13 +6,18 @@
         </a>
         
         <div class="flex flex-row justify-between items-center gap-2">
-            <p>Briceida</p>
+            <a href="{{ route('profile.show') }}">{{ Auth::user()->user }}</a>
             <a href="#">
                 <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
             </a>
-            <a href="#">
+            <a href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                @csrf
+            </form>
         </div>
     </div>
 
