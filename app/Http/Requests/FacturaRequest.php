@@ -26,18 +26,19 @@ class FacturaRequest extends FormRequest
         $facturaId = $this->route('factura') ? $this->route('factura')->id : null;
 
         return [
+            'facturable_id' => ['required', 'integer'],
+            'facturable_type' => ['required', 'string'],
             'serie' => [
                 'required',
                 'string',
                 'max:255',
                 Rule::unique(Factura::class)->ignore($facturaId),
             ],
-            'facturable_id' => ['required', 'integer'],
-            'facturable_type' => ['required', 'string'],
             'id_empleado' => [
                 'required',
                 Rule::exists('empleados', 'id'),
             ],
+            'porcentaje_descuento',
             'fecha_emision' => ['date'],
             'monto_subtotal' => ['required', 'numeric', 'min:0'],
             'monto_descuento' => ['required', 'numeric', 'min:0'],
@@ -81,8 +82,6 @@ class FacturaRequest extends FormRequest
             'iva.*' => ['required', 'numeric', 'min:0'],
             'cantidad' => ['required', 'array', 'min:1'],
             'cantidad.*' => ['required', 'numeric', 'min:1'],
-            'descuento' => ['required', 'array', 'min:1'],
-            'descuento.*' => ['required', 'numeric', 'min:0'],
             'subtotal' => ['required', 'array', 'min:1'],
             'subtotal.*' => ['required', 'numeric', 'min:0'],
         ];

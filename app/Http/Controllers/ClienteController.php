@@ -18,7 +18,6 @@ class ClienteController extends Controller
     {   
         $cliente = new Cliente;
         $cliente-> nombre_completo = $request->nombre_completo;
-        $cliente-> apellido = $request->apellido;
         $cliente-> nif = $request->nif;
         $cliente-> razon_social = $request->razon_social;
         $cliente-> domicilio = $request->domicilio;
@@ -40,7 +39,6 @@ class ClienteController extends Controller
     public function update(ClienteRequest $request, Cliente $cliente):RedirectResponse
     {
         $cliente-> nombre_completo = $request->nombre_completo;
-        $cliente-> apellido = $request->apellido;
         $cliente-> nif = $request->nif;
         $cliente-> razon_social = $request->razon_social;
         $cliente-> domicilio = $request->domicilio;

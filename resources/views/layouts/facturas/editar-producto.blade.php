@@ -23,27 +23,29 @@
 
             <div class="w-full flex flex-wrap gap-1 justify-content">
                 <div class="flex flex-col gap-1 w-[205px]">
-                    <label
-                        for="facturable_type"
-                        class="w-full"
-                    >
-                        Factura de:
-                    </label>
+                    <label class="w-full">Factura de:</label>
+
+                    <p class="h-[42px] p-2 w-full border-solid border border-black/50">
+                        {{ str_contains($factura->facturable_type, 'Cliente') ? 'Cliente' : 'Proveedor' }}
+                    </p>
+
                     <input
-                        id="facturable_type"
+                        type="hidden"
                         name="facturable_type"
-                        value="{{ $factura->facturable_type}}"
+                        value="{{ $factura->facturable_type }}"
+                        class="w-[45px] border-solid border border-black/50"
                         readonly
                     />
                 </div>
 
                 <div class="flex flex-col gap-1 w-[456px]">
-                    <label class="w-full">ID | Nombre:</label>
+                    <span class="w-full">ID | Nombre:</span>
                     <div class="w-full flex gap-1">
                         <input
                             name="facturable_id"
-                            value="{{ $factura->facturable_id}}"
+                            value="{{ $factura->facturable_id }}"
                             class="w-[45px] border-solid border border-black/50"
+                            readonly
                         />
         
                         <input
@@ -57,13 +59,18 @@
                 </div>
         
                 <div class="flex flex-col gap-1 w-[215px]">
-                    <label class="w-full">DNI/NIF</label>
-                    <p id="dni_nif" class="h-[42px] p-2 w-full border-solid border border-black/50">{{ $factura->facturable->nif}}</p>
+                    <span class="w-full">DNI/NIF</span>
+                    
+                    <p id="dni_nif" class="h-[42px] p-2 w-full border-solid border border-black/50">
+                        {{ $factura->facturable->nif }}
+                    </p>
                 </div>
         
                 <div class="flex flex-col w-[315px] gap-1">
-                    <label class="w-full">Razón Social</label>
-                    <p id="razon_social" class="h-[42px] w-full p-2 border-solid border border-black/50">{{ $factura->facturable->razon_social}}</p>
+                    <span class="w-full">Razón Social</span>
+                    <p id="razon_social" class="h-[42px] w-full p-2 border-solid border border-black/50">
+                        {{ $factura->facturable->razon_social }}
+                    </p>
                 </div>
                                         
                 <div class="flex flex-col gap-1 w-[215px]">
@@ -79,33 +86,47 @@
                 </div>
 
                 <div class="flex flex-col gap-1 w-[416px]">
-                    <label class="w-full">Dirección</label>
-                    <p id="domicilio" class="h-[42px] w-full p-2 border-solid border border-black/50">{{ $factura->facturable->domicilio}}</p>
+                    <span class="w-full">Dirección</span>
+                    <p id="domicilio" class="h-[42px] w-full p-2 border-solid border border-black/50">{{ $factura->facturable->domicilio }}</p>
                 </div>
                                         
                 <div class="flex flex-col gap-1 w-[281px]">
-                    <label>Población</label>
-                    <p id="poblacion" class="h-[42px] p-2 border-solid border border-black/50 w-full">{{ $factura->facturable->poblacion}}</p>
+                    <span>Población</span>
+                    <p id="poblacion" class="h-[42px] p-2 border-solid border border-black/50 w-full">{{ $factura->facturable->poblacion }}</p>
                 </div>
 
                 <div class="flex flex-col gap-1 w-[278px]">
-                    <label>Provincia</label>
-                    <p id="provincia" class="h-[42px] p-2 border-solid border border-black/50 w-full">{{ $factura->facturable->provincia}}</p>
+                    <span>Provincia</span>
+                    <p id="provincia" class="h-[42px] p-2 border-solid border border-black/50 w-full">{{ $factura->facturable->provincia }}</p>
                 </div>
 
                 <div class="flex flex-col gap-1 w-[176px]">
-                    <label>Cod. Postal</label>
-                    <p id="cod_postal" class="h-[42px] w-full p-2 border-solid border border-black/50">{{ $factura->facturable->cod_postal}}</p>
+                    <span>Cod. Postal</span>
+                    <p id="cod_postal" class="h-[42px] w-full p-2 border-solid border border-black/50">{{ $factura->facturable->cod_postal }}</p>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="descuento_general" class="w-full">Descuento (%)</label>
+                    <label for="porcentaje_descuento" class="w-full">Descuento (%)</label>
                     <input
                         type="text"
-                        id="descuento_general"
+                        id="porcentaje_descuento"
                         class="calcularSubtotal w-full"
-                        name="descuento"
+                        name="porcentaje_descuento"
+                        value="{{
+                            $factura->porcentaje_descuento === null ? '0.00' : $factura->porcentaje_descuento }}"
                     />
+                </div>
+
+                <div class="flex flex-col gap-1 w-[278px]">
+                    <label for="estado" class="w-full">Estado</label>
+
+                    <select name="estado" id="estado">
+                        <option value="borrador" {{ $factura->estado === "borrador" ? 'selected' : ''}}>Borrador</option>
+                        <option value="emitida" {{ $factura->estado === "emitida" ? 'selected' : ''}}>Emitida</option>
+                        <option value="pendiente" {{ $factura->estado === "pendiente" ? 'selected' : ''}}>Pendiente</option>
+                        <option value="cancelada" {{ $factura->estado === "cancelada" ? 'selected' : ''}}>Cancelada</option>
+                        <option value="pagada" {{ $factura->estado === "pagada" ? 'selected' : '' }}>Pagada</option>
+                    </select>
                 </div>
             </div>
 
@@ -120,26 +141,26 @@
                             type="text"
                             id="empleados"
                             class="w-[42px]"
-                            value="{{$factura->id_empleado}}"
+                            value="{{ $factura->id_empleado }}"
                         />
 
                         <p class="h-[42px] w-[405px] p-2 border-solid border border-black/50">
-                            {{ $factura->empleado->nombre}}
+                            {{ $factura->empleado->nombre_completo }}
                         </p>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label class="w-full">DNI/NIF</label>
+                    <span class="w-full">DNI/NIF</span>
                     <p class="h-[42px] w-[215px] p-2 border-solid border border-black/50">
-                        {{ $factura->empleado->dni_nif}}
+                        {{ $factura->empleado->dni_nif }}
                     </p>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label class="w-full">Cargo</label>
+                    <span class="w-full">Cargo</span>
                     <p id="cargo_empleado" class="h-[42px] w-[516px] p-2 border-solid border border-black/50">
-                        {{ $factura->empleado->cargo}}
+                        {{ $factura->empleado->cargo }}
                     </p>
                 </div>
             </div>
@@ -152,93 +173,107 @@
             <p class="w-[75px]">Cant.</p>
             <p class="w-[75px]">IVA</p>
             <p class="w-[75px]">Precio (€)</p>
-            <p class="w-[75px]">Dto. (%)</p>
+            <p class="w-[75px]">Dto. (€)</p>
             <p class="w-[95px]">Subtotal</p>
         </div>
 
         <div id="detalles">
-            <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
-                <select
-                    name="id_producto[]"
-                    onchange="completarDetalleFactura(this)"
-                    class="productos w-[295px] border-none p-0"
-                >
-                    <option
-                        disabled
-                        selected
+
+            @foreach($factura->productos as $detalle)
+                <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+                    <select
+                        name="id_producto[]"
+                        onchange="completarDetalleFactura(this)"
+                        class="productos w-[295px] border-none p-0"
                     >
-                        Lista productos
-                    </option>
-
-                    @foreach($productos as $producto)
-                    
-                    @php
-                        $stock = $producto->almacenes->first()?->pivot->stock ?? 'Sin stock';
-                    @endphp
-
                         <option
-                            value="{{ $producto->id}}"
-                            data-info='@json($producto)'
+                            disabled
                         >
-                            {{ $producto->nombre }} - {{ $stock}}
+                            Lista productos
                         </option>
 
-                    @endforeach
-                </select>
+                        @foreach($productos as $producto)
+                        
+                            @php
+                                $stock = $producto->almacenes->first()?->pivot->stock ?? 'Sin stock';
+                                
+                                $disponibilidad = $stock === 'Sin stock' ? 'disabled' : '';
+                            @endphp
 
-                <input
-                    type="text"
-                    placeholder="Código producto"
-                    class="codigo w-[175px] border-none p-0"
-                />
+                            <option
+                                value="{{ $producto->id}}"
+                                data-info='@json($producto)'
+                                {{ $disponibilidad }}
+                                {{ $detalle->pivot->id_producto === $producto->id ? 'selected' : ''}}
+                            >
+                                {{ $producto->nombre }} - {{ $stock }}
+                            </option>
 
-                <input
-                    type="text"
-                    placeholder="Descripcion"
-                    class="descripcion w-[325px] border-none p-0"
-                />
+                        @endforeach
+                    </select>
 
-                <input
-                    type="number"
-                    name="cantidad[]"
-                    placeholder="Cant."
-                    min="1"
-                    max="99"
-                    class="cantidad calcularSubtotal w-[75px] border-none p-0"
-                />
-                
-                <input
-                    type="number"
-                    name="iva[]"
-                    placeholder="%IVA"
-                    min="0"
-                    max="99"
-                    class="iva calcularSubtotal w-[75px] border-none p-0"
-                />
+                    <input
+                        type="text"
+                        placeholder="Código producto"
+                        class="codigo w-[175px] border-none p-0"
+                        value="{{ $detalle->codigo }}"
+                    />
 
-                <input
-                    type="text"
-                    placeholder="P.V"
-                    name="precio[]"
-                    class="precio_venta w-[75px] border-none p-0"
-                    readonly
-                />
+                    <input
+                        type="text"
+                        placeholder="Descripcion"
+                        class="descripcion w-[325px] border-none p-0"
+                        value="{{ $detalle->descripcion }}"
+                    />
 
-                <input
-                    type="text"
-                    name="descuento[]"
-                    placeholder="%"
-                    class="descuento calcularSubtotal w-[75px] border-none p-0"
-                    readonly
-                />
-                
-                <input
-                    type="text"
-                    name="subtotal[]"
-                    placeholder="Subtotal"
-                    class="subtotal w-[95px] border-none p-0"
-                />
-            </div>
+                    <input
+                        type="number"
+                        name="cantidad[]"
+                        placeholder="Cant."
+                        min="1"
+                        max="99"
+                        class="cantidad calcularSubtotal w-[75px] border-none p-0"
+                        value="{{ $detalle->pivot->cantidad }}"
+                    />
+                    
+                    <input
+                        type="number"
+                        name="iva[]"
+                        placeholder="%IVA"
+                        min="0"
+                        max="99"
+                        class="iva calcularSubtotal w-[75px] border-none p-0"
+                        value="{{ $detalle->iva }}"
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="P.V"
+                        name="precio[]"
+                        class="precio_venta w-[75px] border-none p-0"
+                        value="{{ $detalle->precio_venta }}"
+                        readonly
+                    />
+
+                    <input
+                        type="text"
+                        name="descuento[]"
+                        placeholder="€"
+                        class="descuento calcularSubtotal w-[75px] border-none p-0"
+                        value="{{ $detalle->pivot->descuento }}"
+                        readonly
+                    />
+                    
+                    <input
+                        type="text"
+                        name="subtotal[]"
+                        placeholder="Subtotal"
+                        value="{{ $detalle->pivot->subtotal }}"
+                        class="subtotal w-[95px] border-none p-0"
+                        readonly
+                    />
+                </div>
+            @endforeach
         </div>
 
         <div class="flex flex-col ml-auto gap-2">
@@ -254,7 +289,8 @@
                     id="monto_subtotal"
                     name="monto_subtotal"
                     class="w-[215px]"
-                    value="{{ $factura->monto_subtotal}}"
+                    value="{{ $factura->monto_subtotal }}"
+                    readonly
                 />
             </div>
 
@@ -270,7 +306,8 @@
                     id="monto_descuento"
                     name="monto_descuento"
                     class="w-[215px]"
-                    value="{{ $factura->monto_descuento}}"
+                    value="{{ $factura->monto_descuento }}"
+                    readonly
                 />
             </div>
 
@@ -286,7 +323,8 @@
                     id="monto_iva"
                     name="monto_iva"
                     class="w-[215px]"
-                    value="{{ $factura->monto_iva}}"
+                    value="{{ $factura->monto_iva }}"
+                    readonly
                 />
             </div>
             
@@ -302,11 +340,13 @@
                     id="monto_total"
                     name="monto_total"
                     class="w-[215px]"
-                    value="{{ $factura->monto_total}}"
+                    value="{{ $factura->monto_total }}"
+                    readonly
                 />
             </div>
 
         </div>
+
         <div class="pl-4">
             @include('layouts._partials.submit-cancel')
         </div>
@@ -319,9 +359,9 @@
         // Este es un paso adicional que ha de hacerse ya que el paso anterior lo que me devuelve es un objeto cuya clave es un índice
         const productosArray = Object.values(window.productos);
 
-        // Al hacer lo anterior ya el script factura.js recibe y procesa los productos para mostrarlos
+        // Al hacer lo anterior el script factura.js recibe y procesa los productos para mostrarlos
         
     </script>
 
-    <script src="{{ asset('js/factura.js') }}" defer></script>
+    <script src="{{ asset('js/factura-edit.js') }}" defer></script>
 @endsection

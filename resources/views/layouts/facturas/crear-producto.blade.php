@@ -38,7 +38,7 @@
                             disabled
                             selected
                         >
-                            selecciona una opción
+                            Selecciona una opción
                         </option>
                         <option value="App\Models\Cliente">Cliente</option>
                         <option value="App\Models\Proveedor">Proveedor</option>
@@ -119,8 +119,20 @@
                 </div>
     
                 <div class="flex flex-col gap-1">
-                    <label for="descuento_general" class="w-full">Descuento (%)</label>
-                    <input type="text" id="descuento_general" class="calcularSubtotal w-full">
+                    <label for="porcentaje_descuento" class="w-full">Descuento (%)</label>
+                    <input type="text" id="porcentaje_descuento" name="porcentaje_descuento" class="calcularSubtotal w-full">
+                </div>
+                
+                <div class="flex flex-col gap-1 w-[278px]">
+                    <label for="estado" class="w-full">Estado</label>
+
+                    <select name="estado" id="estado">
+                        <option value="borrador" selected>Borrador</option>
+                        <option value="emitida">Emitida</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="cancelada">Cancelada</option>
+                        <option value="pagada">Pagada</option>
+                    </select>
                 </div>
             </div>
 
@@ -149,7 +161,7 @@
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
                                     data-info='@json($empleado)'
                                 >
-                                    {{ $empleado->nombre }}
+                                    {{ $empleado->nombre_completo }}
                                 </option>
                             @endforeach
                         </select>
@@ -175,7 +187,7 @@
             <p class="w-[75px]">Cant.</p>
             <p class="w-[75px]">IVA</p>
             <p class="w-[75px]">Precio (€)</p>
-            <p class="w-[75px]">Dto. (%)</p>
+            <p class="w-[75px]">Dto. (€)</p>
             <p class="w-[95px]">Subtotal</p>
         </div>
 
@@ -197,11 +209,14 @@
                     
                     @php
                         $stock = $producto->almacenes->first()?->pivot->stock ?? 'Sin stock';
+
+                        $disponibilidad = $stock === 'Sin stock' ? 'disabled' : '';
                     @endphp
 
                         <option
                             value="{{ $producto->id}}"
                             data-info='@json($producto)'
+                            {{ $disponibilidad }}
                         >
                             {{ $producto->nombre }} - {{ $stock}}
                         </option>
@@ -250,7 +265,7 @@
                 <input
                     type="text"
                     name="descuento[]"
-                    placeholder="%"
+                    placeholder="Descuento"
                     class="descuento calcularSubtotal w-[75px] border-none p-0"
                     readonly
                 />
@@ -260,6 +275,7 @@
                     name="subtotal[]"
                     placeholder="Subtotal"
                     class="subtotal w-[95px] border-none p-0"
+                    readonly
                 />
             </div>
         </div>
@@ -277,6 +293,7 @@
                     id="monto_subtotal"
                     name="monto_subtotal"
                     class="w-[215px]"
+                    readonly
                 />
             </div>
 
@@ -292,6 +309,7 @@
                     id="monto_descuento"
                     name="monto_descuento"
                     class="w-[215px]"
+                    readonly
                 />
             </div>
 
@@ -307,24 +325,28 @@
                     id="monto_iva"
                     name="monto_iva"
                     class="w-[215px]"
+                    readonly
                 />
             </div>
             
             <div class="flex flex-row gap-2 px-4">
                 <label
                     class="w-[95px]"
+                    for="monto_total"
                 >
                     Total
                 </label>
                 <input
                     type="text"
-                    id="total"
+                    id="monto_total"
                     name="monto_total"
                     class="w-[215px]"
+                    readonly
                 />
             </div>
 
         </div>
+
         <div class="pl-4">
             @include('layouts._partials.submit-cancel')
         </div>
@@ -337,7 +359,7 @@
         // Este es un paso adicional que ha de hacerse ya que el paso anterior lo que me devuelve es un objeto cuya clave es un índice
         const productosArray = Object.values(window.productos);
 
-        // Al hacer lo anterior ya el script factura.js recibe y procesa los productos para mostrarlos
+        // Al hacer lo anterior el script factura.js recibe y procesa los productos para mostrarlos
         
     </script>
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->morphs('facturable'); // Relación polimórfica (cliente o proveedor)
             $table->string('serie',255);
             $table->foreignId('id_empleado')->constrained('empleados', 'id')->onDelete('cascade');
+            $table->decimal('porcentaje_descuento', 8,2)->nullable();
             $table->timestamp('fecha_emision')->useCurrent();
             $table->decimal('monto_subtotal', 8,2)->default(0.00);
             $table->decimal('monto_descuento', 8,2)->default(0.00);

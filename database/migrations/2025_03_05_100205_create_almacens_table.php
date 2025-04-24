@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 120);
             $table->string('ubicacion', 255);
             $table->unsignedInteger('capacidad')->nullable();
-            $table->string('estado', 55)->default('Inactivo');
+            $table->string('estado', 55)->default('inactivo');
             $table->foreignId('id_empleado')->constrained('empleados', 'id')->onDelete('cascade')->nullable();
             $table->timestamps();
         });

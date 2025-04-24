@@ -26,7 +26,7 @@ class EmpleadoRequest extends FormRequest
         $empleadoId = $this->route('empleado') ? $this->route('empleado')->id : null;
 
         return [
-            'nombre' => ['required', 'string', 'min:3', 'max:255'],
+            'nombre_completo' => ['required', 'string', 'min:3', 'max:255'],
             'dni_nif' => [
                 'required',
                 'string',
@@ -56,7 +56,7 @@ class EmpleadoRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.required' => 'El nombre del empleado es obligatorio.',
+            'nombre_completo.required' => 'El nombre del empleado es obligatorio.',
             'dni_nif.required' => 'Indica el número de documento del empleado.',
             'cargo.required' => 'Es obligatorio indicar el cargo que ocupa el empleado.',
             'telefono.required' => 'Es obligatorio un telefono de contacto.',

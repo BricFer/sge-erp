@@ -27,7 +27,7 @@
 
         <div class="flex flex-col gap-1 xl:w-[475px]">
             <label for="responsable_almacen">Responsable del almacen:</label>
-            <select name="responsable_almacen" type="text"   id="responsable_almacen">
+            <select name="responsable_almacen" type="text" id="responsable_almacen">
             
                 <option class="font-bold" value="" disabled selected>Asignar responsable</option>
                 @foreach ($empleados as $empleado)

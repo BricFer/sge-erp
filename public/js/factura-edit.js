@@ -11,52 +11,53 @@ let importeDescuento;
 let importeIva;
 let importeTotal;
 
-const autocompletarInputs = () => {
+descuento.addEventListener('change', () => {
 
-    const listaClientes = document.getElementById("clientes");
+    detalles.querySelectorAll('.detalle-row').forEach( ( row ) => {
 
-    const clienteSeleccionado = listaClientes.options[listaClientes.selectedIndex];
+        const cantidadRow = Number(row.querySelector('.cantidad')?.value) || 0;
+        const ivaRow = Number(row.querySelector('.iva')?.value) || 0;
+        const precioVentaRow = Number(row.querySelector('.precio_venta')?.value) || 0;
 
-    const clienteData = clienteSeleccionado.getAttribute("data-info");
+        const descuentoRow = row.querySelector('.descuento');
+        const subtotalRow = row.querySelector('.subtotal');
 
-    try {
-        const cliente = JSON.parse(clienteData);
+        descuentoRow.value = (cantidadRow * precioVentaRow * (Number(descuento.value)/100)).toFixed(2);
 
-        document.getElementById("id_cliente").textContent = cliente.id || "";
-        document.getElementById("dni_nif").textContent = cliente.nif || "";
-        document.getElementById("razon_social").textContent = cliente.razon_social || "";
-        document.getElementById("domicilio").textContent = cliente.domicilio || "";
-        document.getElementById("poblacion").textContent = cliente.poblacion || "";
-        document.getElementById("provincia").textContent = cliente.provincia || "";
-        document.getElementById("cod_postal").textContent = cliente.cod_postal || "";
+        subtotalRow.value = ((cantidadRow * precioVentaRow - Number(descuentoRow.value)) * (1 + ivaRow/100)).toFixed(2);
+    });
 
-    } catch (error) {
-        console.error("Error al parsear JSON:", error);
+    calcularTotales();
+
+});
+
+document.querySelector('#detalles').addEventListener('input', ( event ) =>  {
+    
+    const hasChild = event.target.classList.contains("calcularSubtotal");
+
+    if( hasChild ) {
+
+        document.querySelectorAll('.detalle-row').forEach(row => {
+
+            const precio = Number(row.querySelector('.precio_venta')?.value) || 0;
+
+            const cantidad = Number(row.querySelector('.cantidad')?.value) || 0;
+            
+            const iva = Number(row.querySelector('.iva')?.value) || 0;
+            
+            const descuentoDetalle = cantidad * precio * ( Number(descuento.value)/100);
+
+            let subtotal = (cantidad * precio - descuentoDetalle) * (1 + iva/100);
+
+            // Por cada row almacenamos los valores en las variables de total, subtotal, descuento e iva
+            
+            row.querySelector('.descuento').value = descuentoDetalle.toFixed(2);
+            row.querySelector('.subtotal').value = subtotal.toFixed(2);
+        });
+
+        calcularTotales();
     }
-}
-
-const autocompletarDatosEmpleados = () => {
-
-    const listaEmpleados = document.getElementById("empleados");
-
-    const empleadoSeleccionado = listaEmpleados.options[listaEmpleados.selectedIndex];
-
-    const empleadoData = empleadoSeleccionado.getAttribute("data-info");
-
-    try {
-        const empleado = JSON.parse(empleadoData);
-
-        console.log(empleado);
-        
-        document.getElementById("id_empleado").textContent = empleado.id || "";
-        document.getElementById("dni_nif_empleado").textContent = empleado.dni_nif || "";
-        
-        document.getElementById("cargo_empleado").textContent = empleado.cargo || "";
-
-    } catch (error) {
-        console.error("Error al parsear JSON:", error);
-    }
-}
+})
 
 const completarDetalleFactura = ( selectElement ) => {
 
@@ -147,7 +148,6 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     type="text"
                     placeholder="Código producto"
                     class="codigo w-[175px] border-none p-0"
-                    readonly
                 />
 
                 <input
@@ -196,6 +196,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     name="subtotal[]"
                     placeholder="Subtotal"
                     class="subtotal w-[95px] border-none p-0"
+                    readonly
                 />
             </div>
         `);
@@ -208,17 +209,16 @@ const calcularTotales = () => {
     let totalIva = 0;
 
     document.querySelectorAll(".detalle-row").forEach(row => {
-        const precio = Number(row.querySelector(".precio_venta")?.value) || 0;
-        const cantidad = Number(row.querySelector(".cantidad")?.value) || 0;
-        const iva = Number(row.querySelector(".iva")?.value) || 0;
-        const descuentoDetalle = Number(descuento.value) || Number(row.querySelector(".descuento")?.value) || 0;
 
-        let rowSubtotal = cantidad * precio;
-        let rowDescuento = (rowSubtotal * descuentoDetalle) / 100;
-        let rowIva = ((rowSubtotal - rowDescuento) * iva) / 100;
         
-        subtotal += rowSubtotal;
-        totalDescuento += rowDescuento;
+        const iva = Number(row.querySelector(".iva")?.value);
+        const descuentoDetalle = Number(row.querySelector(".descuento")?.value);
+        const subtotalDetalle = Number(row.querySelector('.subtotal')?.value);
+
+        let rowIva = ((subtotalDetalle - descuentoDetalle) * iva) / 100;
+        
+        subtotal += subtotalDetalle;
+        totalDescuento += descuentoDetalle;
         totalIva += rowIva;
     });
 

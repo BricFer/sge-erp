@@ -20,7 +20,7 @@ class Empleado extends Model
     protected $table = 'empleados';
     
     protected $fillable = [
-        'nombre',
+        'nombre_completo',
         'dni_nif',
         'telefono',
         'correo',

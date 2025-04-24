@@ -17,6 +17,7 @@ class Factura extends Model
         'facturable_type',
         'serie',
         'id_empleado',
+        'porcentaje_descuento',
         'fecha_emision',
         'monto_subtotal',
         'monto_descuento',
@@ -43,6 +44,6 @@ class Factura extends Model
 
     public function productos()
     {
-        return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('estado', 'precio', 'descuento', 'subtotal');
+        return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('precio', 'iva', 'cantidad', 'descuento', 'subtotal');
     }
 }

@@ -23,7 +23,7 @@ class EmpleadoFactory extends Factory
         $estado = $this->faker->randomElement(['activo', 'excedencia', 'baja voluntaria', 'despido']);
 
         return [
-            'nombre' => $this->faker->name(),
+            'nombre_completo' => $this->faker->name(),
             'dni_nif' => $this->faker->unique()->regexify('[0-9A-Z]{8}[A-Z]'),
             'telefono' => $this->faker->phoneNumber(),
             'correo' => $this->faker->unique()->companyEmail(),

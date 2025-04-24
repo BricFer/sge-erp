@@ -30,7 +30,7 @@ class AlmacenFactory extends Factory
         return [
             'nombre'=> $this->faker->company(),
             'ubicacion' => $this->faker->address(),
-            'capacidad' => $this->faker->numberBetween(100, 10000),
+            'capacidad' => $this->faker->numberBetween(100, 8000),
             'estado' =>$this->faker->randomElement(['activo', 'inactivo']),
             'id_empleado' => $this->faker->randomElement($empleadoIds), // Selecciona un ID aleatorio
             'created_at' => now(),

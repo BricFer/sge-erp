@@ -19,7 +19,7 @@ class FacturaController extends Controller
         $clientes = Cliente::all()->sortBy('nombre_completo');
         $empleados = Empleado::all()->sortBy('nombre');
         // Se almacena en $productos los almacenes, para poder acceder a valores como 'stock'
-        $productos = Producto::with(['almacenes'])->get()->sortBy('nombre');
+        $productos = Producto::with(['almacenes'])->sortBy('nombre')->get();
 
         $lastFactura = Factura::latest()->first(); 
         $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
@@ -33,10 +33,11 @@ class FacturaController extends Controller
 
             // Crear la factura
             $factura = Factura::create([
-                'facturable_type' => $request->facturable_type,
                 'facturable_id' => $request->facturable_id,
+                'facturable_type' => $request->facturable_type,
                 'serie' => $request->serie,
                 'id_empleado' => $request->id_empleado,
+                'porcentaje_descuento' => $request->porcentaje_descuento,
                 'fecha_emision' => $request->fecha_emision,
                 'monto_subtotal' => $request->monto_subtotal,
                 'monto_descuento' => $request->monto_descuento,
@@ -66,8 +67,8 @@ class FacturaController extends Controller
                     'precio' => $request->precio[$index],
                     'iva' => $request->iva[$index],
                     'cantidad' => $request->cantidad[$index],
-                    'descuento' => $request->descuento[$index],
                     'subtotal' => $request->subtotal[$index],
+                    'descuento' => $request->descuento[$index],
                 ]);
             }
             
@@ -87,16 +88,38 @@ class FacturaController extends Controller
     
     public function update(FacturaRequest $request, Factura $factura):RedirectResponse
     {
-        $factura->facturable_type = $request->facturable_type;
-        $factura->facturable_id = $request->facturable_id;
-        $factura->serie = $request->serie;
-        $factura->id_empleado = $request->id_empleado;
-        $factura->fecha_emision = $request->fecha_emision;
-        $factura->monto_subtotal = $request->monto_subtotal;
-        $factura->monto_descuento = $request->monto_descuento;
-        $factura->monto_iva = $request->monto_iva;
-        $factura->monto_total = $request->monto_total;
-        $factura->save();
+        DB::transaction(function () use ($request, $factura) {
+            // Actualizar la factura
+            $factura->update([
+                'facturable_id' => $request->facturable_id,
+                'facturable_type' => $request->facturable_type,
+                'serie' => $request->serie,
+                'id_empleado' => $request->id_empleado,
+                'porcentaje_descuento' => $request->porcentaje_descuento,
+                'fecha_emision' => $request->fecha_emision,
+                'monto_subtotal' => $request->monto_subtotal,
+                'monto_descuento' => $request->monto_descuento,
+                'monto_iva' => $request->monto_iva,
+                'monto_total' => $request->monto_total,
+                'estado' => $request->estado,
+            ]);
+    
+            // Eliminar los detalles anteriores, para "agregar" los nuevos
+            DetalleFacturaProducto::where('id_factura', $factura->id)->delete();
+    
+            // Crear los "nuevos" detalles
+            foreach ($request->id_producto as $index => $id_producto) {
+                DetalleFacturaProducto::create([
+                    'id_factura' => $factura->id,
+                    'id_producto' => $id_producto,
+                    'precio' => $request->precio[$index],
+                    'iva' => $request->iva[$index],
+                    'cantidad' => $request->cantidad[$index],
+                    'subtotal' => $request->subtotal[$index],
+                    'descuento' => $request->descuento[$index],
+                ]);
+            }
+        });
       
         return redirect()->route('factura.home')->with('success', 'Factura modificada correctamente');
     }
@@ -105,7 +128,7 @@ class FacturaController extends Controller
     {
         $factura -> delete();
 
-        return redirect()->route('factura.home')->with('danger','factura eliminado correctamente');
+        return redirect()->route('factura.home')->with('danger','Factura eliminada correctamente');
     }
     
     public function showInvoice(Factura $factura):View

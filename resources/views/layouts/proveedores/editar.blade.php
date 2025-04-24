@@ -22,12 +22,12 @@
         @method('PUT')
         @csrf
         <div class="flex flex-col gap-1 xl:w-[728px]">
-            <label for="nombre">Nombre proveedor:</label>
+            <label for="nombre_completo">Nombre proveedor:</label>
             <input
-                name="nombre"
-                value="{{ $proveedor->nombre }}"
+                name="nombre_completo"
+                value="{{ $proveedor->nombre_completo }}"
                 type="text"
-                id="nombre"
+                id="nombre_completo"
                 readonly
             />
         </div>

@@ -16,7 +16,7 @@
     <div class="max-w-7xl h-screen p-16 m-auto w-full">
 
         <div class="text-sm/7 w-full flex flex-col gap-2">
-            <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $proveedor -> nombre }}</h2>
+            <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $proveedor -> nombre_completo }}</h2>
         
             <p>
                 <span class="font-bold">CIF:</span> {{ $proveedor-> cif}}

@@ -40,8 +40,6 @@
                     <p class="w-[95px]"></p>
                     
                     <p class="w-[225px]">{{ ucfirst($almacen-> estado) }}</p>
-                    
-
                 </div>
 
                 <div class="flex flex-row items-center gap-2">

@@ -17,7 +17,7 @@ class EmpleadoController extends Controller
     public function store(EmpleadoRequest $request): RedirectResponse
     {   
         $empleado = new Empleado;
-        $empleado-> nombre = $request->nombre;
+        $empleado-> nombre_completo = $request->nombre_completo;
         $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;
         $empleado-> correo = $request->correo;
@@ -39,7 +39,7 @@ class EmpleadoController extends Controller
     
     public function update(EmpleadoRequest $request, Empleado $empleado):RedirectResponse
     {
-        $empleado-> nombre = $request->nombre;
+        $empleado-> nombre_completo = $request->nombre_completo;
         $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;
         $empleado-> correo = $request->correo;

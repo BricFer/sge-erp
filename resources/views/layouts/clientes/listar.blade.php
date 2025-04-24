@@ -36,7 +36,7 @@
 
                     <p class="w-[115px]">{{ $cliente -> telefono }}</p>
 
-                    <p class="w-[225px]">{{ $cliente -> correo }}</p>
+                    <p class="w-[225px] text-wrap">{{ $cliente -> correo }}</p>
                     
                     <p class="w-[95px]">{{ $cliente -> cod_postal }}</p>
                     

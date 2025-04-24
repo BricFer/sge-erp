@@ -80,7 +80,7 @@
 
                             <p class="w-[95px]">{{ $factura->serie }}</p>
         
-                            <p class="w-[115px]">{{ $factura->empleado->nombre }}</p>
+                            <p class="w-[115px]">{{ $factura->empleado->nombre_completo }}</p>
                             
                             <p class="w-[225px]">{{ $factura->fecha_emision}}</p>
                             

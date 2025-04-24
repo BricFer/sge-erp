@@ -22,7 +22,7 @@
             <div class="flex flex-row justify-between items-center gap-2">
                 
                 <div class="flex flex-row justify-between items-center gap-2">
-                    <p>{{ Auth::user()->user }}</p>
+                    <a href="{{ route('profile.show') }}">{{ Auth::user()->user }}</a>
                     <a href="#">
                         <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
                     </a>

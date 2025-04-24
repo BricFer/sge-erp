@@ -21,8 +21,8 @@
     >
         @csrf
         <div class="flex flex-col gap-1 xl:w-[728px]">
-            <label for="nombre">Nombre proveedor:</label>
-            <input name="nombre" type="text" class="form-control" id="nombre">
+            <label for="nombre_completo">Nombre proveedor:</label>
+            <input name="nombre_completo" type="text" class="form-control" id="nombre_completo">
         </div>
         
         <div class="flex flex-col gap-1 w-[532px]">

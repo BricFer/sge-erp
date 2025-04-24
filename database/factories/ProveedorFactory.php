@@ -19,7 +19,7 @@ class ProveedorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->company(),
+            'nombre_completo' => $this->faker->company(),
             'cif' => $this->faker->unique()->regexify('[0-9A-Z]{8}'),
             'razon_social' => $this->faker->name(),
             'domicilio' => $this->faker->streetAddress(),

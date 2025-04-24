@@ -25,7 +25,7 @@
             <label for="nombre">Nombre completo:</label>
             <input
                 name="nombre"
-                value="{{ $empleado->nombre }}"
+                value="{{ $empleado->nombre_completo }}"
                 type="text"
                 id="nombre"
                 readonly

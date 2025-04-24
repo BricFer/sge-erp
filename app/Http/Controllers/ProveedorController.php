@@ -17,7 +17,7 @@ class ProveedorController extends Controller
     public function store(ProveedorRequest $request): RedirectResponse
     {   
         $proveedor = new Proveedor;
-        $proveedor-> nombre = $request->nombre;
+        $proveedor-> nombre_completo = $request->nombre_completo;
         $proveedor-> cif = $request->cif;
         $proveedor-> razon_social = $request->razon_social;
         $proveedor-> domicilio = $request->domicilio;

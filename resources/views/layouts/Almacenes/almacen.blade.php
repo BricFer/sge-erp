@@ -15,30 +15,54 @@
     
     <div class="text-sm/7 w-full flex flex-col">
         <div class="container">
+
             <div class="flex flex-col gap-4 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                <h2 class="text-base">
-                    <span class="font-bold">Almacén: </span>
-                    {{ $almacen->nombre }}
-                </h2>
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-base">
+                        <span class="font-bold">Almacén: </span>
+                        {{ $almacen->nombre }}
+                    </h2>
+        
+                    <p class="text-base">
+                        <span class="font-bold">Responsable: </span>
+                        {{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}
+                    </p>
     
-                <p class="text-base">
-                    <span class="font-bold">Responsable: </span>
-                    {{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}
-                </p>
+                    <p class="text-base">
+                        <span class="font-bold">Vol. almacen: </span>
+                        {{ $almacen->capacidad }}m³
+                    </p>
+    
+                    <p class="text-base">
+                        <span class="font-bold">Estado: </span>
+                        <span
+                            class="{{ $almacen->estado == 'activo' ? 'text-green-500 font-bold' : '' }}"
+                        >
+                            {{ ucfirst($almacen->estado) }}
+                        </span>
+                    </p>
+                </div>
 
-                <p class="text-base">
-                    <span class="font-bold">Vol. almacen: </span>
-                    {{ $almacen->capacidad }}m³
-                </p>
-
-                <p class="text-base">
-                    <span class="font-bold">Estado: </span>
-                    <span
-                        class="{{ $almacen->estado == 'activo' ? 'text-green-500 font-bold' : '' }}"
+                <div class="flex flex-row items-center gap-2">
+    
+                    <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    </a>
+                    {{-- TODO: Cambiar la ruta para que al clicar me genere el inventario --}}
+                    <a
+                        href="{{ url()->previous() }}"
+                        class="block w-[24px] h-[24px]"
                     >
-                        {{ ucfirst($almacen->estado) }}
-                    </span>
-                </p>
+                        <img class="block w-full" src="{{ asset('assets/icons/stock.svg') }}" alt="stock button">
+                    </a>
+                    <img
+                        data-action="{{ route('almacen.destroy', $almacen->id) }}"
+                        id="warning-img"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        class="warning-img w-[24px] h-[24px] rounded-lg cursor-pointer"
+                    >
+                </div>
+
             </div>
     
             @section('campo1', 'Precio Compra')

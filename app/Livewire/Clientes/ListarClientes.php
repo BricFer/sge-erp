@@ -11,7 +11,7 @@ class ListarClientes extends Component
 
     public function render()
     {
-        $clientes = $this->buscar ? Cliente::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Cliente::all();
+        $clientes = $this->buscar ? Cliente::where('nombre_completo', 'LIKE', '%'.$this->buscar.'%')->get() : Cliente::all();
 
         return view('layouts.clientes.listar', compact('clientes'))
             ->extends('dashboard')

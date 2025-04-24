@@ -54,8 +54,7 @@ class ClienteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.required' => 'El nombre del cliente es obligatorio.',
-            'apellido.required' => 'El apellido del cliente es obligatorio.',
+            'nombre_completo.required' => 'El nombre del cliente es obligatorio.',
             'nif.required' => 'El NIF del cliente es obligatorio.',
             'nif.unique' => 'El NIF especificado ya se encuentra registrado.',
             'domicilio.required' => 'El domicilio del cliente es obligatorio.',

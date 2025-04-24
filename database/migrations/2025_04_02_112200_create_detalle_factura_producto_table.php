@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('precio', 8, 2);
             $table->unsignedInteger('iva')->default(0);
             $table->unsignedInteger('cantidad');
-            $table->decimal('descuento', 8, 2);
+            $table->decimal('descuento', 8, 2)->nullable();
             $table->decimal('subtotal', 10, 2);
             $table->timestamps();
         });
