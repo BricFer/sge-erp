@@ -73,13 +73,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('factura')->name('factura.')->group(function () use ($imports) {
         Route::get('/', $imports['ListarFacturas'])->name('home');
         Route::get('/grid', $imports['ListarFacturasGrid'])->name('grid');
-        Route::get('/mostrar/{factura}', [$imports['FacturaController'], 'showInvoice'])->name('show');
+        Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
         
         Route::get('/crear', [$imports['FacturaController'], 'create'])->name('crear');
         Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
         
-        Route::get('/edit/{factura}', [$imports['FacturaController'], 'edit'])->name('edit');
-        Route::put('/update/{factura}', [$imports['FacturaController'], 'update'])->name('update');
         
         Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
     });

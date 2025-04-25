@@ -11,12 +11,16 @@ class EmpleadoController extends Controller
 {
     public function create():View
     {
-        return view('layouts.empleados.crear');
+        $lastEmployee = Empleado::latest()->first(); 
+        $nextId = $lastEmployee ? $lastEmployee->id + 1 : 1;
+
+        return view('layouts.empleados.crear', compact(['nextId']));
     }
 
     public function store(EmpleadoRequest $request): RedirectResponse
     {   
         $empleado = new Empleado;
+        $empleado->legajo = $request->legajo;
         $empleado-> nombre_completo = $request->nombre_completo;
         $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;
@@ -39,6 +43,7 @@ class EmpleadoController extends Controller
     
     public function update(EmpleadoRequest $request, Empleado $empleado):RedirectResponse
     {
+        $empleado->legajo = $request->legajo;
         $empleado-> nombre_completo = $request->nombre_completo;
         $empleado-> dni_nif = $request->dni_nif;
         $empleado-> telefono = $request->telefono;

@@ -11,6 +11,17 @@ let importeDescuento;
 let importeIva;
 let importeTotal;
 
+// Esta variable controlará el número de líneas detalle que tiene la factura
+let numLinea= 0;
+
+// Al cargar la página de crear factura, se recorrerrán las filas que hay en detalle-row para contarlas y almacenarlo en la variable
+document.addEventListener('DOMContentLoaded', () => {
+    detalle.querySelectorAll('.detalle-row').forEach( row => {
+        numLinea++;
+    })
+})
+
+// Función que me autocompleta los campos relacionados con el cliente dependiendo de la selección que se realice desde el menú desplegable
 const autocompletarInputs = () => {
 
     const listaClientes = document.getElementById("clientes");
@@ -35,6 +46,7 @@ const autocompletarInputs = () => {
     }
 }
 
+// Función que autocompleta los campos relacionados con el empleado en base a la selección que se realiza desde el menú desplegable, los campos aparecen completados por defecto en base al usuario que ha iniciado sesión. Sin embargo, si se trata de un TL o superior podrá asignar una factura a si mismx o a otrx empleadx y es cuando se ejecuta autocompletarDatosEmpleados()
 const autocompletarDatosEmpleados = () => {
 
     const listaEmpleados = document.getElementById("empleados");
@@ -58,6 +70,7 @@ const autocompletarDatosEmpleados = () => {
     }
 }
 
+// Función que autocompleta los campos de 'detalle factura' en base al producto que se selecciona en el menú desplegable
 const completarDetalleFactura = ( selectElement ) => {
 
     const detalleRow = selectElement.closest('.detalle-row');
@@ -74,8 +87,6 @@ const completarDetalleFactura = ( selectElement ) => {
 
         detalleRow.querySelector('.codigo').value = producto.codigo || "";
 
-        detalleRow.querySelector('.descripcion').value = producto.descripcion || "";
-
         detalleRow.querySelector('.precio_venta').value = producto.precio_venta || "";
         
         detalleRow.querySelector('.iva').value = producto.iva || "";
@@ -85,42 +96,64 @@ const completarDetalleFactura = ( selectElement ) => {
     }
 }
 
-document.querySelector('#detalles').addEventListener('input', ( event ) =>  {
-    
-    const hasChild = event.target.classList.contains("calcularSubtotal");
+// Función que calcula los importes de descuento, subtotal y total por linea de detalle
+const calculoTotalesRow = ( htmlElement ) => {
+    const cantidadRow = Number(htmlElement.querySelector('.cantidad')?.value) || 0;
+    const ivaRow = Number(htmlElement.querySelector('.iva')?.value) || 0;
+    const precioVentaRow = Number(htmlElement.querySelector('.precio_venta')?.value) || 0;
 
-    if( hasChild ) {
+    const descuentoRow = htmlElement.querySelector('.descuento');
+    const subtotalRow = htmlElement.querySelector('.subtotal');
 
-        document.querySelectorAll('.detalle-row').forEach(row => {
+    descuentoRow.value = (cantidadRow * precioVentaRow * (Number(descuento.value)/100)).toFixed(2);
 
-            const precio = Number(row.querySelector('.precio_venta')?.value) || 0;
+    subtotalRow.value = ((cantidadRow * precioVentaRow - Number(descuentoRow.value)) * (1 + ivaRow/100)).toFixed(2);
+}
 
-            const cantidad = Number(row.querySelector('.cantidad')?.value) || 0;
-            
-            const iva = Number(row.querySelector('.iva')?.value) || 0;
-            
-            const descuentoDetalle = cantidad * precio * ( Number(descuento.value)/100);
+// esta función se encarga de calcular los montos totales globales de: Subtotal, Descuento, IVA y el total de la factura
+const calcularTotales = () => {
+    let subtotal = 0;
+    let totalDescuento = 0;
+    let totalIva = 0;
 
-            let subtotal = (cantidad * precio - descuentoDetalle) * (1 + iva/100);
+    document.querySelectorAll(".detalle-row").forEach(row => {
+        const precio = Number(row.querySelector(".precio_venta")?.value) || 0;
+        const cantidad = Number(row.querySelector(".cantidad")?.value) || 0;
+        const iva = Number(row.querySelector(".iva")?.value) || 0;
+        const descuentoDetalle = Number(descuento.value) || Number(row.querySelector(".descuento")?.value) || 0;
 
-            // Por cada row almacenamos los valores en las variables de total, subtotal, descuento e iva
-            
-            row.querySelector('.descuento').value = descuentoDetalle.toFixed(2);
-            row.querySelector('.subtotal').value = subtotal.toFixed(2);
-        });
+        let rowSubtotal = cantidad * precio;
+        let rowDescuento = (rowSubtotal * descuentoDetalle) / 100;
+        let rowIva = ((rowSubtotal - rowDescuento) * iva) / 100;
+        
+        subtotal += rowSubtotal;
+        totalDescuento += rowDescuento;
+        totalIva += rowIva;
+    });
 
-        calcularTotales();
-    }
-})
+    importeSubtotal = subtotal;
+    importeDescuento = totalDescuento;
+    importeIva = totalIva;
+    importeTotal = subtotal - totalDescuento + totalIva;
 
+    // Actualizar valores en la vista
+    contenedorSubtotal.value = importeSubtotal.toFixed(2);
+    contenedorDescuento.value = importeDescuento.toFixed(2);
+    contenedorIva.value = importeIva.toFixed(2);
+    contenedorTotal.value = importeTotal.toFixed(2);
+};
+
+// Evento que me añade una nueva línea de detalle si el usuario pulsa la tecla hacia abajo
 detalle.addEventListener('keydown', ({ keyCode }) => {
-    
+
     if( keyCode === 40 ) {
+        numLinea++;
         
         let options = productosArray.map( ( producto ) => `
             <option
                 value="${producto.id}"
                 data-info='${JSON.stringify(producto)}'
+                ${ producto.stock > 0 ? '' : 'disabled' }
             >
                 ${producto.nombre}
             </option>
@@ -128,6 +161,15 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
 
         detalle.insertAdjacentHTML('beforeend', `
             <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+
+                <input
+                    type="number"
+                    name="num_linea[]"
+                    id="num_linea"
+                    class="border-none p-0 w-[50px]"
+                    value="${numLinea}"
+                />
+
                 <select
                     name="id_producto[]"
                     onchange="completarDetalleFactura(this)"
@@ -148,12 +190,6 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     placeholder="Código producto"
                     class="codigo w-[175px] border-none p-0"
                     readonly
-                />
-
-                <input
-                    type="text"
-                    placeholder="Descripcion"
-                    class="descripcion w-[325px] border-none p-0"
                 />
 
                 <input
@@ -202,34 +238,30 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
     }
 })
 
-const calcularTotales = () => {
-    let subtotal = 0;
-    let totalDescuento = 0;
-    let totalIva = 0;
+// Evento que hará el calculo de los campos descuento, subtotal y total de cada detalle-row a medida que se vaya ingresando información
+detalle.addEventListener('input', ( event ) =>  {
+    
+    const hasChild = event.target.classList.contains("calcularSubtotal");
 
-    document.querySelectorAll(".detalle-row").forEach(row => {
-        const precio = Number(row.querySelector(".precio_venta")?.value) || 0;
-        const cantidad = Number(row.querySelector(".cantidad")?.value) || 0;
-        const iva = Number(row.querySelector(".iva")?.value) || 0;
-        const descuentoDetalle = Number(descuento.value) || Number(row.querySelector(".descuento")?.value) || 0;
+    if( hasChild ) {
 
-        let rowSubtotal = cantidad * precio;
-        let rowDescuento = (rowSubtotal * descuentoDetalle) / 100;
-        let rowIva = ((rowSubtotal - rowDescuento) * iva) / 100;
-        
-        subtotal += rowSubtotal;
-        totalDescuento += rowDescuento;
-        totalIva += rowIva;
+        document.querySelectorAll('.detalle-row').forEach( row => {
+
+            calculoTotalesRow( row );
+        });
+
+        calcularTotales();
+    }
+})
+
+// Evento que recalcula los valores de los campos descuento, subtotal y total de cada detalle-row en caso de que el descuento se modifique.
+descuento.addEventListener('input', () => {
+
+    detalle.querySelectorAll('.detalle-row').forEach( ( row ) => {
+
+        calculoTotalesRow(row);
     });
 
-    importeSubtotal = subtotal;
-    importeDescuento = totalDescuento;
-    importeIva = totalIva;
-    importeTotal = subtotal - totalDescuento + totalIva;
+    calcularTotales();
 
-    // Actualizar valores en la vista
-    contenedorSubtotal.value = importeSubtotal.toFixed(2);
-    contenedorDescuento.value = importeDescuento.toFixed(2);
-    contenedorIva.value = importeIva.toFixed(2);
-    contenedorTotal.value = importeTotal.toFixed(2);
-};
+});

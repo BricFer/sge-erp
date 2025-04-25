@@ -11,12 +11,21 @@
     </div>
     
     <div class="w-full">
-        @section('campo1', 'DNI/NIF')
-        @section('campo2', 'Teléfono')
-        @section('campo3', 'Correo')
-        @section('campo4', 'Fecha Alta')
-        @section('campo5', 'Cargo')
-        @section('campo6', 'Estado')
+
+        @if( Auth::user()->empleado?->departamento === 'RRHH' )
+            @section('campo1', 'DNI/NIF')
+            @section('campo2', 'Estado')
+            @section('campo3', 'Correo')
+            @section('campo4', 'Fecha Alta')
+            @section('campo5', 'Cargo')
+            @section('campo6', 'Legajo')
+            @section('campo7', 'Departamento')
+        @else
+            @section('campo1', 'Email')
+            @section('campo3', 'Cargo')
+            @section('campo4', 'Departamento')
+        @endif
+
 
         @include('layouts._partials.secciones')
         
@@ -25,19 +34,29 @@
             <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 md:justify-between md:flex-nowrap">
 
                 <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                    <p class="w-[175px]">{{ $empleado -> nombre_completo }}</p>
+                    <p class="w-[175px]">{{ $empleado->nombre_completo }}</p>
                     
-                    <p class="w-[95px]">{{ $empleado -> dni_nif }}</p>
-                    
-                    <div class="w-[115px]">{{ $empleado -> telefono }}</div>
+                    @if( Auth::user()->empleado?->departamento === 'RRHH' )
 
-                    <p class="w-[225px]">{{ $empleado -> correo }}</p>
-                    
-                    <p class="w-[95px]">{{ $empleado -> fecha_contratacion }}</p>
+                        <p class="w-[95px]">{{ $empleado->dni_nif }}</p>
+                        
+                        <p class="w-[115px]">{{ ucfirst($empleado->estado) }}</p>
 
-                    <p class="w-[175px] text-wrap">{{ $empleado -> cargo }}</p>
-                    
-                    <p class="w-[95px]">{{ ucfirst($empleado-> estado) }}</p>
+                        <p class="w-[225px]">{{ $empleado->correo }}</p>
+                        
+                        <p class="w-[95px]">{{ $empleado->fecha_contratacion }}</p>
+
+                        <p class="w-[175px] text-wrap">{{ $empleado->cargo }}</p>
+                        
+                        <p class="w-[95px]">{{ ucfirst($empleado->legajo) }}</p>
+
+                        <p class="w-[225px]">{{ $empleado->departamento }}</p>
+                    @else
+                        <p class="w-[235px]">{{ $empleado->correo }}</p>
+                        <p class="w-[225px] text-wrap">{{ $empleado->cargo }}</p>
+                        <p>{{ $empleado->departamento }}</p>
+                    @endif
+
                     
                 </div>
 

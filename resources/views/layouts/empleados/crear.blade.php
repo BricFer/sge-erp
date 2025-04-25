@@ -23,21 +23,28 @@
         <div class="flex flex-col gap-1 xl:w-[628px]">
             <label for="nombre">Nombre completo:</label>
             <input name="nombre" type="text" class="form-control" id="nombre">
+            <input
+                name="legajo"
+                type="hidden"
+                id="legajo"
+                value="{{ date("Y") }}{{ $nextId }}"
+                readonly
+            />
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label for="dni_nif">DNI/NIF:</label>
+            <label for="dni_nif">Documento Nacional:</label>
             <input name="dni_nif" type="text" class="form-control" id="dni_nif">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label>Teléfono:</label>
-            <input name="telefono" type="tel">
+            <label for="telefono">Teléfono</label>
+            <input name="telefono" type="tel" id="telefono">
         </div>
 
         <div class="flex flex-col gap-1 w-[845px]">
-            <label>Correo</label>
-            <input name="correo" type="email">
+            <label for="correo">Correo</label>
+            <input id="correo" name="correo" type="email">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
@@ -45,14 +52,9 @@
             <input name="cargo" type="text" id="cargo">
         </div>
 
-        <div class="flex flex-col gap-1 xl:w-[412px]">
+        <div class="flex flex-col gap-1 xl:mr-auto xl:w-[412px]">
             <label for="fecha_contratacion">Fecha de alta:</label>
-            <input name="fecha_contratacion" type="date" id="fecha_contratacion">
-        </div>
-
-        <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label for="estado">Estado del empleado:</label>
-            <input name="estado" type="text" id="estado">
+            <input name="fecha_contratacion" type="date" id="fecha_contratacion" class="uppercase">
         </div>
 
         @include('layouts._partials.submit-cancel')

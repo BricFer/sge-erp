@@ -23,9 +23,14 @@ class EmpleadoRequest extends FormRequest
      */
     public function rules(): array
     {
-        $empleadoId = $this->route('empleado') ? $this->route('empleado')->id : null;
+        // $empleadoId = $this->route('empleado') ? $this->route('empleado')->id : null;
 
         return [
+            'legajo' => [
+                'required',
+                'string',
+                Rule::unique(Empleado::class)->ignore($empleadoId),
+            ],
             'nombre_completo' => ['required', 'string', 'min:3', 'max:255'],
             'dni_nif' => [
                 'required',

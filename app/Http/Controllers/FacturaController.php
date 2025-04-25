@@ -19,7 +19,7 @@ class FacturaController extends Controller
         $clientes = Cliente::all()->sortBy('nombre_completo');
         $empleados = Empleado::all()->sortBy('nombre');
         // Se almacena en $productos los almacenes, para poder acceder a valores como 'stock'
-        $productos = Producto::with(['almacenes'])->sortBy('nombre')->get();
+        $productos = Producto::with(['almacenes'])->get()->sortBy('nombre');
 
         $lastFactura = Factura::latest()->first(); 
         $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
@@ -45,23 +45,9 @@ class FacturaController extends Controller
                 'monto_total' => $request->monto_total,
             ]);
 
-            // Insertar detalles de factura
- /*           foreach ($request->detalles as $detalle) {
-                
-                DetalleFacturaServicio::create([
-                    'id_factura' => $factura->id,
-                    'id_servicio' => $detalle['id_producto'],
-                    'fecha_inicio' => $detalle['fecha_inicio'],
-                    'fecha_fin' => $detalle['fecha_fin'] ?? null,
-                    'estado' => $detalle['estado'],
-                    'prioridad' => $detalle['prioridad'],
-                    'descuento' => $detalle['descuento'],
-                    'subtotal' => $detalle['subtotal'],
-                ]);
-            } */
-
             foreach ($request->id_producto as $index => $id_producto) {
                 DetalleFacturaProducto::create([
+                    'num_linea' => $num_linea[$index],
                     'id_producto' => $id_producto,
                     'id_factura' => $factura->id,
                     'precio' => $request->precio[$index],
@@ -77,6 +63,8 @@ class FacturaController extends Controller
         return redirect()->route('factura.home')->with('success', 'Factura emitida correctamente');
     }
 
+    /*
+    // Las funciones edit() y update() no son necesarias para las facturas ya que solo se pueden crear, leear y eliminar, pero se dejan dentro del controlador para futuras referencias
     public function edit(Factura $factura):View
     {
         $clientes = Cliente::all()->sortBy('nombre_completo');
@@ -110,6 +98,7 @@ class FacturaController extends Controller
             // Crear los "nuevos" detalles
             foreach ($request->id_producto as $index => $id_producto) {
                 DetalleFacturaProducto::create([
+                    'num_linea' => $num_linea[$index],
                     'id_factura' => $factura->id,
                     'id_producto' => $id_producto,
                     'precio' => $request->precio[$index],
@@ -123,7 +112,7 @@ class FacturaController extends Controller
       
         return redirect()->route('factura.home')->with('success', 'Factura modificada correctamente');
     }
-
+    */
     public function destroy(Factura $factura):RedirectResponse
     {
         $factura -> delete();
@@ -131,7 +120,7 @@ class FacturaController extends Controller
         return redirect()->route('factura.home')->with('danger','Factura eliminada correctamente');
     }
     
-    public function showInvoice(Factura $factura):View
+    public function show(Factura $factura):View
     {
         return view('layouts.facturas.factura', compact('factura'));
     }

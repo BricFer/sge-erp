@@ -44,7 +44,7 @@
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label>Teléfono</label>
+            <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
                 value="{{ $empleado->telefono }}"
@@ -54,7 +54,7 @@
         </div>
 
         <div class="flex flex-col gap-1 w-[845px]">
-            <label>Correo</label>
+            <label for="correo">Correo</label>
             <input
                 name="correo"
                 value="{{ $empleado->correo }}"
@@ -65,7 +65,7 @@
         </div>
                 
         <div class="flex flex-col gap-1 xl:w-[417px]">
-            <label>Cargo que ocupa:</label>
+            <label for="cargo">Cargo que ocupa:</label>
             <input
                 name="cargo"
                 value="{{ $empleado->cargo }}"
@@ -75,7 +75,7 @@
         </div>       
             
         <div class="flex flex-col gap-1 xl:w-[417px]">
-            <label>Fecha alta:</label>
+            <label for="fecha_contratacion">Fecha alta:</label>
             <input
                 name="fecha_contratacion"
                 value="{{ $empleado->fecha_contratacion }}"
@@ -86,13 +86,23 @@
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[417px]">
-            <label>Estado del empleado:</label>
+            <label for="estado">Estado del empleado:</label>
             <input
                 name="estado"
                 value="{{ ucfirst($empleado->estado) }}"
                 type="text"
                 id="estado"
                 {{ $empleado->estado == 'despido' ? 'readonly' : ''}}
+            />
+        </div>
+        
+        ç<div class="flex flex-col gap-1">
+            <label for="legajo">Legajo:</label>
+            <input
+                id="legajo"
+                name="legajo"
+                value="{{ $empleado->legajo }}"
+                type="text"
             />
         </div>
 

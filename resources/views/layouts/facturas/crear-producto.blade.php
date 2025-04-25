@@ -142,7 +142,7 @@
                 <div class="flex flex-col gap-1 w-[456px]">
                     <label class="w-full">Empleado:</label>
                     <div class="w-full flex gap-1">
-                        <p id="id_empleado" class="h-[42px] w-[45px] p-2 border-solid border border-black/50"></p>
+                        <p id="id_empleado" class="h-[42px] w-[45px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->id }}</p>
         
                         <select
                             name="id_empleado"
@@ -152,14 +152,15 @@
                             onchange="autocompletarDatosEmpleados()"
                         >
                     
-                            <option class="font-bold" disabled selected>Seleccionar empleado</option>
-        
+                            <option class="font-bold" disabled>Seleccionar empleado</option>
+
                             @foreach ($empleados as $empleado)
                                 <option
                                     value="{{$empleado->id}}"
-                                    readonly
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
                                     data-info='@json($empleado)'
+                                    {{ Auth::user()->empleado?->id === $empleado->id ? 'selected' : '' }}
+                                    readonly
                                 >
                                     {{ $empleado->nombre_completo }}
                                 </option>
@@ -170,20 +171,21 @@
 
                 <div class="flex flex-col gap-1">
                     <label for="dni_nif_empleado" class="w-full">DNI/NIF</label>
-                    <p id="dni_nif_empleado" class="h-[42px] w-[215px] p-2 border-solid border border-black/50"></p>
+                    <p id="dni_nif_empleado" class="h-[42px] w-[215px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->dni_nif }}</p>
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <label for="cargo_empleado" class="w-full">Cargo</label>
-                    <p id="cargo_empleado" class="h-[42px] w-[516px] p-2 border-solid border border-black/50"></p>
+                    <p id="cargo_empleado" class="h-[42px] w-[516px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->cargo }}</p>
                 </div>
             </div>
         </div>
 
         <div class="w-full border-y-solid border-y-2 border-y-indigo-600/25 flex flex-row gap-1 justify-between items-center font-bold py-2 px-4">
+
+            <p class="w-[50px]">#</p>
             <p class="w-[295px]">Producto</p>
             <p class="w-[175px]">Código</p>
-            <p class="w-[325px]">Descripción</p>
             <p class="w-[75px]">Cant.</p>
             <p class="w-[75px]">IVA</p>
             <p class="w-[75px]">Precio (€)</p>
@@ -193,6 +195,14 @@
 
         <div id="detalles">
             <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+                <input
+                    type="number"
+                    name="num_linea[]"
+                    id="num_linea"
+                    class="border-none p-0 w-[50px]"
+                    value="1"
+                />
+
                 <select
                     name="id_producto[]"
                     onchange="completarDetalleFactura(this)"
@@ -228,12 +238,6 @@
                     type="text"
                     placeholder="Código producto"
                     class="codigo w-[175px] border-none p-0"
-                />
-    
-                <input
-                    type="text"
-                    placeholder="Descripcion"
-                    class="descripcion w-[325px] border-none p-0"
                 />
     
                 <input

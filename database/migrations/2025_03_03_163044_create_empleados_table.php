@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
+            $table->string('legajo')->unique();
             $table->string('nombre_completo', 255);
             $table->string('dni_nif', 75)->unique();
             $table->string('telefono', 25);
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('departamento', 120);
             $table->date('fecha_contratacion');
             $table->date('fecha_fin')->nullable();
-            $table->enum('estado', ['activo', 'excedencia', 'baja voluntaria', 'despido']);
+            $table->enum('estado', ['activo', 'excedencia', 'baja voluntaria', 'despido'])->default('activo');
             $table->unsignedBigInteger('user_id')->unique(); // clave foránea y única (1:1)
             $table->timestamps();
         });

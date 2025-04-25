@@ -29,14 +29,12 @@
 
             <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
                 
-                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre }}</h2>
+                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre_completo }}</h2>
 
                 <p>
-                    <span class="font-bold">Cargo:</span> {{ $empleado-> rol}}
+                    <span class="font-bold">Cargo:</span> {{ $empleado-> cargo}}
                 </p>
-                <p>
-                    <span class="font-bold">Teléfono:</span> {{ $empleado-> telefono}}
-                </p>
+                
                 <p>
                     <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
                 </p>

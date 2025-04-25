@@ -29,31 +29,46 @@
     <div class="text-sm/7 w-full flex flex-col">
         <div class="container">
             <div class="flex flex-col gap-2 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
-                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre }}</h2>
-            
-                <p>
-                    <span class="font-bold">DNI/NIF:</span> {{ $empleado-> dni_nif}}
-                </p>
-
-                <p>
-                    <span class="font-bold">Cargo:</span> {{ $empleado-> cargo}}
-                </p>
-            
-                <p>
-                    <span class="font-bold">Teléfono:</span> {{ $empleado-> telefono}}
-                </p>
+                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre_completo }}</h2>
             
                 <p>
                     <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
                 </p>
 
-                <p>
-                    <span class="font-bold">Fecha de contratación:</span> {{ $empleado-> fecha_contratacion}}
-                </p>
+                @if( Auth::user()->empleado?->departamento === 'RRHH' )
+                    <p>
+                        <span class="font-bold">Legajo:</span> {{ $empleado-> legajo}}
+                    </p>
+
+                    <p>
+                        <span class="font-bold">DNI/NIF:</span> {{ $empleado-> dni_nif}}
+                    </p>
+
+                    <p>
+                        <span class="font-bold">Teléfono:</span> {{ $empleado-> telefono}}
+                    </p>
+    
+                    <p>
+                        <span class="font-bold">Estado: </span>
+                        <span class="font-bold {{ $estado }}">{{ ucfirst($empleado-> estado) }}</span>
+                    </p>
+
+                    <p>
+                        <span class="font-bold">Fecha de contratación:</span> {{ $empleado-> fecha_contratacion}}
+                    </p>
+    
+                    @if($empleado->estado === 'despido' || $empleado->estado === 'baja voluntaria')
+                        <p><strong>Fin de contrato:</strong> {{ $user->empleado->fecha_fin }}</p>
+                    @endif
+
+                @endif
 
                 <p>
-                    <span class="font-bold">Estado: </span>
-                    <span class="font-bold {{ $estado }}">{{ ucfirst($empleado-> estado) }}</span>
+                    <span class="font-bold">Cargo:</span> {{ $empleado-> cargo}}
+                </p>
+                
+                <p>
+                    <span class="font-bold">Departamento:</span> {{ $empleado-> departamento}}
                 </p>
             </div>
 

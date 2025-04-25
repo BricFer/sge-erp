@@ -35,12 +35,6 @@
                 <p><strong>Email:</strong> {{ $user->email }}</p>
                 <p><strong>Fecha de contratación:</strong> {{ $user->empleado->fecha_contratacion }}</p>
 
-                {{-- Añadir el campo fin_contrato a la base de datos y añadirlo a la vista --}}
-                @if($user->empleado?->estado === 'despido' || $user->empleado?->estado === 'baja voluntaria')
-                    <p><strong>Fin de contrato:</strong> {{ $user->empleado->fecha_fin }}</p>
-                @endif
-                <p><strong>Estado: <span class="{{ $estado }}">{{ ucfirst($user->empleado->estado) }}</span></strong></p>
-
             </div>
         </div>
         

@@ -1,6 +1,6 @@
-<div id="contenedor-mensaje" class="absolute inset-0 flex items-center justify-center bg-white/40 hidden h-screen">
+<div id="contenedor-mensaje" class="fixed inset-0 flex items-center justify-center bg-white/40 hidden h-screen">
     
-    <div id="warning-message" class="w-[450px] bg-white rounded-2xl shadow-xl shadow-black/20 relative m-auto">
+    <div id="warning-message" class="w-[450px] relative bg-white rounded-2xl shadow-xl shadow-black/20">
         <p class="w-full m-0 p-6 text-center text-white border-2 border-red-700 bg-red-700 rounded-t-2xl">¡ADVERTENCIA!</p>
     
         <div class="w-full p-2 m-0">

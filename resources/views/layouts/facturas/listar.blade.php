@@ -43,24 +43,19 @@
                     
                     <p class="w-[225px]">{{ ucfirst($factura->estado) }}</p>
                     
-
                 </div>
 
                 <div class="flex flex-row items-center gap-2">
 
-                    <a class="block" href="{{ route('factura.show', ['factura' => $factura->id]) }}">
+                    <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
-                    </a>
-
-                    <a class="block" href="{{ route('factura.edit', ['factura' => $factura->id]) }}">
-                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <img
                         data-action="{{ route('factura.destroy', $factura->id) }}"
                         id="warning-img"
                         src="{{ asset('assets/icons/trash-icon.svg') }}"
-                        class="warning-img w-[24px] h-[24px] rounded-lg cursor-pointer"
+                        class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"
                     >
                 </div>
 
