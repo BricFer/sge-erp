@@ -11,12 +11,16 @@ class ProveedorController extends Controller
 {
     public function create():View
     {
-        return view('layouts.proveedores.crear');
+        $lastSupplier = Proveedor::latest()->first(); 
+        $nextId = $lastSupplier ? $lastSupplier->id + 1 : 1;
+
+        return view('layouts.proveedores.crear', compact(['nextId']));
     }
 
     public function store(ProveedorRequest $request): RedirectResponse
     {   
         $proveedor = new Proveedor;
+        $proveedor-> cod_proveedor = $request->cod_proveedor;
         $proveedor-> nombre_completo = $request->nombre_completo;
         $proveedor-> cif = $request->cif;
         $proveedor-> razon_social = $request->razon_social;

@@ -9,10 +9,6 @@
             'listUrl' => route('cliente.home'),
             'gridUrl' => route('cliente.grid')])
     </div>
-
-    {{-- Esta es una forma de pasar la paginación al componente que la renderizará
-        @include('layouts._partials.buscar', ['clientes' => $clientes])
-    --}}
     
     <div class="w-full">
 

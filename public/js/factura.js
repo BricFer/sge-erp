@@ -1,4 +1,5 @@
 const descuento = document.querySelector('#porcentaje_descuento');
+const almacenes = document.querySelector('#almacenes');
 const detalle = document.querySelector('#detalles');
 const contenedorSubtotal = document.querySelector('#monto_subtotal');
 const contenedorDescuento = document.querySelector('#monto_descuento');
@@ -40,6 +41,8 @@ const autocompletarInputs = () => {
         document.getElementById("poblacion").textContent = cliente.poblacion || "";
         document.getElementById("provincia").textContent = cliente.provincia || "";
         document.getElementById("cod_postal").textContent = cliente.cod_postal || "";
+        
+        document.getElementById("facturable_type").value = cliente.facturable_type || "";
 
     } catch (error) {
         console.error("Error al parsear JSON:", error);
@@ -57,10 +60,8 @@ const autocompletarDatosEmpleados = () => {
 
     try {
         const empleado = JSON.parse(empleadoData);
-
-        console.log(empleado);
         
-        document.getElementById("id_empleado").textContent = empleado.id || "";
+        document.getElementById("id_empleado").textContent = empleado.legajo || "";
         document.getElementById("dni_nif_empleado").textContent = empleado.dni_nif || "";
         
         document.getElementById("cargo_empleado").textContent = empleado.cargo || "";
@@ -82,7 +83,7 @@ const completarDetalleFactura = ( selectElement ) => {
     const productoData = productoSeleccionado.getAttribute("data-info");
 
     try {
-
+        
         const producto = JSON.parse(productoData);
 
         detalleRow.querySelector('.codigo').value = producto.codigo || "";
@@ -143,21 +144,77 @@ const calcularTotales = () => {
     contenedorTotal.value = importeTotal.toFixed(2);
 };
 
+const obtenerDatosProductos = () => {
+    
+    const almacenSeleccionado = almacenes.options[almacenes.selectedIndex];
+    const productoData = almacenSeleccionado.getAttribute('data-info');
+
+    let options = '';
+
+    try {
+        const { productos } = JSON.parse( productoData );
+        
+        // Recorremos el array de productos y los vamos 'dibujando'
+        productos.forEach( ( producto ) => {
+            
+            // Del data-info del almacen se extrae la información asociada a este. Sin embargo, la información está organizada en arrays (productos) y objetos (pivot). Por lo que hay que ir extrayendo la información para poder manejarla y mostrarla
+
+            // Pivot hace referencia a la tabla pivote, por lo que allí esta almacenada la información de stock
+            const { pivot } = producto;
+    
+            const haveStock = pivot.stock === 0 ? 'disabled' : '';
+            const mensajeStock = pivot.stock === 0 ? 'Sin stock' : pivot.stock;                
+
+            // Al elementoHTML le pasamos un JSON en el data-info de lo contrario solo estaría pasando un [object Object] y no podría leer la información para procesarla en cada detalle-row
+            const elementoHTML = `
+                <option
+                    data-info='${JSON.stringify(producto)}'
+                    value="${producto.id}"
+                    ${haveStock}
+                >
+                    ${ producto.nombre } - ${ mensajeStock }
+                </option>`;
+            
+            options += elementoHTML;                
+        });
+
+    } catch (error) {
+        console.error("Error al parsear el JSON:", error);
+    }
+    return options;
+}
+
+// Función que mostrará los 'productos' del almacén que se ha seleccionado
+const completarProductos = () => {
+
+    // Recorremos cada línea de detalle (detalle-row) para ir dibujando los productos en cada select
+    detalle.querySelectorAll('.detalle-row').forEach( row => {
+
+        const opcionesProductos = obtenerDatosProductos();
+
+        // Reestablezco el contenido del select.productos de lo contrario cada vez que cambie de almacen estaré haciendo un append
+        row.querySelector('.productos').innerHTML = '';
+
+        // Dibujo nuevamente el contenido del select.productos añadiendo los productos
+        row.querySelector('.productos').insertAdjacentHTML('beforeend', `
+            <option
+                disabled
+                selected
+            >
+                Lista productos
+            </option>
+            ${ opcionesProductos }
+        `);
+    });
+}
+
 // Evento que me añade una nueva línea de detalle si el usuario pulsa la tecla hacia abajo
 detalle.addEventListener('keydown', ({ keyCode }) => {
+    
+    const opcionesProductos = obtenerDatosProductos();
 
     if( keyCode === 40 ) {
         numLinea++;
-        
-        let options = productosArray.map( ( producto ) => `
-            <option
-                value="${producto.id}"
-                data-info='${JSON.stringify(producto)}'
-                ${ producto.stock > 0 ? '' : 'disabled' }
-            >
-                ${producto.nombre}
-            </option>
-        `).join("");
 
         detalle.insertAdjacentHTML('beforeend', `
             <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
@@ -173,7 +230,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                 <select
                     name="id_producto[]"
                     onchange="completarDetalleFactura(this)"
-                    class="w-[295px] border-none p-0"
+                    class="productos w-[295px] border-none p-0"
                 >
                     <option
                         disabled
@@ -181,8 +238,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     >
                         Lista productos
                     </option>
-
-                    ${options}
+                    ${ opcionesProductos }
                 </select>
 
                 <input

@@ -75,10 +75,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/grid', $imports['ListarFacturasGrid'])->name('grid');
         Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
         
-        Route::get('/crear', [$imports['FacturaController'], 'create'])->name('crear');
+        Route::get('/ventas', [$imports['FacturaController'], 'createSales'])->name('ventas');
+        Route::get('/compras', [$imports['FacturaController'], 'createPurchases'])->name('compras');
+        
         Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
-        
-        
         Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
     });
 

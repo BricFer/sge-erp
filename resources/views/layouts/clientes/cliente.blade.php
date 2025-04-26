@@ -22,12 +22,18 @@
                 </h2>
     
                 <p>
+                    <span class="font-bold">Cod. Cliente:</span> {{ $cliente-> cod_cliente}}
+                </p>
+
+                <p>
                     <span class="font-bold">NIF:</span> {{ $cliente-> nif}}
                 </p>
     
-                <p>
-                    <span class="font-bold">Razon social:</span> {{ $cliente-> razon_social}}
-                </p>
+                @if( !empty($cliente->razon_social) )
+                    <p>
+                        <span class="font-bold">Razon social:</span> {{ $cliente-> razon_social}}
+                    </p>
+                @endif
             
                 <p>
                     <span class="font-bold">Dirección:</span> {{ $cliente-> domicilio}}
@@ -52,6 +58,20 @@
                 <p>
                     <span class="font-bold">Correo:</span> {{ $cliente-> correo}}
                 </p>
+
+                <div class="flex flex-row gap-2 mt-4 w-full">
+    
+                    <a class="block ml-auto" href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    </a>
+        
+                    <img
+                        data-action="{{ route('cliente.destroy', $cliente->id) }}"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        alt="delete icon"
+                        class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"
+                    >
+                </div>
             </div>
         
             @section('campo1', 'Serie')
@@ -93,8 +113,8 @@
         
                         <div class="flex flex-row items-center gap-2">
         
-                            <a class="block" href="{{ route('factura.edit', ['factura' => $factura->id]) }}">
-                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                            <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
+                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                             </a>
                 
                             <img

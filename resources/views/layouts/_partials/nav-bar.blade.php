@@ -35,5 +35,7 @@
         <a href="{{ route('producto.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Productos</a>
         
         <a href="{{ route('almacen.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Almacenes</a>
+        
+        <a href="{{ route('factura.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Facturas</a>
     </div>
 </nav>

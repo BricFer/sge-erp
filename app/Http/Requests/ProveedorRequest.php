@@ -25,6 +25,11 @@ class ProveedorRequest extends FormRequest
     {
         $idProveedor = $this->route('proveedor') ? $this->route('proveedor')->id : null;
         return [
+            'cod_proveedor' => [
+                'required',
+                'string',
+                Rule::unique(Proveedor::class)->ignore($idProveedor),
+            ],
             'nombre_completo' => ['required', 'string', 'min:3', 'max:255'],
             'cif' => [
                 'required',

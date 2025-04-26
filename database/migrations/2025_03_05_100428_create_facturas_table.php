@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('monto_iva', 8,2)->default(0.00);
             $table->decimal('monto_total', 8,2)->default(0.00);
             $table->enum('estado', ['borrador', 'emitida', 'pendiente', 'cancelada', 'pagada'])->default('emitida');
+            $table->foreignId('id_almacen')->constrained('almacens', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }

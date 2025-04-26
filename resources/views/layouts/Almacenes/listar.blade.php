@@ -35,7 +35,7 @@
                     
                     <p class="w-[95px]"></p>
 
-                    <p class="w-[175px]">{{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}</p>
+                    <p class="w-[175px]">{{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}</p>
 
                     <p class="w-[95px]"></p>
                     

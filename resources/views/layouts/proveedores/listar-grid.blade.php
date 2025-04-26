@@ -18,11 +18,17 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $proveedor -> nombre_completo }}</h2>
 
                 <p>
+                    <span class="font-bold">Cod. Proveedor:</span> {{ $proveedor->cod_proveedor }}
+                </p>
+
+                <p>
                     <span class="font-bold">Dirección:</span> {{ $proveedor-> domicilio}}
                 </p>
+
                 <p>
                     <span class="font-bold">Teléfono:</span> {{ $proveedor-> telefono}}
                 </p>
+                
                 <p>
                     <span class="font-bold">Correo:</span> {{ $proveedor-> correo}}
                 </p>

@@ -15,6 +15,7 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cod_cliente',
         'nombre_completo',
         'nif',
         'razon_social',

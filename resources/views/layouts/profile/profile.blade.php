@@ -39,24 +39,12 @@
         </div>
         
 
-        <div class="flex items-start gap-4">
-
-            @if($user->empleado?->departamento === 'RRHH')
-            <a
-                href="{{ route('empleado.edit', ['empleado' => $user->empleado->id]) }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
-            >
-                Editar perfil
-            </a>
-            @endif
-            <a
-                href="{{ route('password.request') }}"
-                class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
-            >
-                Editar Contraseña
-            </a>
-
-        </div>
+        <a
+            href="{{ route('password.request') }}"
+            class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
+        >
+            Editar Contraseña
+        </a>
     </div>
 @endsection
 

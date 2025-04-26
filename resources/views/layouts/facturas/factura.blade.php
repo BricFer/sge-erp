@@ -8,7 +8,7 @@
         @include('layouts._partials.nav-bar', ['backUrl' => route('factura.home')])
 
         @include('layouts._partials.buscar', [
-            'addUrl' => route('factura.crear'),
+            // 'addUrl' => route('factura.crear'),
             'listUrl' => route('factura.home'),
             'gridUrl' => route('factura.grid')])
     </div>
@@ -153,14 +153,14 @@
                         <p class="w-[75px]">IVA</p>
                         <p class="w-[75px]">Precio (€)</p>
                         <p class="w-[75px]">Dto. (€)</p>
-                        <p class="w-[95px]">Subtotal</p>
+                        <p class="w-[95px]">Subtotal (€)</p>
                     </div>
 
                     @foreach( $factura->productos as $producto )
 
                         <div class="w-full flex flex-row gap-1 justify-between items-center border-b-solid border-b-2 border-b-indigo-600/30 pb-2">
 
-                            <p class="w-[50px]">#</p>
+                            <p class="w-[50px]">{{ $producto->pivot->num_linea}}</p>
                             <p class="w-[295px]">{{ $producto->nombre}}</p>
                             <p class="w-[175px]">{{ $producto->codigo}}</p>
                             <p class="w-[75px]">{{ $producto->pivot->cantidad}}</p>

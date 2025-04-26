@@ -18,15 +18,19 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $cliente -> nombre_completo }}</h2>
 
                 <p>
-                    <span class="font-bold">Dirección:</span> {{ $cliente-> domicilio}}
+                    <span class="font-bold">Cod. Cliente:</span> {{ $cliente->cod_cliente }}
                 </p>
 
                 <p>
-                    <span class="font-bold">Teléfono:</span> {{ $cliente-> telefono}}
+                    <span class="font-bold">Dirección:</span> {{ $cliente->domicilio }}
+                </p>
+
+                <p>
+                    <span class="font-bold">Teléfono:</span> {{ $cliente->telefono }}
                 </p>
                 
                 <p>
-                    <span class="font-bold">Correo:</span> {{ $cliente-> correo}}
+                    <span class="font-bold">Correo:</span> {{ $cliente->correo }}
                 </p>
 
                 <div class="flex flex-row gap-2 mt-4">

@@ -23,46 +23,47 @@
         <div class="flex flex-col gap-1 xl:w-[628px]">
             <label for="nombre_completo">Nombre del cliente</label>
             <input name="nombre_completo" type="text" id="nombre_completo">
+            <input name="cod_cliente" type="hidden" id="cod_cliente" value="CLI-{{ date("Y") }}{{ $nextId }}">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label>Razón social</label>
+            <label for="razon_social">Razón social</label>
             <input name="razon_social" type="text" id="razon_social">
         </div>
 
         <div class="flex flex-col gap-1">
-            <label>NIF</label>
-            <input name="nif" type="text">
+            <label for="nif">NIF</label>
+            <input name="nif" type="text" id="nif">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-2/3">
-            <label>Domicilio</label>
-            <input name="domicilio" type="text">
+            <label for="domicilio">Domicilio</label>
+            <input name="domicilio" type="text" id="domicilio">
         </div>
 
         <div class="flex flex-col gap-1">
-            <label>Codigo postal</label>
-            <input name="cod_postal" type="text">
+            <label for="cod_postal">Codigo postal</label>
+            <input name="cod_postal" type="text" id="cod_postal">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-1/3">
-            <label>Poblacion</label>
-            <input name="poblacion" type="text">
+            <label for="poblacion">Poblacion</label>
+            <input name="poblacion" type="text" id="poblacion">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-1/3">
-            <label>Provincia</label>
-            <input name="provincia" type="text">
+            <label for="provincia">Provincia</label>
+            <input name="provincia" type="text" id="provincia">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label>Teléfono</label>
-            <input name="telefono" type="tel">
+            <label for="telefono">Teléfono</label>
+            <input name="telefono" type="tel" id="telefono">
         </div>
 
         <div class="flex flex-col gap-1 w-full">
-            <label>Correo</label>
-            <input name="correo" type="email">
+            <label for="correo">Correo</label>
+            <input name="correo" type="email" id="correo">
         </div>
 
         @include('layouts._partials.submit-cancel')

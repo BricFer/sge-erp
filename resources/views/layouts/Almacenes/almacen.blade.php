@@ -25,7 +25,7 @@
         
                     <p class="text-base">
                         <span class="font-bold">Responsable: </span>
-                        {{ $almacen->empleados ? $almacen->empleados->nombre : 'Sin responsable' }}
+                        {{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}
                     </p>
     
                     <p class="text-base">

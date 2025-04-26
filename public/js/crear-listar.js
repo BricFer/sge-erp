@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('titulo-seccion').innerText = tituloSeccion;
     
         // Actualizar los enlaces dinámicamente
-        document.getElementById('crear-link').href = `/${section}/crear`;
-        document.getElementById('agregar-link').href = `/${section}/registrar`;
-        document.getElementById('listar-link').href = `/${section}`;
+        // document.getElementById('crear-link').href = `/${section}/ventas`;
+        // document.getElementById('agregar-link').href = `/${section}/compras`;
+        // document.getElementById('listar-link').href = `/${section}`;
     }
     
     document.querySelector('.exit').addEventListener('click', () => {

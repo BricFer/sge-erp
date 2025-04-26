@@ -70,6 +70,20 @@
                 <p>
                     <span class="font-bold">Departamento:</span> {{ $empleado-> departamento}}
                 </p>
+
+                <div class="flex flex-row gap-2 mt-4 w-full">
+    
+                    <a class="block ml-auto" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
+                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                    </a>
+        
+                    <img
+                        data-action="{{ route('empleado.destroy', $empleado->id) }}"
+                        src="{{ asset('assets/icons/trash-icon.svg') }}"
+                        alt="delete icon"
+                        class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"
+                    >
+                </div>
             </div>
 
             @section('campo1', 'Serie')
@@ -111,8 +125,8 @@
         
                         <div class="flex flex-row items-center gap-2">
         
-                            <a class="block" href="{{ route('factura.edit', ['factura' => $factura->id]) }}">
-                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                            <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
+                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                             </a>
                 
                             <img

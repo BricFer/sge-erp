@@ -5,7 +5,7 @@
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
         @include('layouts._partials.buscar', [
-            'addUrl' => route('factura.crear'),
+            // 'addUrl' => route('factura.crear'),
             'listUrl' => route('factura.home'),
             'gridUrl' => route('factura.grid')])
     </div>

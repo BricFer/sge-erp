@@ -18,15 +18,15 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $factura->facturable->nombre_completo }}</h2>
 
                 <p>
-                    <span class="font-bold">Emitida por:</span> {{ $factura->empleado->nombre}}
-                </p>
-
-                <p>
-                    <span class="font-bold">Serie:</span> {{ $factura->serie }}
+                    <span class="font-bold">Emitida por:</span> {{ $factura->empleado->nombre_completo }}
                 </p>
 
                 <p>
                     <span class="font-bold">Fecha emisión:</span> {{ $factura->fecha_emision }}
+                </p>
+
+                <p>
+                    <span class="font-bold">Serie:</span> {{ $factura->serie }}
                 </p>
                 
                 <p>
@@ -36,12 +36,8 @@
 
                 <div class="flex flex-row gap-2 mt-4">
 
-                    <a class="block" href="{{ route('factura.show', ['factura' => $factura->id]) }}">
+                    <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
-                    </a>
-
-                    <a class="block" href="{{ route('factura.edit', ['factura' => $factura->id]) }}">
-                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <img

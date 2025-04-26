@@ -31,7 +31,7 @@
             
                 <option class="font-bold" value="" disabled selected>Asignar responsable</option>
                 @foreach ($empleados as $empleado)
-                    <option value="{{ $empleado->id }}">{{ $empleado->nombre }} - {{ $empleado->cargo }}</option>
+                    <option value="{{ $empleado->id }}">{{ $empleado->nombre_completo }} - {{ $empleado->cargo }}</option>
                 @endforeach
 
             </select>

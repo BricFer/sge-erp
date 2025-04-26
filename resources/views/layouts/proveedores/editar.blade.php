@@ -32,8 +32,19 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1 w-[532px]">
-            <label>CIF</label>
+        <div class="flex flex-col gap-1 xl:w-[532px]">
+            <label for="razon_social">Razón Social:</label>
+            <input
+                name="razon_social"
+                type="text"
+                id="razon_social"
+                value="{{ $proveedor->razon_social }}"
+                readonly
+            />
+        </div>
+
+        <div class="flex flex-col gap-1 w-[432px]">
+            <label for="cif">CIF</label>
             <input
                 name="cif"
                 value="{{ $proveedor->cif }}"
@@ -44,17 +55,17 @@
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[828px]">
-            <label>Domicilio:</label>
+            <label for="domicilio">Domicilio:</label>
             <input
-                name="domicilio"
                 value="{{ $proveedor->domicilio }}"
+                name="domicilio"
                 type="text"
                 id="domicilio"
             />
         </div>
 
-        <div class="flex flex-col gap-1 xl:w-[432px]">
-            <label>Codigo postal</label>
+        <div class="flex flex-col gap-1 xl:w-[385px]">
+            <label for="cod_postal">Codigo postal</label>
             <input
                 name="cod_postal"
                 value="{{ $proveedor->cod_postal }}"
@@ -63,8 +74,8 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-1/3">
-            <label>Poblacion</label>
+        <div class="flex flex-col gap-1 lg:w-[434px]">
+            <label for="poblacion">Poblacion</label>
             <input
                 name="poblacion"
                 value="{{ $proveedor->poblacion }}"
@@ -73,8 +84,8 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-1/3">
-            <label>Provincia</label>
+        <div class="flex flex-col gap-1 lg:w-[434px]">
+            <label for="provincia">Provincia</label>
             <input
                 name="provincia"
                 value="{{ $proveedor->provincia }}"
@@ -84,7 +95,7 @@
         </div>
 
         <div class="flex flex-col gap-1 lg:w-[412px]">
-            <label>Teléfono</label>
+            <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
                 value="{{ $proveedor->telefono }}"
@@ -93,8 +104,8 @@
             />
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
-            <label>Correo</label>
+        <div class="flex flex-col gap-1 w-[845px]">
+            <label for="correo">Correo</label>
             <input
                 name="correo"
                 value="{{ $proveedor->correo }}"

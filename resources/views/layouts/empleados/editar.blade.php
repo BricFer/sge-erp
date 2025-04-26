@@ -96,13 +96,14 @@
             />
         </div>
         
-        ç<div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1">
             <label for="legajo">Legajo:</label>
             <input
                 id="legajo"
                 name="legajo"
                 value="{{ $empleado->legajo }}"
                 type="text"
+                readonly
             />
         </div>
 

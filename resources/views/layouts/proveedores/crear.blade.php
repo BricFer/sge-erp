@@ -23,41 +23,47 @@
         <div class="flex flex-col gap-1 xl:w-[728px]">
             <label for="nombre_completo">Nombre proveedor:</label>
             <input name="nombre_completo" type="text" class="form-control" id="nombre_completo">
+            <input name="cod_proveedor" type="hidden" id="cod_proveedor" value="SUP-{{ date("Y") }}{{ $nextId }}">
         </div>
         
-        <div class="flex flex-col gap-1 w-[532px]">
-            <label>CIF</label>
-            <input name="cif" type="text">
+        <div class="flex flex-col gap-1 xl:w-[532px]">
+            <label for="razon_social">Razón Social:</label>
+            <input name="razon_social" type="text" id="razon_social">
+        </div>
+        
+        <div class="flex flex-col gap-1 w-[432px]">
+            <label for="cif">CIF</label>
+            <input name="cif" type="text" id="cif">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[828px]">
-            <label>Domicilio:</label>
-            <input name="domicilio" type="text">
+            <label for="domicilio">Domicilio:</label>
+            <input name="domicilio" type="text" id="domicilio">
         </div>
 
-        <div class="flex flex-col gap-1 xl:w-[432px]">
-            <label>Codigo postal</label>
-            <input name="cod_postal" type="text">
+        <div class="flex flex-col gap-1 xl:w-[385px]">
+            <label for="cod_postal">Codigo postal</label>
+            <input name="cod_postal" type="text" id="cod_postal">
         </div>
 
-        <div class="flex flex-col gap-1 xl:w-1/3">
-            <label>Poblacion</label>
-            <input name="poblacion" type="text">
+        <div class="flex flex-col gap-1 xl:w-[434px]">
+            <label for="poblacion">Poblacion</label>
+            <input name="poblacion" type="text" id="poblacion">
         </div>
 
-        <div class="flex flex-col gap-1 xl:w-1/3">
-            <label>Provincia</label>
-            <input name="provincia" type="text">
+        <div class="flex flex-col gap-1 xl:w-[434px]">
+            <label for="provincia">Provincia</label>
+            <input name="provincia" type="text" id="provincia">
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
-            <label>Teléfono</label>
-            <input name="telefono" type="tel">
+            <label for="telefono">Teléfono</label>
+            <input name="telefono" type="tel" id="telefono">
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
-            <label>Correo</label>
-            <input name="correo" type="email">
+        <div class="flex flex-col gap-1 w-[845px]">
+            <label for="correo">Correo</label>
+            <input name="correo" type="email" id="correo">
         </div>
 
         @include('layouts._partials.submit-cancel')

@@ -1,7 +1,7 @@
 <div id="contenedor-mensaje" class="fixed inset-0 flex items-center justify-center bg-white/40 hidden h-screen">
     
     <div id="warning-message" class="w-[450px] relative bg-white rounded-2xl shadow-xl shadow-black/20">
-        <p class="w-full m-0 p-6 text-center text-white border-2 border-red-700 bg-red-700 rounded-t-2xl">¡ADVERTENCIA!</p>
+        <p class="w-full m-0 p-6 text-center text-white border-2 border-red-700 bg-red-700 rounded-t-2xl font-bold text-lg">¡ADVERTENCIA!</p>
     
         <div class="w-full p-2 m-0">
             <p class="font-bold uppercase my-2 text-center">Esta acción no se podrá deshacer.</p>

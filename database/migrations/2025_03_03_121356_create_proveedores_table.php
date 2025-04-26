@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
+            $table->string('cod_proveedor')->unique();
             $table->string('nombre_completo', 255);
             $table->string('cif', 12)->unique();
             $table->string('razon_social', 255)->unique();

@@ -23,52 +23,41 @@
 
             <div class="w-full flex flex-wrap gap-1 justify-content">
                 <div class="flex flex-col gap-1 w-[205px]">
-                    <label
-                        for="facturable_type"
-                        class="w-full"
-                    >
-                        Factura de:
-                    </label>
-                    <select
+                    <span class="w-full">Factura tipo: </span>
+                    <p class="h-[42px] p-2 w-full border-solid border border-black/50">Compra</p>
+                    <input
                         name="facturable_type"
-                        required
-                    >
-                        <option
-                            class="font-bold"
-                            disabled
-                            selected
-                        >
-                            Selecciona una opción
-                        </option>
-                        <option value="App\Models\Cliente">Cliente</option>
-                        <option value="App\Models\Proveedor">Proveedor</option>
-                    </select>
+                        type="text"
+                        class="hidden"
+                        value="App\Models\Proveedor"
+                        readonly
+                    />
                 </div>
 
                 <div class="flex flex-col gap-1 w-[456px]">
-                    <label class="w-full">ID | Nombre:</label>
+                    <label for="proveedores" class="w-full">ID | Nombre:</label>
                     <div class="w-full flex gap-1">
-                        <p id="id_cliente" class="h-[42px] w-[45px] p-2 border-solid border border-black/50"></p>
+                        <p id="id_proveedor" class="h-[42px] w-[45px] p-2 border-solid border border-black/50"></p>
         
                         <select
                             name="facturable_id"
                             type="text"
-                            id="clientes"
+                            id="proveedores"
                             class="w-[405px]"
                             onchange="autocompletarInputs()"
                         >
                     
-                            <option class="font-bold" disabled selected>Seleccionar cliente</option>
+                            <option class="font-bold" disabled selected>Seleccionar proveedor</option>
         
-                            @foreach ($clientes as $cliente)
+                            @foreach ($proveedores as $proveedor)
                                 <option
                                     name="facturable_id"
-                                    value="{{$cliente->id}}"
+                                    value="{{$proveedor->id}}"
                                     readonly
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
-                                    data-info='@json($cliente)'
+                                    data-info='@json($proveedor)'
                                 >
-                                    {{ $cliente->nombre_completo }}
+                                    {{ $proveedor->nombre_completo }}
                                 </option>
                             @endforeach
             
@@ -77,12 +66,12 @@
                 </div>
         
                 <div class="flex flex-col gap-1 w-[215px]">
-                    <label for="dni_nif" class="w-full">DNI/NIF</label>
+                    <span for="dni_nif" class="w-full">DNI/NIF</span>
                     <p id="dni_nif" class="h-[42px] p-2 w-full border-solid border border-black/50"></p>
                 </div>
         
                 <div class="flex flex-col w-[315px] gap-1">
-                    <label for="razon_social" class="w-full">Razón Social</label>
+                    <span for="razon_social" class="w-full">Razón Social</span>
                     <p id="razon_social" class="h-[42px] w-full p-2 border-solid border border-black/50"></p>
                 </div>
                                         
@@ -99,22 +88,22 @@
                 </div>
     
                 <div class="flex flex-col gap-1 w-[416px]">
-                    <label class="w-full">Dirección</label>
+                    <span class="w-full">Dirección</span>
                     <p id="domicilio" class="h-[42px] w-full p-2 border-solid border border-black/50"></p>
                 </div>
                                         
                 <div class="flex flex-col gap-1 w-[281px]">
-                    <label>Población</label>
+                    <span>Población</span>
                     <p id="poblacion" class="h-[42px] p-2 border-solid border border-black/50 w-full"></p>
                 </div>
     
                 <div class="flex flex-col gap-1 w-[278px]">
-                    <label>Provincia</label>
+                    <span>Provincia</span>
                     <p id="provincia" class="h-[42px] p-2 border-solid border border-black/50 w-full"></p>
                 </div>
     
                 <div class="flex flex-col gap-1 w-[176px]">
-                    <label>Cod. Postal</label>
+                    <span>Cod. Postal</span>
                     <p id="cod_postal" class="h-[42px] w-full p-2 border-solid border border-black/50"></p>
                 </div>
     
@@ -134,21 +123,47 @@
                         <option value="pagada">Pagada</option>
                     </select>
                 </div>
+                
+                <div class="flex flex-col gap-1 w-[278px]">
+                    <label for="almacenes" class="w-full">Almacén</label>
+
+                    <select
+                        name="id_almacen"
+                        id="almacenes"
+                        onchange="completarProductos()"
+                    >
+                        <option selected disabled>Selecciona almacen</option>
+                        
+                        @foreach ($almacenes as $almacen)
+
+                            @if($almacen->estado === 'activo' )
+                                <option
+                                    value="{{ $almacen->id }}"
+                                    data-info='@json($almacen)'
+                                >
+                                    {{ $almacen->nombre }} - {{ $almacen->estado }}
+                                </option>
+                            @endif
+                            
+                        @endforeach
+
+                    </select>
+                </div>
             </div>
 
             <h2 class="border-b-solid border-b-2 border-b-indigo-600/30 my-6 text-lg font-bold uppercase text-black/70">Datos empleado</h2>
 
             <div class="w-full flex flex-wrap gap-1 justify-content">
                 <div class="flex flex-col gap-1 w-[456px]">
-                    <label class="w-full">Empleado:</label>
+                    <span class="w-full">Empleado:</span>
                     <div class="w-full flex gap-1">
-                        <p id="id_empleado" class="h-[42px] w-[45px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->id }}</p>
+                        <p id="id_empleado" class="h-[42px] w-[195px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->legajo }}</p>
         
                         <select
                             name="id_empleado"
                             type="text"
                             id="empleados"
-                            class="w-[405px]"
+                            class="w-[365px]"
                             onchange="autocompletarDatosEmpleados()"
                         >
                     
@@ -170,12 +185,12 @@
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="dni_nif_empleado" class="w-full">DNI/NIF</label>
+                    <span class="w-full">DNI/NIF</span>
                     <p id="dni_nif_empleado" class="h-[42px] w-[215px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->dni_nif }}</p>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="cargo_empleado" class="w-full">Cargo</label>
+                    <span for="cargo_empleado" class="w-full">Cargo</span>
                     <p id="cargo_empleado" class="h-[42px] w-[516px] p-2 border-solid border border-black/50">{{ Auth::user()->empleado?->cargo }}</p>
                 </div>
             </div>
@@ -190,15 +205,14 @@
             <p class="w-[75px]">IVA</p>
             <p class="w-[75px]">Precio (€)</p>
             <p class="w-[75px]">Dto. (€)</p>
-            <p class="w-[95px]">Subtotal</p>
+            <p class="w-[95px]">Subtotal (€)</p>
         </div>
 
         <div id="detalles">
             <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
                 <input
-                    type="number"
+                    type="text"
                     name="num_linea[]"
-                    id="num_linea"
                     class="border-none p-0 w-[50px]"
                     value="1"
                 />
@@ -214,24 +228,7 @@
                     >
                         Lista productos
                     </option>
-    
-                    @foreach($productos as $producto)
-                    
-                    @php
-                        $stock = $producto->almacenes->first()?->pivot->stock ?? 'Sin stock';
 
-                        $disponibilidad = $stock === 'Sin stock' ? 'disabled' : '';
-                    @endphp
-
-                        <option
-                            value="{{ $producto->id}}"
-                            data-info='@json($producto)'
-                            {{ $disponibilidad }}
-                        >
-                            {{ $producto->nombre }} - {{ $stock}}
-                        </option>
-    
-                    @endforeach
                 </select>
     
                 <input
@@ -263,7 +260,6 @@
                     placeholder="P.V"
                     name="precio[]"
                     class="precio_venta w-[75px] border-none p-0"
-                    readonly
                 />
     
                 <input
@@ -355,8 +351,8 @@
             @include('layouts._partials.submit-cancel')
         </div>
     </form>
-    <script>
-
+    
+    {{-- <script>
         // Los productos han de pasarse a un array ya que de lo contrario estoy pasando un objeto de Eloquent que no se reconocerá
         window.productos = @json($productos->toArray());
         
@@ -365,7 +361,7 @@
 
         // Al hacer lo anterior el script factura.js recibe y procesa los productos para mostrarlos
         
-    </script>
+    </script> --}}
 
     <script src="{{ asset('js/factura.js') }}" defer></script>
 @endsection

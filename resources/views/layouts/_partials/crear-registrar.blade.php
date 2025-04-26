@@ -19,7 +19,7 @@
             
             <a
                 id="crear-link"
-                href="#"
+                href="{{ route('factura.ventas') }}"
                 class="block uppercase w-[256px] p-2 text-center rounded-lg bg-indigo-600/50 text-white"
             >
                 ventas
@@ -27,7 +27,7 @@
 
             <a
                 id="agregar-link"
-                href="#"
+                href="{{ route('factura.compras') }}"
                 class="block uppercase w-[256px] p-2 text-center rounded-lg bg-indigo-600/50 text-white"
             >
                 compras
@@ -35,7 +35,7 @@
 
             <a
                 id="listar-link"
-                href="#"
+                href="{{ route('factura.home') }}"
                 class="block uppercase w-[256px] p-2 text-center rounded-lg bg-indigo-600/50 text-white"
             >
                 listar

@@ -48,6 +48,22 @@ class FacturaRequest extends FormRequest
                 'string',
                 Rule::in(['borrador', 'emitida', 'pendiente', 'cancelada', 'pagada']),
             ],
+            'id_almacen' => ['required', 'integer'],
+
+            // Validación de detalles productos (Array)
+            'id_producto' => ['required', 'array', 'min:1'],
+            'id_producto.*' => [
+                'required',
+                Rule::exists('productos', 'id'),
+            ],
+            'precio' => ['required', 'array', 'min:1'],
+            'precio.*' => ['required', 'numeric', 'min:0'],
+            'iva' => ['required', 'array'],
+            'iva.*' => ['required', 'numeric', 'min:0'],
+            'cantidad' => ['required', 'array', 'min:1'],
+            'cantidad.*' => ['required', 'numeric', 'min:1'],
+            'subtotal' => ['required', 'array', 'min:1'],
+            'subtotal.*' => ['required', 'numeric', 'min:0'],
 
             // Validación de detalles servicios (Array)
             // 'detalles' => ['required', 'array', 'min:1'],
@@ -69,21 +85,10 @@ class FacturaRequest extends FormRequest
             // ],
             // 'detalles.*.descuento' => ['required', 'numeric', 'min:0'],
             // 'detalles.*.subtotal' => ['required', 'numeric', 'min:0'],
-
-            // Validación de detalles productos (Array)
-            'id_producto' => ['required', 'array', 'min:1'],
-            'id_producto.*' => [
-                'required',
-                Rule::exists('productos', 'id'),
-            ],
-            'precio' => ['required', 'array', 'min:1'],
-            'precio.*' => ['required', 'numeric', 'min:0'],
-            'iva' => ['required', 'array'],
-            'iva.*' => ['required', 'numeric', 'min:0'],
-            'cantidad' => ['required', 'array', 'min:1'],
-            'cantidad.*' => ['required', 'numeric', 'min:1'],
-            'subtotal' => ['required', 'array', 'min:1'],
-            'subtotal.*' => ['required', 'numeric', 'min:0'],
+            // Tal como está mi formulario los inputs que corresponden a los detalles guardan la información de la siguiente forma:
+            // estado[], descuento[], etc.
+            // La validación comentada arriba sirve en caso que los inpust tengan la siguiente estructura
+            // detalles[0].estado, detalles[0].descuento, etc
         ];
     }
 }

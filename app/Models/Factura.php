@@ -26,6 +26,7 @@ class Factura extends Model
         'monto_iva',
         'monto_total',
         'estado',
+        'id_almacen',
     ];
 
     public function empleado(): BelongsTo
@@ -46,6 +47,11 @@ class Factura extends Model
 
     public function productos()
     {
-        return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('precio', 'iva', 'cantidad', 'descuento', 'subtotal');
+        return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('num_linea', 'precio', 'iva', 'cantidad', 'descuento', 'subtotal');
+    }
+    
+    public function almacen(): BelongsTo
+    {
+        return $this->belongsTo(Almacen::class, 'id_almacen');
     }
 }

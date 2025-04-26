@@ -11,12 +11,16 @@ class ClienteController extends Controller
 {
     public function create():View
     {
-        return view('layouts.clientes.crear');
+        $lastClient = Cliente::latest()->first(); 
+        $nextId = $lastClient ? $lastClient->id + 1 : 1;
+
+        return view('layouts.clientes.crear', compact(['nextId']));
     }
 
     public function store(ClienteRequest $request): RedirectResponse
     {   
         $cliente = new Cliente;
+        $cliente->cod_cliente = $request->cod_cliente;
         $cliente-> nombre_completo = $request->nombre_completo;
         $cliente-> nif = $request->nif;
         $cliente-> razon_social = $request->razon_social;
