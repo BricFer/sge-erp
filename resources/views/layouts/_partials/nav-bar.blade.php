@@ -1,6 +1,6 @@
 <nav class="flex flex-col w-full my-6 block gap-6">
     
-    <div class="flex flex-row justify-between items-center gap-2">
+    <div class="flex flex-row justify-between items-center gap-2 w-full">
         <a href="{{ route('home') }}">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
         </a>
@@ -36,6 +36,8 @@
         
         <a href="{{ route('almacen.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Almacenes</a>
         
-        <a href="{{ route('factura.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Facturas</a>
+        <a href="{{ route('factura.compras') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Compras</a>
+        
+        <a href="{{ route('factura.ventas') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Ventas</a>
     </div>
 </nav>

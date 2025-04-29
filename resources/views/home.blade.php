@@ -14,27 +14,24 @@
         @vite(['resources/css/app.css'])
         
     </head>
-    <body class="relative flex flex-col p-1">
+    <body class="relative text-white p-1 bg-[#FDFDFC]/95 dark:bg-[#0a0a0a]/95 text-[#1b1b18] flex flex-col">
         
         <nav class="flex flex-row justify-between items-center w-full p-4">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
             
             <div class="flex flex-row justify-between items-center gap-2">
-                
-                <div class="flex flex-row justify-between items-center gap-2">
-                    <a href="{{ route('profile.show') }}">{{ Auth::user()->user }}</a>
-                    <a href="#">
-                        <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
-                    </a>
-                    <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
-                    </a>
-        
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                        @csrf
-                    </form>
-                </div>
+                <a href="{{ route('profile.show') }}">{{ Auth::user()->user }}</a>
+                <a href="#">
+                    <img class="block" src="{{ asset('assets/icons/sms-icon.svg') }}" alt="message icon">
+                </a>
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <img class="block" src="{{ asset('assets/icons/exit-icon.svg') }}" alt="exit icon">
+                </a>
+    
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
             </div>
         </nav>
 
@@ -77,44 +74,34 @@
             </div>
 
             <div class="w-full">
-                <h2 class="w-full my-2 border-b-solid border-b-4 border-b-indigo-600/25 mb-8 text-lg font-semibold uppercase tracking-wider text-indigo-600 drop-shadow-lg">Presupuesto | Albarán | Factura</h2>
+                <h2 class="w-full my-2 border-b-solid border-b-4 border-b-indigo-600/25 mb-8 text-lg font-semibold uppercase tracking-wider text-indigo-600 drop-shadow-lg">Facturas</h2>
 
-                {{-- Añadir los links a cada interface --}}
                 <div class="flex flex gap-4">
-                    <button
-                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
+                    <a
+                        href="{{ route('factura.compras') }}"
+                        class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
                     >
                         <img
-                            id="presupuesto"
+                            id="compras"
                             src="{{ asset('assets/img/presupuesto.png') }}"
                             alt="image icon of client"
                         />
-                    </button>
+                    </a>
     
-                    <button
-                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
+                    <a
+                        href="{{ route('factura.ventas') }}"
+                        class="block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
                     >
                         <img
-                            id="albaran"
+                            id="compras"
                             src="{{ asset('assets/img/albaran.png') }}"
                             alt="image icon of client"
                         />
-                    </button>
-    
-                    <button
-                        class="mostrarOpciones block w-[175px] mb-8 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50"
-                    >
-                        <img
-                            id="factura"
-                            src="{{ asset('assets/img/factura.png') }}"
-                            alt="image icon of client"
-                        />
-                    </button>
+                    </a>
                 </div>
             </div>
 
         </div>
-
-        @include('layouts._partials.crear-registrar')
+        
     </body>
 </html>

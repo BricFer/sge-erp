@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PasswordChangeController;
 
 require __DIR__.'/auth.php';
 
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
         
         Route::get('/edit/{almacen}', [$imports['AlmacenController'], 'edit'])->name('edit');
         Route::put('/update/{almacen}', [$imports['AlmacenController'], 'update'])->name('update');
+        Route::put('/{almacen}/productos/{producto}', [$imports['AlmacenController'], 'actualizarStock'])->name('stock');
         
         Route::delete('/destroy/{almacen}', [$imports['AlmacenController'], 'destroy'])->name('destroy');
     });
@@ -71,16 +73,24 @@ Route::middleware('auth')->group(function () {
     
     // Facturas
     Route::prefix('factura')->name('factura.')->group(function () use ($imports) {
-        Route::get('/', $imports['ListarFacturas'])->name('home');
-        Route::get('/grid', $imports['ListarFacturasGrid'])->name('grid');
+        Route::get('/ventas', $imports['ListarFacturasVentas'])->name('ventas');
+        Route::get('/compras', $imports['ListarFacturasCompras'])->name('compras');
+
+        Route::get('/ventas-grid', $imports['ListarFacturasGridVentas'])->name('ventasgrid');
+        Route::get('/compras-grid', $imports['ListarFacturasGridCompras'])->name('comprasgrid');
+
         Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
         
-        Route::get('/ventas', [$imports['FacturaController'], 'createSales'])->name('ventas');
-        Route::get('/compras', [$imports['FacturaController'], 'createPurchases'])->name('compras');
+        Route::get('/crearventa', [$imports['FacturaController'], 'createSales'])->name('crear.ventas');
+        Route::get('/crearcompras', [$imports['FacturaController'], 'createPurchases'])->name('crear.compras');
         
         Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
         Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
     });
+
+    // Password
+    Route::get('/password/editar', [PasswordChangeController::class, 'edit'])->name('password.editar');
+    Route::post('/password/actualizar', [PasswordChangeController::class, 'update'])->name('password.actualizar');
 
     // Productos
     Route::prefix('producto')->name('producto.')->group(function () use ($imports) {

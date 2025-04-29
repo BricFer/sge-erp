@@ -21,6 +21,10 @@ use App\Livewire\Empleados\ListarEmpleados;
 use App\Livewire\Empleados\ListarEmpleadosGrid;
 use App\Livewire\Facturas\ListarFacturas;
 use App\Livewire\Facturas\ListarFacturasGrid;
+use App\Livewire\Facturas\Compras\ListarFacturasCompras;
+use App\Livewire\Facturas\Compras\ListarFacturasGridCompras;
+use App\Livewire\Facturas\Ventas\ListarFacturasVentas;
+use App\Livewire\Facturas\Ventas\ListarFacturasGridVentas;
 use App\Livewire\Productos\ListarProductos;
 use App\Livewire\Productos\ListarProductosGrid;
 use App\Livewire\Proveedores\ListarProveedores;
@@ -52,4 +56,8 @@ return [
     'ListarProveedoresGrid' => ListarProveedoresGrid::class,
     'ListarServicios' => ListarServicios::class,
     'ListarServiciosGrid' => ListarServiciosGrid::class,
+    'ListarFacturasCompras' => ListarFacturasCompras::class,
+    'ListarFacturasGridCompras' => ListarFacturasGridCompras::class,
+    'ListarFacturasVentas' => ListarFacturasVentas::class,
+    'ListarFacturasGridVentas' => ListarFacturasGridVentas::class,
 ];

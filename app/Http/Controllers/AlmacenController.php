@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AlmacenRequest;
 use App\Models\Almacen;
 use App\Models\Empleado;
+use App\Models\Producto;
+
+use App\Http\Requests\AlmacenRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AlmacenController extends Controller
@@ -49,6 +52,18 @@ class AlmacenController extends Controller
         $almacen->save();
       
         return redirect()->route('almacen.home')->with('success', 'Almacen modificado correctamente');
+    }
+
+    public function actualizarStock(Request $request, Almacen $almacen, Producto $producto): RedirectResponse
+    {
+        $stock = (int) $request->input('stock');
+
+        // Actualizar directamente el stock en la tabla pivote
+        $almacen->productos()->updateExistingPivot($producto->id, [
+            'stock' => $stock,
+        ]);
+
+        return redirect()->back();
     }
 
     public function destroy(Almacen $almacen):RedirectResponse

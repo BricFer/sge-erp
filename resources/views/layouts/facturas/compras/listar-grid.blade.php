@@ -5,9 +5,9 @@
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
         @include('layouts._partials.buscar', [
-            'addUrl' => route('factura.crear'),
-            'listUrl' => route('factura.home'),
-            'gridUrl' => route('factura.grid')])
+            'addUrl' => route('factura.crear.compras'),
+            'listUrl' => route('factura.compras'),
+            'gridUrl' => route('factura.comprasgrid')])
     </div>
 
     <div class="w-full flex flex-row flex-wrap gap-4 p-2">

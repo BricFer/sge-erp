@@ -29,7 +29,9 @@ class FacturaController extends Controller
         $lastFactura = Factura::latest()->first(); 
         $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
 
-        return view('layouts.facturas.ventas', compact(['clientes', 'empleados', 'nextId', 'almacenes']));
+        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
+
+        return view('layouts.facturas.ventas.ventas', compact(['clientes', 'empleados', 'managers', 'nextId', 'almacenes']));
     }
 
     public function createPurchases():View
@@ -43,7 +45,9 @@ class FacturaController extends Controller
         $lastFactura = Factura::latest()->first(); 
         $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
 
-        return view('layouts.facturas.compras', compact(['proveedores', 'empleados', 'nextId', 'almacenes']));
+        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
+
+        return view('layouts.facturas.compras.compras', compact(['proveedores', 'managers', 'empleados', 'nextId', 'almacenes']));
     }
 
     public function store(FacturaRequest $request): RedirectResponse
@@ -114,7 +118,7 @@ class FacturaController extends Controller
             
         });
 
-        return redirect()->route('factura.home')->with('success', 'Factura emitida correctamente');
+        return redirect()->back()->with('success', 'Factura emitida correctamente');
     }
 
     /*
@@ -210,6 +214,6 @@ class FacturaController extends Controller
     
     public function show(Factura $factura):View
     {
-        return view('layouts.facturas.factura', compact('factura'));
+        return view('layouts.facturas.ventas.factura', compact('factura'));
     }
 }

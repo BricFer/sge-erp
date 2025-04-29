@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contenedor = document.getElementById('contenedor-mensaje');
 
     const btnCancelar = document.getElementById('cancelar');
-    
+
     const btnDanger = document.querySelectorAll('.warning-img');
 
     const borrarForm = document.getElementById('borrar');

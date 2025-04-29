@@ -5,38 +5,43 @@
         @include('layouts._partials.nav-bar', ['backUrl' => route('home')])
 
         @include('layouts._partials.buscar', [
-            'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
+            'addUrl' => route('factura.crear.ventas'),
+            'listUrl' => route('factura.ventas'),
+            'gridUrl' => route('factura.ventasgrid')])
     </div>
 
     <div class="w-full flex flex-row flex-wrap gap-4 p-2">
 
-        @forelse ($almacenes as $almacen)
+        @forelse ($facturas as $factura)
             <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
 
-                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $almacen -> nombre }}</h2>
+                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $factura->facturable->nombre_completo }}</h2>
 
                 <p>
-                    <span class="font-bold">Responsable:</span> {{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}
+                    <span class="font-bold">Emitida por:</span> {{ $factura->empleado->nombre_completo }}
                 </p>
 
                 <p>
-                    <span class="font-bold">Ubicación:</span> {{ $almacen-> ubicacion}}
+                    <span class="font-bold">Fecha emisión:</span> {{ $factura->fecha_emision }}
                 </p>
+
+                <p>
+                    <span class="font-bold">Serie:</span> {{ $factura->serie }}
+                </p>
+                
+                <p>
+                    <span class="font-bold">Total:</span> {{ $factura->monto_total }}€
+                </p>
+
 
                 <div class="flex flex-row gap-2 mt-4">
 
-                    <a class="block" href="{{ route('almacen.productos', ['almacen' => $almacen->id]) }}">
+                    <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
-                    </a>
-
-                    <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
-                        <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
                     <img
-                        data-action="{{ route('almacen.destroy', $almacen->id) }}"
+                        data-action="{{ route('factura.destroy', $factura->id) }}"
                         src="{{ asset('assets/icons/trash-icon.svg') }}"
                         alt="delete icon"
                         class="warning-img block w-[24px] h-[24px] rounded-lg cursor-pointer"

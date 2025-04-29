@@ -40,7 +40,7 @@
         
 
         <a
-            href="{{ route('password.request') }}"
+            href="{{ route('password.editar') }}"
             class="block text-center border-2 border-indigo-600 p-2 bg-indigo-600 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
         >
             Editar Contraseña

@@ -26,6 +26,18 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // Recuperamos el usuario autenticado
+        $user = Auth::user();
+
+        // Suponiendo que el usuario tiene relación con empleado()
+        if (!in_array($user->empleado->estado ?? null, ['activo', 'excedencia'])) {
+            Auth::logout(); // Cerramos sesión si no cumple la condición
+
+            return back()->withErrors([
+                'correo' => 'Tu cuenta de empleado no está activa para iniciar sesión.',
+            ]);
+        }
+
         $request->session()->regenerate();
 
         return redirect()->intended(route('home', absolute: false));

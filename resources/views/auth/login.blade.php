@@ -2,6 +2,10 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    <!-- Este elemento atrapará el error y lo mostrará, en este caso depende del parámetro que se le pase al get, 'correo' corresponde al nombre que se le ha asignado en el AutenticatedSessionController@store -->
+    <x-input-error :messages="$errors->get('correo')" class="my-2" />
+
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

@@ -82,7 +82,7 @@
                     <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between md:flex-nowrap">
 
                         <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                            <p class="w-[175px] text-wrap">{{ $producto-> nombre }}</p>
+                            <p class="w-[175px] text-wrap">{{ $producto->nombre }}</p>
         
                             <p class="w-[95px]">{{ $producto-> precio_compra }}€</p>
         
@@ -93,16 +93,38 @@
                             <p class="w-[425px] text-wrap">{{ $producto -> descripcion}}</p>
 
                             <p class="w-[95px] text-wrap">{{ $producto->pivot-> stock}}</p>
-        
+
                         </div>
+
+                        <form
+                            id="stock-{{ $producto->id }}"
+                            action="{{ route('almacen.stock', [$almacen->id, $producto->id]) }}"
+                            method="post"
+                            class="flex flex-row items-center justify-center bg-transparent m-0 hidden"
+                        >
+                            @method('PUT')
+                            @csrf
+                            <input
+                                type="text"
+                                name="stock"
+                                class="w-[75px] bg-transparent border-white"
+                                value="{{ $producto->pivot->stock }}"
+                            />
+
+                            <input type="image" src="{{ asset('assets/icons/confirm-icon.svg') }}">
+
+                            <button class="m-0 inline-block" onclick="ocultarFormulario('stock-{{ $producto->id }}')">
+                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/x-icon.svg') }}" alt="cancel button">
+                            </button>
+                        </form>
         
                         <div class="flex flex-row items-center gap-2">
         
                         {{-- Debe permitirme editar solo el stock --}}
         
-                            <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
+                            <button onclick="mostrarFormulario('stock-{{ $producto->id }}')">
                                 <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
-                            </a>
+                            </button>
                 
                             <img
                                 data-action="{{ route('almacen.destroy', $almacen->id) }}"
@@ -122,3 +144,13 @@
 
     </div>
 @endsection
+
+<script>
+    const mostrarFormulario = (idFormulario) => {
+        document.getElementById(idFormulario).classList.remove('hidden');
+    }
+
+    const ocultarFormulario = (idFormulario) => {
+        document.getElementById(idFormulario).classList.add('hidden');
+    }
+</script>

@@ -5,18 +5,18 @@
 @section('content')
     <div>
 
-        @include('layouts._partials.nav-bar', ['backUrl' => route('factura.home')])
+        @include('layouts._partials.nav-bar', ['backUrl' => route('factura.compras')])
 
         @include('layouts._partials.buscar', [
-            // 'addUrl' => route('factura.crear'),
-            'listUrl' => route('factura.home'),
-            'gridUrl' => route('factura.grid')])
+            'addUrl' => route('factura.crear.compras'),
+            'listUrl' => route('factura.compras'),
+            'gridUrl' => route('factura.comprasgrid')])
     </div>
     
     <div class="max-w-7xl h-screen p-16 m-auto w-full">
 
         @php
-            $esCliente = str_contains($factura->facturable_type, 'Cliente');
+            $esCliente = str_contains($factura->facturable_type, 'Proveedor');
         @endphp
 
         <div class="flex flex-col gap-2 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">

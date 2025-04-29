@@ -41,8 +41,6 @@ const autocompletarInputs = () => {
         document.getElementById("poblacion").textContent = cliente.poblacion || "";
         document.getElementById("provincia").textContent = cliente.provincia || "";
         document.getElementById("cod_postal").textContent = cliente.cod_postal || "";
-        
-        document.getElementById("facturable_type").value = cliente.facturable_type || "";
 
     } catch (error) {
         console.error("Error al parsear JSON:", error);
@@ -168,6 +166,7 @@ const obtenerDatosProductos = () => {
             // Al elementoHTML le pasamos un JSON en el data-info de lo contrario solo estaría pasando un [object Object] y no podría leer la información para procesarla en cada detalle-row
             const elementoHTML = `
                 <option
+                    class="text-black"
                     data-info='${JSON.stringify(producto)}'
                     value="${producto.id}"
                     ${haveStock}
@@ -198,6 +197,7 @@ const completarProductos = () => {
         // Dibujo nuevamente el contenido del select.productos añadiendo los productos
         row.querySelector('.productos').insertAdjacentHTML('beforeend', `
             <option
+                class="text-black"
                 disabled
                 selected
             >
@@ -223,16 +223,17 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     type="number"
                     name="num_linea[]"
                     id="num_linea"
-                    class="border-none p-0 w-[50px]"
+                    class="border-none p-0 w-[50px] bg-transparent"
                     value="${numLinea}"
                 />
 
                 <select
                     name="id_producto[]"
                     onchange="completarDetalleFactura(this)"
-                    class="productos w-[295px] border-none p-0"
+                    class="productos w-[295px] border-none p-0 bg-transparent"
                 >
                     <option
+                        class="text-black"
                         disabled
                         selected
                     >
@@ -244,7 +245,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                 <input
                     type="text"
                     placeholder="Código producto"
-                    class="codigo w-[175px] border-none p-0"
+                    class="codigo w-[175px] border-none p-0 bg-transparent"
                     readonly
                 />
 
@@ -254,7 +255,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     placeholder="Cant."
                     min="1"
                     max="99"
-                    class="cantidad calcularSubtotal w-[75px] border-none p-0"
+                    class="cantidad calcularSubtotal w-[75px] border-none p-0 bg-transparent"
                 />
 
                 <input
@@ -263,7 +264,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     placeholder="%IVA"
                     min="0"
                     max="99"
-                    class="iva calcularSubtotal w-[75px] border-none p-0"
+                    class="iva calcularSubtotal w-[75px] border-none p-0 bg-transparent"
                     readonly
                 />
 
@@ -271,7 +272,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     type="text"
                     placeholder="P.V"
                     name="precio[]"
-                    class="precio_venta w-[75px] border-none p-0"
+                    class="precio_venta w-[75px] border-none p-0 bg-transparent"
                     readonly
                 />
 
@@ -279,7 +280,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     type="text"
                     name="descuento[]"
                     placeholder="Descuento"
-                    class="descuento calcularSubtotal w-[75px] border-none p-0"
+                    class="descuento calcularSubtotal w-[75px] border-none p-0 bg-transparent"
                     readonly
                 />
                 
@@ -287,7 +288,7 @@ detalle.addEventListener('keydown', ({ keyCode }) => {
                     type="text"
                     name="subtotal[]"
                     placeholder="Subtotal"
-                    class="subtotal w-[95px] border-none p-0"
+                    class="subtotal w-[95px] border-none p-0 bg-transparent"
                 />
             </div>
         `);
