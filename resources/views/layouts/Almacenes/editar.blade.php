@@ -29,6 +29,7 @@
                 value="{{ $almacen->nombre }}"
                 type="text"
                 id="nombre"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -39,6 +40,7 @@
                 value="{{ $almacen->capacidad }}"
                 type="text"
                 id="capacidad"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -49,12 +51,17 @@
                 value="{{ $almacen->id_empleado }}"
                 type="text"
                 id="id_empleado"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             >
             @foreach($empleados as $empleado)
 
-                <option name="id_empleado" value="{{ $empleado->id }}" 
-                    {{ $almacen->empleado_id == $empleado->id ? 'selected' : '' }}>
-                    {{ $empleado-> nombre }} - {{ $empleado-> cargo}}
+                <option
+                    class="text-black"
+                    name="id_empleado"
+                    value="{{ $empleado->id }}"
+                    {{ $almacen->empleado_id == $empleado->id ? 'selected' : '' }}
+                >
+                    {{ $empleado-> nombre_completo }} - {{ $empleado-> cargo}}
                 </option>
 
             @endforeach
@@ -68,6 +75,7 @@
                 value="{{ $almacen->ubicacion }}"
                 type="text"
                 id="ubicacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -80,7 +88,8 @@
                     name="estado"
                     id="inactivo"
                     value="inactivo"
-                    {{ $almacen->estado == 'inactivo' ? 'checked' : '' }} >
+                    {{ $almacen->estado == 'inactivo' ? 'checked' : '' }}
+                />
                 Inactivo
             </label>
 
@@ -90,7 +99,8 @@
                     name="estado"
                     id="activo"
                     value="activo"
-                    {{ $almacen->estado == 'activo' ? 'checked' : '' }} >
+                    {{ $almacen->estado == 'activo' ? 'checked' : '' }}
+                />
                 Activo
             </label>
             

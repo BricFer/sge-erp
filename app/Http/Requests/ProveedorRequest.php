@@ -63,7 +63,8 @@ class ProveedorRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.required' => 'El nombre del cliente es obligatorio.',
+            'nombre_completo.required' => 'El nombre del cliente es obligatorio.',
+            'razon_social.required' => 'La razón social es obligatorioa.',
             'cif.required' => 'El CIF del cliente es obligatorio.',
             'cif.unique' => 'El CIF especificado ya se encuentra registrado.',
             'domicilio.required' => 'El domicilio fiscal del proveedor es obligatorio.',

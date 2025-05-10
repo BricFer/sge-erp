@@ -22,48 +22,93 @@
         @csrf
         <div class="flex flex-col gap-1 xl:w-[728px]">
             <label for="nombre_completo">Nombre proveedor:</label>
-            <input name="nombre_completo" type="text" class="form-control" id="nombre_completo">
+            <input
+                name="nombre_completo"
+                type="text"
+                id="nombre_completo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
             <input name="cod_proveedor" type="hidden" id="cod_proveedor" value="SUP-{{ date("Y") }}{{ $nextId }}">
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[532px]">
             <label for="razon_social">Razón Social:</label>
-            <input name="razon_social" type="text" id="razon_social">
+            <input
+                name="razon_social"
+                type="text"
+                id="razon_social"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
         
         <div class="flex flex-col gap-1 w-[432px]">
             <label for="cif">CIF</label>
-            <input name="cif" type="text" id="cif">
+            <input
+                name="cif"
+                type="text"
+                id="cif"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[828px]">
             <label for="domicilio">Domicilio:</label>
-            <input name="domicilio" type="text" id="domicilio">
+            <input
+                name="domicilio"
+                type="text"
+                id="domicilio"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[385px]">
             <label for="cod_postal">Codigo postal</label>
-            <input name="cod_postal" type="text" id="cod_postal">
+            <input
+                name="cod_postal"
+                type="text"
+                id="cod_postal"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[434px]">
             <label for="poblacion">Poblacion</label>
-            <input name="poblacion" type="text" id="poblacion">
+            <input
+                name="poblacion"
+                type="text"
+                id="poblacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[434px]">
             <label for="provincia">Provincia</label>
-            <input name="provincia" type="text" id="provincia">
+            <input
+                name="provincia"
+                type="text"
+                id="poblacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[412px]">
             <label for="telefono">Teléfono</label>
-            <input name="telefono" type="tel" id="telefono">
+            <input
+                name="telefono"
+                type="tel"
+                id="telefono"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 w-[845px]">
             <label for="correo">Correo</label>
-            <input name="correo" type="email" id="correo">
+            <input
+                name="correo"
+                type="email"
+                id="correo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         @include('layouts._partials.submit-cancel')

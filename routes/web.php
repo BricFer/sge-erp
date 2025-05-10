@@ -20,9 +20,16 @@ Route::middleware('auth')->group(function () {
         return view('home');
     })->name('home');
 
-    Route::get('/profile', [$imports['ProfileController'], 'show'])->name('profile.show');
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Profile
+    Route::prefix('profile')->name('profile.')->group(function () use ($imports) {
+        Route::get('/', [$imports['ProfileController'], 'show'])->name('show');
+    });
+    
+    // Password
+    Route::get('/password/editar', [PasswordChangeController::class, 'edit'])->name('password.editar');
+    Route::post('/password/actualizar', [PasswordChangeController::class, 'update'])->name('password.actualizar');
 
     // Almacenes
     Route::prefix('almacen')->name('almacen.')->group(function () use ($imports) {
@@ -40,10 +47,17 @@ Route::middleware('auth')->group(function () {
         Route::delete('/destroy/{almacen}', [$imports['AlmacenController'], 'destroy'])->name('destroy');
     });
     
-    // Clientes
-    Route::prefix('cliente')->name('cliente.')->group(function () use ($imports) {
-        Route::get('/', $imports['ListarClientes'])->name('home');
-        Route::get('/grid', $imports['ListarClientesGrid'])->name('grid');
+    // Rutas de clientes solo para verlos
+    Route::prefix('cliente')
+        ->middleware('sales_or_admin')
+        ->name('cliente.')
+        ->group(function () use ($imports) {
+            Route::get('/', $imports['ListarClientes'])->name('home');
+            Route::get('/grid', $imports['ListarClientesGrid'])->name('grid');
+    });
+
+    // Rutas para operar sobre los clientes (editar, eliminar)
+    Route::prefix('cliente')->middleware('sales_or_admin')->name('cliente.')->group(function () use ($imports) {
         Route::get('/mostrar/{cliente}', [$imports['ClienteController'], 'showClient'])->name('show');
         Route::get('/buscar', [$imports['ClienteController'], 'buscar'])->name('buscar');
         
@@ -57,7 +71,7 @@ Route::middleware('auth')->group(function () {
     });
     
     // Empleados
-    Route::prefix('empleado')->name('empleado.')->group(function () use ($imports) {
+    Route::prefix('empleado')->middleware('rrhh_or_admin')->name('empleado.')->group(function () use ($imports) {
         Route::get('/', $imports['ListarEmpleados'])->name('home');
         Route::get('/grid', $imports['ListarEmpleadosGrid'])->name('grid');
         Route::get('/mostrar/{empleado}', [$imports['EmpleadoController'], 'showEmployee'])->name('show');
@@ -72,30 +86,44 @@ Route::middleware('auth')->group(function () {
     });
     
     // Facturas
-    Route::prefix('factura')->name('factura.')->group(function () use ($imports) {
+    // Ventas
+    Route::prefix('factura')->middleware('sales_or_admin')->name('factura.')->group(function () use ($imports) {
         Route::get('/ventas', $imports['ListarFacturasVentas'])->name('ventas');
+        
+        Route::get('/ventas-grid', $imports['ListarFacturasGridVentas'])->name('ventasgrid');
+        
+        Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
+        
+        Route::get('/crearventa', [$imports['FacturaController'], 'createSales'])->name('crear.ventas');
+        
+        Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
+        Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
+    });
+    
+    // Compras
+    Route::prefix('factura')->name('factura.')->group(function () use ($imports) {
+        
         Route::get('/compras', $imports['ListarFacturasCompras'])->name('compras');
 
-        Route::get('/ventas-grid', $imports['ListarFacturasGridVentas'])->name('ventasgrid');
         Route::get('/compras-grid', $imports['ListarFacturasGridCompras'])->name('comprasgrid');
 
         Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
         
-        Route::get('/crearventa', [$imports['FacturaController'], 'createSales'])->name('crear.ventas');
         Route::get('/crearcompras', [$imports['FacturaController'], 'createPurchases'])->name('crear.compras');
         
         Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
         Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
     });
 
-    // Password
-    Route::get('/password/editar', [PasswordChangeController::class, 'edit'])->name('password.editar');
-    Route::post('/password/actualizar', [PasswordChangeController::class, 'update'])->name('password.actualizar');
-
     // Productos
-    Route::prefix('producto')->name('producto.')->group(function () use ($imports) {
+    // Acceso solo para ver
+    Route::prefix('producto')->middleware('sales_or_admin')->name('producto.')->group(function () use ($imports) {
         Route::get('/', $imports['ListarProductos'])->name('home');
         Route::get('/grid', $imports['ListarProductosGrid'])->name('grid');
+    });
+
+    // Rutas para operar sobre los clienttes (editar, eliminar)
+    Route::prefix('producto')->name('producto.')->group(function () use ($imports) {
         Route::get('/{producto}/almacenes', [$imports['ProductoController'], 'listarProducto'])->name('almacenes');
         
         Route::get('/crear', [$imports['ProductoController'], 'create'])->name('crear');

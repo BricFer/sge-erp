@@ -83,6 +83,8 @@
                         type="text"
                         id="serie"
                         class="w-full bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        value="{{ date("Y") }}/{{ $nextId }}"
+                        readonly
                     />
                 </div>
     
@@ -166,14 +168,14 @@
                             id="empleados"
                             class="w-[365px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                             onchange="autocompletarDatosEmpleados()"
-                            {{ in_array(( Auth::user()->empleado?->cargo ), $managers) || Auth::user()->isAdmin ? '' : 'disabled' }}
+                            {{ in_array(( Auth::user()->empleado?->cargo ), $managers) || Auth::user()->isAdmin ? '' : 'readonly' }}
                         >
                     
-                            <option class="font-bold bg-transparent" disabled>Seleccionar empleado</option>
+                            <option value="" class="font-bold text-black bg-transparent" disabled>Seleccionar empleado</option>
 
                             @foreach ($empleados as $empleado)
                                 <option
-                                    class="bg-transparent"
+                                    class="bg-transparent text-black"
                                     value="{{$empleado->id}}"
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
                                     data-info='@json($empleado)'

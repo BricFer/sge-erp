@@ -1,4 +1,4 @@
-<nav class="flex flex-col w-full my-6 block gap-6">
+<nav class="flex flex-col w-full my-6 gap-6">
     
     <div class="flex flex-row justify-between items-center gap-2 w-full">
         <a href="{{ route('home') }}">

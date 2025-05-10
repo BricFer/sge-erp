@@ -28,6 +28,7 @@
                 value="{{ $empleado->nombre_completo }}"
                 type="text"
                 id="nombre"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -39,6 +40,7 @@
                 value="{{ $empleado->dni_nif }}"
                 type="text"
                 id="dni_nif"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -50,6 +52,7 @@
                 value="{{ $empleado->telefono }}"
                 type="tel"
                 id="telefono"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -60,6 +63,7 @@
                 value="{{ $empleado->correo }}"
                 type="email"
                 id="correo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -71,6 +75,7 @@
                 value="{{ $empleado->cargo }}"
                 type="text"
                 id="cargo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>       
             
@@ -81,6 +86,7 @@
                 value="{{ $empleado->fecha_contratacion }}"
                 type="text"
                 id="fecha_contratacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -92,6 +98,7 @@
                 value="{{ ucfirst($empleado->estado) }}"
                 type="text"
                 id="estado"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 {{ $empleado->estado == 'despido' ? 'readonly' : ''}}
             />
         </div>
@@ -103,6 +110,7 @@
                 name="legajo"
                 value="{{ $empleado->legajo }}"
                 type="text"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>

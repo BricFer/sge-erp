@@ -10,7 +10,7 @@
             </a>
         </div>
     
-        <div class="flex flex-row gap-2 items-center w-full p-1 my-4 block h-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal md:w-[728px]">
+        <div class="flex flex-row gap-2 items-center w-full my-4 h-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal md:w-[728px]">
             <img
                 class="block"
                 src="{{ asset('assets/icons/search-icon.svg') }}"

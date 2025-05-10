@@ -17,21 +17,36 @@
         @csrf
         <div class="flex flex-col gap-1 xl:w-[768px]">
             <label for="nombre">Nombre/Alias:</label>
-            <input name="nombre" type="text" id="nombre">
+            <input
+                name="nombre"
+                type="text"
+                id="nombre"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[475px]">
             <label for="capacidad">Vol. del almacen:</label>
-            <input name="capacidad" type="text" id="capacidad">
+            <input
+                name="capacidad"
+                type="text"
+                id="capacidad"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[475px]">
             <label for="responsable_almacen">Responsable del almacen:</label>
-            <select name="responsable_almacen" type="text" id="responsable_almacen">
+            <select
+                name="responsable_almacen"
+                type="text"
+                id="responsable_almacen"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            >
             
-                <option class="font-bold" value="" disabled selected>Asignar responsable</option>
+                <option class="font-bold text-black" value="" disabled selected>Asignar responsable</option>
                 @foreach ($empleados as $empleado)
-                    <option value="{{ $empleado->id }}">{{ $empleado->nombre_completo }} - {{ $empleado->cargo }}</option>
+                    <option class="text-black" value="{{ $empleado->id }}">{{ $empleado->nombre_completo }} - {{ $empleado->cargo }}</option>
                 @endforeach
 
             </select>
@@ -39,7 +54,12 @@
 
         <div class="flex flex-col gap-1 xl:w-[768px]">
             <label>Ubicación:</label>
-            <input name="ubicacion" type="text">
+            <input
+                name="ubicacion"
+                type="text"
+                id="ubicacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
         </div>
 
         <div class="flex flex-col gap-4">

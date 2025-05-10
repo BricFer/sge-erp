@@ -13,9 +13,9 @@
             'gridUrl' => route('producto.grid')])
     </div>
     
-    <div class="max-w-7xl p-16 m-auto w-full flex flex-col justify-between gap-6">
+    <div class="m-auto w-full flex flex-col justify-between gap-6">
 
-        <div class="text-sm/7 w-full flex flex-col gap-2 rounded-2xl shadow-lg shadow-indigo-500/50 p-4">
+        <div class="flex flex-col gap-2 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
             <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $producto -> nombre }}</h2>
         
             <p>
@@ -50,12 +50,12 @@
 
         </div>
 
-        <div class="rounded-2xl shadow-lg shadow-indigo-500/50 p-4 pb-4 relative">
+        <div class="w-full p-4 pb-4 relative">
             @if($producto->almacenes->isEmpty())
                 <p>No hay registros</p>
             @else
                 
-                <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap bg-indigo-600 text-white p-4 items-center font-bold absolute top-0 right-0 left-0 rounded-t-2xl">
+                <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap bg-indigo-600 text-white p-4 items-center font-bold absolute top-0 right-0 left-0">
                     <p class="w-[175px]">Nombre</p>
                     <p class="w-[215px]">Responsable</p>
                     <p class="w-[315px]">Ubicación</p>
@@ -72,7 +72,7 @@
                         <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
                             <p class="w-[175px] text-wrap">{{ $almacen-> nombre }}</p>
         
-                            <p class="w-[215px]">{{ $almacen->empleado ? $almacen->empleado->nombre : 'Sin responsable' }}</p>
+                            <p class="w-[215px]">{{ $almacen->empleado ? $almacen->empleado->nombre_completo : 'Sin responsable' }}</p>
         
                             <p class="w-[315px] text-wrap">{{ $almacen-> ubicacion }}</p>
                             

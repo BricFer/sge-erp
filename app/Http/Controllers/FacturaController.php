@@ -118,7 +118,7 @@ class FacturaController extends Controller
             
         });
 
-        return redirect()->back()->with('success', 'Factura emitida correctamente');
+        return redirect()->route('factura.compras')->with('success', 'Factura emitida correctamente');
     }
 
     /*

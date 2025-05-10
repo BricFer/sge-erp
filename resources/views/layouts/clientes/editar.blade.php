@@ -21,96 +21,105 @@
     >
         @method('PUT')
         @csrf
-        <div class="flex flex-col gap-1 lg:w-[628px]">
+        <div class="flex flex-col gap-1 lg:w-[428px]">
             <label for="nombre_completo">Nombre del cliente</label>
             <input
                 name="nombre_completo"
                 value="{{ $cliente->nombre_completo }}"
                 type="text"
                 id="nombre_completo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-[628px]">
-            <label>Razon social</label>
+        <div class="flex flex-col gap-1 lg:w-[428px]">
+            <label for="razon_social">Razón social</label>
             <input
                 name="razon_social"
                 value="{{ $cliente->razon_social }}"
                 type="text"
                 id="razon_social"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
 
-        <div class="flex flex-col gap-1">
-            <label>NIF</label>
+        <div class="flex flex-col gap-1 lg:w-[398px]">
+            <label for="nif">NIF</label>
             <input
                 name="nif"
                 value="{{ $cliente->nif }}"
                 type="text"
                 id="nif"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-2/3">
-            <label>Domicilio:</label>
+        <div class="flex flex-col gap-1 lg:w-[475px]">
+            <label for="domicilio">Domicilio</label>
             <input
                 name="domicilio"
                 value="{{ $cliente->domicilio }}"
                 type="text"
                 id="domicilio"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
-        <div class="flex flex-col gap-1">
-            <label>Codigo postal</label>
+        <div class="flex flex-col gap-1 lg:w-[146px]">
+            <label for="cod_postal">Codigo postal</label>
             <input
                 name="cod_postal"
                 value="{{ $cliente->cod_postal }}"
                 type="text"
                 id="cod_postal"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-1/3">
-            <label>Poblacion</label>
+        <div class="flex flex-col gap-1 lg:w-[306px]">
+            <label for="poblacion">Poblacion</label>
             <input
                 name="poblacion"
                 value="{{ $cliente->poblacion }}"
                 type="text"
                 id="poblacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-1/3">
-            <label>Provincia</label>
+        <div class="flex flex-col gap-1 lg:w-[316px]">
+            <label for="provincia">Provincia</label>
             <input
                 name="provincia"
                 value="{{ $cliente->provincia }}"
                 type="text"
                 id="provincia"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
-        <div class="flex flex-col gap-1 lg:w-[412px]">
-            <label>Teléfono</label>
+        <div class="flex flex-col gap-1 lg:w-[296px]">
+            <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
                 value="{{ $cliente->telefono }}"
                 type="tel"
                 id="telefono"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
-        <div class="flex flex-col gap-1 w-full">
-            <label>Correo</label>
+        <div class="flex flex-col gap-1 lg:w-[956px]">
+            <label for="correo">Correo</label>
             <input
                 name="correo"
                 value="{{ $cliente->correo }}"
                 type="email"
                 id="correo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 

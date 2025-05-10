@@ -69,7 +69,9 @@ class EmpleadoController extends Controller
     
     public function showEmployee(Empleado $empleado):View
     {
-        return view('layouts.empleados.empleado', compact('empleado'));
+        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
+
+        return view('layouts.empleados.empleado', compact(['empleado', 'managers']));
     }
 
     public function listarFacturas(Empleado $empleado): View

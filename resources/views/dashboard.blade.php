@@ -13,7 +13,7 @@
         @livewireStyles
         @vite(['resources/css/app.css'])
     </head>
-    <body class="relative p-1 bg-[#FDFDFC]/90 dark:bg-[#0a0a0a]/90 text-[#1b1b18] flex flex-col text-white">
+    <body class="relative p-1 bg-[#FDFDFC]/90 dark:bg-[#0a0a0a]/90 flex flex-col text-white">
         
             @yield('content')
 

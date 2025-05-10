@@ -28,6 +28,7 @@
                 value="{{ $proveedor->nombre_completo }}"
                 type="text"
                 id="nombre_completo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -39,6 +40,7 @@
                 type="text"
                 id="razon_social"
                 value="{{ $proveedor->razon_social }}"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -50,6 +52,7 @@
                 value="{{ $proveedor->cif }}"
                 type="text"
                 id="cif"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
@@ -61,6 +64,7 @@
                 name="domicilio"
                 type="text"
                 id="domicilio"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -71,6 +75,7 @@
                 value="{{ $proveedor->cod_postal }}"
                 type="text"
                 id="cod_postal"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -81,6 +86,7 @@
                 value="{{ $proveedor->poblacion }}"
                 type="text"
                 id="poblacion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -91,6 +97,7 @@
                 value="{{ $proveedor->provincia }}"
                 type="text"
                 id="provincia"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -101,6 +108,7 @@
                 value="{{ $proveedor->telefono }}"
                 type="tel"
                 id="telefono"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
@@ -111,6 +119,7 @@
                 value="{{ $proveedor->correo }}"
                 type="email"
                 id="correo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 

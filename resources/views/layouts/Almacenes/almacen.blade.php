@@ -107,8 +107,8 @@
                             <input
                                 type="text"
                                 name="stock"
-                                class="w-[75px] bg-transparent border-white"
                                 value="{{ $producto->pivot->stock }}"
+                                class="w-[75px] dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                             />
 
                             <input type="image" src="{{ asset('assets/icons/confirm-icon.svg') }}">

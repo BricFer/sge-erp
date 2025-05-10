@@ -29,48 +29,53 @@
                 value="{{ $producto->nombre }}"
                 type="text"
                 id="nombre"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
 
         <div class="flex flex-col gap-1 lg:w-[415px]">
-            <label>Precio de compra:</label>
+            <label for="precio_compra">Precio de compra:</label>
             <input
                 name="precio_compra"
                 value="{{ $producto->precio_compra }}"
                 type="text"
                 id="precio_compra"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[415px]">
-            <label>Precio de venta</label>
+            <label for="precio_venta">Precio de venta</label>
             <input
                 name="precio_venta"
                 value="{{ $producto->precio_venta }}"
                 type="text"
                 id="precio_venta"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[415px]">
-            <label>IVA</label>
+            <label for="iva">IVA (%)</label>
             <input
                 name="iva"
                 value="{{ $producto->iva }}"
                 type="text"
                 id="iva"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
         <div class="flex flex-col gap-1 xl:w-full">
-            <label>Descripcion:</label>
+            <label for="descripcion">Descripcion:</label>
             <input
                 name="descripcion"
                 value="{{ $producto->descripcion }}"
                 type="text"
                 id="descripcion"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 
