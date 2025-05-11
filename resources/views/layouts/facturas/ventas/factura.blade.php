@@ -1,9 +1,9 @@
-@section('title', 'ERP | Factura')
+@section('title', 'ERP | Factura Ventas')
 
 @extends('dashboard')
 
 @section('content')
-    <div>
+    <div class="border-b-solid border-b-2 border-b-indigo-600/25 mb-16">
         @include('layouts._partials.messages')
         
         @include('layouts._partials.nav-bar', ['backUrl' => route('factura.ventas')])
@@ -36,24 +36,37 @@
                 <div class="w-full">
                     <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase">Datos factura</h2>
                     
-                    <div class="w-full flex items-center gap-4">
-                        <p>
-                            <strong>Fecha emisión: </strong>
-                            {{$factura->fecha_emision}}
-                        </p>
+                    <div class="w-full flex gap-6 justify-content">
 
-                        <p>
-                            <strong>Serie: </strong>
-                            {{$factura->serie}}
-                        </p>
-                        <p>
-                            <strong>Descuento: </strong>
-                            {{ $factura->porcentaje_descuento}}%
-                        </p>
-                        <p>
-                            <strong>Estado: </strong>
-                            {{ ucfirst($factura->estado) }}
-                        </p>
+                        <div class="w-[50%]">
+                            <p>
+                                <strong>Serie: </strong>
+                                {{$factura->serie}}
+                            </p>
+                            <p>
+                                <strong>Total: </strong>
+                                {{ $factura->monto_total}}€
+                            </p>
+                            <p>
+                                <strong>Descuento: </strong>
+                                {{ $factura->porcentaje_descuento}}%
+                            </p>
+                            <p>
+                                <strong>Estado: </strong>
+                                {{ ucfirst($factura->estado) }}
+                            </p>
+                        </div>
+
+                        <div class="w-[50%]">
+                            <p>
+                                <strong>Fecha emisión: </strong>
+                                {{$factura->fecha_emision}}
+                            </p>
+                            <p>
+                                <strong>Almacén origen: </strong>
+                                {{ $factura->almacen->ubicacion}}
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -69,8 +82,6 @@
                             <p>
                                 @if( $esCliente )
                                     <strong>Cliente: </strong>
-                                @else
-                                    <strong>Emitida por: </strong> 
                                 @endif
     
                                 {{$factura->facturable->nombre_completo}}
@@ -81,7 +92,7 @@
                                 @if( $esCliente )
                                     {{ $factura->facturable->nif }}
                                 @else
-                                {{ $factura->facturable->cif }}
+                                    No aplica
                                 @endif
                             </p>
                             
@@ -127,8 +138,6 @@
                             <p>
                                 @if( $esCliente ) 
                                     <strong>Emitida por: </strong>
-                                @else
-                                    <strong>Recepcionada por: </strong>
                                 @endif
                                 {{ $factura->empleado->nombre_completo }}
                             </p>
@@ -175,23 +184,18 @@
 
                 <div class="flex flex-col w-[175px] justify-end ml-auto gap-2">
                     
-                        <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
-                            <strong>Subtotal </strong>
-                            {{ $factura->monto_subtotal}}€
-                        </p>
-                        <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
-                            <strong>Descuento </strong>
-                            {{ $factura->monto_descuento}}€
-                        </p>
-                        <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
-                            <strong>IVA </strong>
-                            {{ $factura->monto_iva}}€
-                        </p>
-                        <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
-                            <strong>Total </strong>
-                            {{ $factura->monto_total}}€
-                        </p>
-        
+                    <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
+                        <strong>Subtotal </strong>
+                        {{ $factura->monto_subtotal}}€
+                    </p>
+                    <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
+                        <strong>Descuento </strong>
+                        {{ $factura->monto_descuento}}€
+                    </p>
+                    <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
+                        <strong>IVA </strong>
+                        {{ $factura->monto_iva}}€
+                    </p>        
                 </div>
 
             </div>

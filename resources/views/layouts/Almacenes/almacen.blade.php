@@ -49,9 +49,8 @@
                     <a class="block" href="{{ route('almacen.edit', ['almacen' => $almacen->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
-                    {{-- TODO: Cambiar la ruta para que al clicar me genere el inventario --}}
                     <a
-                        href="{{ url()->previous() }}"
+                        href="{{ route('almacen.inventario', $almacen->id) }}"
                         class="block w-[24px] h-[24px]"
                     >
                         <img class="block w-full" src="{{ asset('assets/icons/stock.svg') }}" alt="stock button">

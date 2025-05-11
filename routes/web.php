@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
         ->group(function () use ($imports) {
             Route::get('/{almacen}/productos', [$imports['AlmacenController'], 'listarAlmacen'])->name('productos');
             
+            Route::get('/inventario/{almacen}/productos', [$imports['AlmacenController'], 'listarInventario'])->name('inventario');
+            
             Route::get('/crear', [$imports['AlmacenController'], 'create'])->name('crear');
             Route::post('/guardar', [$imports['AlmacenController'], 'store'])->name('store');
             
@@ -56,6 +58,8 @@ Route::middleware('auth')->group(function () {
             Route::put('/{almacen}/productos/{producto}', [$imports['AlmacenController'], 'actualizarStock'])->name('stock');
             
             Route::delete('/destroy/{almacen}', [$imports['AlmacenController'], 'destroy'])->name('destroy');
+
+            Route::get('/{almacen}/pdf', [$imports['AlmacenController'], 'generarPDF'])->name('pdf');
     });
     
     // Clientes
@@ -121,7 +125,7 @@ Route::middleware('auth')->group(function () {
         ->name('factura.')
         ->group(function () use ($imports) {
         
-            Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');
+            Route::get('/ventas/{factura}/productos', [$imports['FacturaController'], 'show'])->name('ventas.productos');
             
             Route::get('/crearventa', [$imports['FacturaController'], 'createSales'])->name('crear.ventas');
             
@@ -146,7 +150,7 @@ Route::middleware('auth')->group(function () {
         ->name('factura.')
         ->group(function () use ($imports) {
         
-            Route::get('/{factura}/productos', [$imports['FacturaController'], 'show'])->name('productos');    
+            Route::get('/compras/{factura}/productos', [$imports['FacturaController'], 'show'])->name('compras.productos');    
             Route::get('/crearcompras', [$imports['FacturaController'], 'createPurchases'])->name('crear.compras');
             Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
             Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');

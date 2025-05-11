@@ -33,6 +33,14 @@
             />
         </div>
 
+        <input
+            type="hidden"
+            name="cod_cliente"
+            id="cod_cliente"
+            value="{{ $cliente->cod_cliente }}"
+            readonly
+        />
+        
         <div class="flex flex-col gap-1 lg:w-[428px]">
             <label for="razon_social">Razón social</label>
             <input

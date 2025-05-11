@@ -1,9 +1,9 @@
-@section('title', 'ERP | Factura')
+@section('title', 'ERP | Factura Compras')
 
 @extends('dashboard')
 
 @section('content')
-    <div>
+    <div class="border-b-solid border-b-2 border-b-indigo-600/25 mb-16">
         @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('factura.compras')])
@@ -17,7 +17,7 @@
     <div class="max-w-7xl h-screen p-16 m-auto w-full">
 
         @php
-            $esCliente = str_contains($factura->facturable_type, 'Proveedor');
+            $esProveedor = str_contains($factura->facturable_type, 'Proveedor');
         @endphp
 
         <div class="flex flex-col gap-2 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
@@ -34,32 +34,47 @@
             <div class="w-full p-6 flex flex-col gap-8">
 
                 <div class="w-full">
-                    <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase text-black/70">Datos factura</h2>
+                    <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase">Datos factura</h2>
                     
-                    <div class="w-full flex items-center gap-4">
-                        <p>
-                            <strong>Fecha emisión: </strong>
-                            {{$factura->fecha_emision}}
-                        </p>
+                    <div class="w-full flex gap-6 justify-content">
 
-                        <p>
-                            <strong>Serie: </strong>
-                            {{$factura->serie}}
-                        </p>
-                        <p>
-                            <strong>Descuento: </strong>
-                            {{ $factura->porcentaje_descuento}}%
-                        </p>
-                        <p>
-                            <strong>Estado: </strong>
-                            {{ ucfirst($factura->estado) }}
-                        </p>
+                        <div class="w-[50%]">
+                            <p>
+                                <strong>Serie: </strong>
+                                {{$factura->serie}}
+                            </p>
+                            <p>
+                                <strong>Total: </strong>
+                                {{ $factura->monto_total}}€
+                            </p>
+                            <p>
+                                <strong>Descuento: </strong>
+                                {{ $factura->porcentaje_descuento}}%
+                            </p>
+                            <p>
+                                <strong>Estado: </strong>
+                                {{ ucfirst($factura->estado) }}
+                            </p>
+                        </div>
+
+                        <div class="w-[50%]">
+                            <p>
+                                <strong>Fecha emisión: </strong>
+                                {{$factura->fecha_emision}}
+                            </p>
+                            <p>
+                                <strong>Almacén destino: </strong>
+                                {{ $factura->almacen->ubicacion}}
+                            </p>
+                            
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="w-full flex gap-6 justify-content">
                     <div class="w-[50%]">
-                        <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase text-black/70">Datos Cliente</h2>
+                        <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase">Datos Proveedor</h2>
         
                         <div class="flex flex-col gap-1">
                             <p>
@@ -67,10 +82,8 @@
                                 {{$factura->facturable_id}}
                             </p>
                             <p>
-                                @if( $esCliente )
-                                    <strong>Cliente: </strong>
-                                @else
-                                    <strong>Emitida por: </strong> 
+                                @if( $esProveedor )
+                                    <strong>Emitida por: </strong>
                                 @endif
     
                                 {{$factura->facturable->nombre_completo}}
@@ -78,10 +91,10 @@
     
                             <p>
                                 <strong>ID legal: </strong>
-                                @if( $esCliente )
-                                    {{ $factura->facturable->nif }}
+                                @if( $esProveedor )
+                                    {{ $factura->facturable->cif }}
                                 @else
-                                {{ $factura->facturable->cif }}
+                                    No aplica
                                 @endif
                             </p>
                             
@@ -115,7 +128,7 @@
                     </div>
 
                     <div class="w-[50%]">
-                        <h2 class="border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase text-black/70">Datos empleado</h2>
+                        <h2 class="border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase">Datos empleado</h2>
     
                         <div class="flex flex-col gap-1">
 
@@ -125,9 +138,7 @@
                             </p>
 
                             <p>
-                                @if( $esCliente ) 
-                                    <strong>Emitida por: </strong>
-                                @else
+                                @if( $esProveedor ) 
                                     <strong>Recepcionada por: </strong>
                                 @endif
                                 {{ $factura->empleado->nombre_completo }}
@@ -144,7 +155,7 @@
                 </div>
 
                 <div class="w-full flex flex-col gap-2">
-                    <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 text-lg font-bold uppercase text-black/70">Detalles</h2>
+                    <h2 class="w-full border-b-solid border-b-2 border-b-indigo-600/30 text-lg font-bold uppercase">Detalles</h2>
 
                     <div class="w-full flex flex-row gap-1 justify-between items-center font-bold border-b-solid border-b-2 border-b-indigo-600/30 pb-2">
                         <p class="w-[50px]">#</p>
@@ -186,10 +197,6 @@
                         <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
                             <strong>IVA </strong>
                             {{ $factura->monto_iva}}€
-                        </p>
-                        <p class="flex flex-row gap-6 justify-between border-b-solid border-b-2 border-b-indigo-600/30">
-                            <strong>Total </strong>
-                            {{ $factura->monto_total}}€
                         </p>
         
                 </div>

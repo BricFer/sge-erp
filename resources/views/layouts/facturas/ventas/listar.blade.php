@@ -47,7 +47,7 @@
 
                 <div class="flex flex-row items-center gap-2">
 
-                    <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
+                    <a class="block" href="{{ route('factura.ventas.productos', ['factura' => $factura->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                     </a>
         

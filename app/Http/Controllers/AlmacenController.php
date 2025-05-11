@@ -6,6 +6,9 @@ use App\Models\Almacen;
 use App\Models\Empleado;
 use App\Models\Producto;
 
+// Esta es la libería que utilizo para poder crear el pdf
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Http\Requests\AlmacenRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -78,5 +81,23 @@ class AlmacenController extends Controller
         $almacen->load('productos');
 
         return view('layouts.almacenes.almacen', compact('almacen'));
+    }
+
+    public function listarInventario(Almacen $almacen):View
+    {
+        $almacen->load('productos');
+        $downloadUrl = route('almacen.pdf', ['almacen' => $almacen->id]);
+
+        return view('layouts.almacenes.ajuste-almacen', compact('almacen', 'downloadUrl'));
+    }
+
+    public function generarPDF(Almacen $almacen)
+    {
+        // Carga la relación de los productos
+        $almacen->load('productos');
+
+        $pdf = Pdf::loadView('layouts.almacenes.pdf', compact('almacen'));
+
+        return $pdf->stream("inventario-almacen-{$almacen->id}.pdf");
     }
 }

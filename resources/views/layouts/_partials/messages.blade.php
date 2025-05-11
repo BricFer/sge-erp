@@ -67,7 +67,7 @@
                 alt="warning icon"
                 class="block"
             >
-            <p class="font-bold">Existen {{ $errors->count() }} al intentar crear el cliente:</p>
+            <p class="font-bold">Existe(n) {{ $errors->count() }} error(es) al intentar crear el cliente:</p>
         </div>
 
         <ul class="list-disc list-inside p-2">

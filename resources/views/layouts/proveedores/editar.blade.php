@@ -33,6 +33,13 @@
             />
         </div>
 
+        <input
+            type="hidden"
+            name="cod_proveedor"
+            id="cod_proveedor"
+            value="{{ $proveedor->cod_proveedor }}"
+        />
+
         <div class="flex flex-col gap-1 xl:w-[532px]">
             <label for="razon_social">Razón Social:</label>
             <input

@@ -219,6 +219,12 @@ class FacturaController extends Controller
     
     public function show(Factura $factura):View
     {
-        return view('layouts.facturas.ventas.factura', compact('factura'));
+        if( str_contains( $factura->facturable_type, 'Cliente') ) {
+
+            return view('layouts.facturas.ventas.factura', compact('factura'));
+        } else {
+            
+            return view('layouts.facturas.compras.factura', compact('factura'));
+        }
     }
 }
