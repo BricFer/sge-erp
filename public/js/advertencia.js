@@ -23,8 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 
-    btnCancelar.addEventListener('click', () => {
+    const cerrarVentanaAdvertencia = () => {
         contenedor.classList.add('hidden');
         view.style.overflow = "auto";
+    };
+
+    btnCancelar.addEventListener('click', cerrarVentanaAdvertencia);
+
+    // Escuchar pulsación de tecla para que se cierre la ventana de advertencia
+    document.addEventListener('keydown', (event) => {
+
+        if (!contenedor.classList.contains('hidden') && event.key === 'Enter') {
+            event.preventDefault(); // evita que se envíe un formulario por error
+            cerrarVentanaAdvertencia();
+        }
     });
+
 })

@@ -30,7 +30,7 @@ class ClienteRequest extends FormRequest
             'cod_cliente' => [
                 'required',
                 'string',
-                Rule::unique(Cliente::class)->ignore($idCliente),
+                Rule::unique(Cliente::class)->ignore($clienteId),
             ],
             'nombre_completo' => ['required', 'string', 'min:3', 'max:255'],
             'nif' => [

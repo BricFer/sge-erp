@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+        @include('layouts._partials.messages')
 
         @include('layouts._partials.nav-bar', ['backUrl' => route('producto.home')])
 
@@ -55,7 +56,7 @@
                 <p>No hay registros</p>
             @else
                 
-                <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap bg-indigo-600 text-white p-4 items-center font-bold absolute top-0 right-0 left-0">
+                <div class="flex flex-row flex-wrap gap-6 text-nowrap bg-indigo-600 text-white p-4 items-center font-bold absolute top-0 right-0 left-0">
                     <p class="w-[175px]">Nombre</p>
                     <p class="w-[215px]">Responsable</p>
                     <p class="w-[315px]">Ubicación</p>

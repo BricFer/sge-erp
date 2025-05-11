@@ -20,7 +20,7 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            'cod_cliente' => $this->faker->bothify('CLI-####'),
+            'cod_cliente' => $this->faker->unique()->bothify('CLI-####'),
             'nombre_completo' => $this->faker->name(),
             'nif' => $this->faker->unique()->regexify('[0-9]{8}[A-Z]'),
             'razon_social' => $this->faker->name(),

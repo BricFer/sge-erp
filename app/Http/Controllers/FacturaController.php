@@ -118,7 +118,12 @@ class FacturaController extends Controller
             
         });
 
-        return redirect()->route('factura.compras')->with('success', 'Factura emitida correctamente');
+        if (str_contains($request->facturable_type, 'Cliente')) {
+
+            return redirect()->route('factura.ventas')->with('success', 'Factura emitida correctamente');
+        }
+
+        return redirect()->route('factura.compras')->with('success', 'Factura registrada correctamente');
     }
 
     /*
@@ -209,7 +214,7 @@ class FacturaController extends Controller
             $factura->delete();
         });
 
-        return redirect()->route('factura.home')->with('danger','Factura eliminada correctamente');
+        return redirect()->back()->with('danger','Factura eliminada correctamente');
     }
     
     public function show(Factura $factura):View

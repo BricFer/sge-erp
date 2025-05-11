@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="border-b-solid border-b-2 border-b-indigo-600/25 mb-16">
-        @include('layouts._partials.messages')
 
+        @include('layouts._partials.messages')
+        
         @include('layouts._partials.nav-bar', ['backUrl' => route('factura.ventas')])
     </div>
 
@@ -143,7 +144,7 @@
                                     value="{{ $almacen->id }}"
                                     data-info='@json($almacen)'
                                 >
-                                    {{ $almacen->nombre }} - {{ $almacen->estado }}
+                                    {{ $almacen->nombre }}
                                 </option>
                             @endif
                             

@@ -16,6 +16,8 @@
     </head>
     <body class="relative text-white p-1 bg-[#FDFDFC]/95 dark:bg-[#0a0a0a]/95 flex flex-col">
         
+        @include('layouts._partials.messages')
+        
         <nav class="flex flex-row justify-between items-center w-full p-4">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo image" class="block rounded-[50%] w-[55px]">
             

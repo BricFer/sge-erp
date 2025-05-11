@@ -1,6 +1,5 @@
 <?php
 
-// Con este middleware manejo el acceso a los empleados y sus diferentes vistas, por lo que si no se es de RRHH o Admin no podrá acceder a los empleados, datos y acciones asociadas
 namespace App\Http\Middleware;
 
 use Closure;
@@ -8,15 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckRRHHAdmin
+class CheckAdmin
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
     public function handle(Request $request, Closure $next): Response
     {
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
-        // Se evalua si el usuario existe y si pertenece al depto. RRHH o es Admin
-        if ($user && ($user->empleado->departamento === 'RRHH' || $user->isAdmin)) {
+        // Se evalua si el usuario existe y si es Admin
+        if ($user && $user->isAdmin) {
             return $next($request);
         }
 
