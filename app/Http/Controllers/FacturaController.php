@@ -227,4 +227,13 @@ class FacturaController extends Controller
             return view('layouts.facturas.compras.factura', compact('factura'));
         }
     }
+
+    // TODO: Generar PDF factura
+    public function generarPDF(Factura $factura) {
+        $factura->load('');
+
+        $pdf = Pdf::loadView('layouts.facturas.pdf', compact('factura'));
+
+        return $pdf->stream("factura-{$factura->id}.pdf");
+    }
 }

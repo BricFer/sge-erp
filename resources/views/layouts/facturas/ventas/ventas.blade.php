@@ -263,7 +263,7 @@
     
                 <input
                     type="text"
-                    placeholder="P.C"
+                    placeholder="P.V"
                     name="precio[]"
                     class="precio_venta w-[75px] border-none p-0 bg-transparent"
                 />

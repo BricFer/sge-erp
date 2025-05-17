@@ -15,7 +15,7 @@
     </div>
     
     <div class="text-sm/7 w-full flex flex-col">
-        <div class="container">
+        <div class="w-full">
 
             <div class="flex flex-col gap-4 mb-4 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/50">
                 <div class="flex flex-col gap-4">

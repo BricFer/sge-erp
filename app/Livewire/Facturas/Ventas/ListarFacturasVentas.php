@@ -12,7 +12,30 @@ class ListarFacturasVentas extends Component
     public function render()
     {
         $type = 'Cliente';
-        $facturas = $this->buscar ? Factura::where('serie', 'LIKE', '%'.$this->buscar.'%')->orWhere('fecha_emision', 'LIKE', '%'.$this->buscar.'%')->get() : Factura::where('facturable_type', 'LIKE', '%'.$type)->get();
+
+        /*
+        Consideraciones
+            Este método funciona bien si no se tienen miles de facturas, ya que todo se filtra en PHP después de cargar los datos.
+            Laravel no puede hacer joins sobre relaciones polimórficas, por lo tanto no se puede hacer directamente un whereHas('facturable', ...) sin usar una solución más compleja o cambiar el diseño.
+        */
+        
+        // Traer todas las facturas con su relación
+        $facturas = Factura::with('facturable')
+            ->where('facturable_type', 'LIKE', '%'.$type.'%')
+            ->get();
+
+        // Filtrar en memoria por el campo relacionado
+        if ($this->buscar) {
+            $buscar = strtolower($this->buscar);
+
+            $facturas = $facturas->filter(function ($factura) use ($buscar) {
+                $cliente = $factura->facturable;
+
+                return str_contains(strtolower($factura->serie), $buscar)
+                    || str_contains(strtolower($factura->fecha_emision), $buscar)
+                    || ($cliente && str_contains(strtolower($cliente->nombre_completo), $buscar));
+            });
+        }
 
         return view('layouts.facturas.ventas.listar', compact(['facturas']))
             ->extends('dashboard')

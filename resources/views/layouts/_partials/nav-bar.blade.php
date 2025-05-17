@@ -26,6 +26,7 @@
         <a href="{{ $backUrl ?? route('home') }}" class="inline-block">
             <img class="block" src="{{ asset('assets/icons/left-icon.svg') }}" alt="left icon">
         </a>
+        
         <a href="{{ route('cliente.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Clientes</a>
 
         <a href="{{ route('proveedor.home') }}" class="inline-block border-b-solid border-b-2 border-transparent hover:text-indigo-600 hover:border-b-solid hover:border-b-2 hover:border-b-indigo-600/50">Proveedores</a>

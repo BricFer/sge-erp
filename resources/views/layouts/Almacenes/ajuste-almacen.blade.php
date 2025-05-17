@@ -6,8 +6,7 @@
     @include('layouts._partials.messages')
 
     @include('layouts._partials.nav-bar', [
-        'backUrl' => route('almacen.home'),
-        'downloadUrl',
+        'backUrl' => route('almacen.home')
         ])
 
     @include('layouts._partials.buscar', [
@@ -18,7 +17,7 @@
 
 <div class="text-sm/7 w-full flex flex-col">
     
-    <div class="container">
+    <div class="w-full">
         
         @section('campo2', 'P. Compra')
         @section('campo3', 'SKU')
@@ -48,7 +47,7 @@
             
             @endphp
 
-            <div class="flex flex-row px-4 py-2 text-nowrap items-center gap-6">
+            <div class="w-full flex flex-row px-4 py-2 text-nowrap items-center gap-6">
                 <p class="w-[175px]">{{ $producto->nombre }}</p>
                 <p class="w-[95px]"></p>
 
@@ -79,5 +78,12 @@
 
     </div>
 
-    @include('layouts._partials.regresar')
+    <div class="flex gap-4">
+
+        @include('layouts._partials.regresar')
+
+        @include('layouts._partials.descargar', [
+            'downloadUrl'
+        ])
+    </div>
 </div>

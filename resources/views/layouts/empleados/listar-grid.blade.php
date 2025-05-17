@@ -10,7 +10,7 @@
             'gridUrl' => route('empleado.grid')])
     </div>
 
-    <div class="w-full flex flex-row flex-wrap gap-4 p-2">
+    <div class="w-full flex flex-row flex-wrap gap-4 p-2 justify-center">
 
         @forelse ($empleados as $empleado)
 

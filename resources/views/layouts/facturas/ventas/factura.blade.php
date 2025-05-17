@@ -202,7 +202,11 @@
             
         </div>
 
-        @include('layouts._partials.regresar')
+        <div class="flex gap-4">
+
+            @include('layouts._partials.regresar')
+            @include('layouts._partials.descargar', ['downloadUrl'])
+        </div>
             
     </div>
         
