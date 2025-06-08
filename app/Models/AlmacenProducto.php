@@ -17,7 +17,6 @@ class AlmacenProducto extends Model
     protected $fillable = [
         'id_producto',
         'id_almacen',
-        'id_empleado',
         'stock',
     ];
 

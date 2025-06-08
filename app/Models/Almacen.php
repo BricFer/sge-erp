@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Almacen;
 use App\Models\Empleado;
+use App\Models\Factura;
 use App\Models\Producto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,13 +27,14 @@ class Almacen extends Model
                     ->withPivot('stock');
     }
 
-    public function empleados(): BelongsTo
+    public function empleado(): BelongsTo
     {
         return $this->belongsTo(Empleado::class, 'id_empleado');
     }
 
+    // Relación entre las facturas entran/salen y el almacen
     public function facturas(): HasMany
     {
-        return $this->hasMany(Almacen::class, 'id_almacen');
+        return $this->hasMany(Factura::class, 'id_almacen');
     }
 }

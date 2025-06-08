@@ -6,8 +6,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('factura.crear.ventas'),
-            'listUrl' => route('factura.ventas'),
-            'gridUrl' => route('factura.ventasgrid')])
+            'listUrl' => route('factura.ventaslista'),
+            'gridUrl' => route('factura.ventas')])
     </div>
 
     <div class="w-full flex flex-row flex-wrap gap-4 p-2 justify-center">

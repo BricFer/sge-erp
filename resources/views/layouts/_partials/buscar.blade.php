@@ -30,7 +30,7 @@
                 <a class="block w-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal" href="#">
                     <img class="block w-[32px]" src="{{ asset('assets/icons/char-icon.svg') }}" alt="char icon">
                 </a>
-                <a class="block w-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal" href="{{ $listUrl ?? route('home') }}">
+                <a class="block w-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal" href="{{ $listUrl ?? route('lista') }}">
                     <img class="block w-[32px]" src="{{ asset('assets/icons/list-icon.svg') }}" alt="list icon">
                 </a>
                 <a class="block w-[42px] p-1 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal" href="{{ $gridUrl ?? route('home') }}">

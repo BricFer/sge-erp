@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
+            'listUrl' => route('almacen.lista'),
+            'gridUrl' => route('almacen.home')])
     </div>
 
     <form

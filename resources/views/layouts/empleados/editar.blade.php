@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('empleado.crear'),
-            'listUrl' => route('empleado.home'),
-            'gridUrl' => route('empleado.grid')])
+            'listUrl' => route('empleado.lista'),
+            'gridUrl' => route('empleado.home')])
     </div>
     
     <form
@@ -99,7 +99,7 @@
                 type="text"
                 id="estado"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
-                {{ $empleado->estado == 'despido' ? 'readonly' : ''}}
+                {{ $empleado->estado == 'despido' ? 'readonly' : '' }}
             />
         </div>
         

@@ -37,8 +37,8 @@ Route::middleware('auth')->group(function () {
         ->middleware('warehouse')
         ->name('almacen.')
         ->group(function () use ($imports) {
-            Route::get('/', $imports['ListarAlmacenes'])->name('home');
-            Route::get('/grid', $imports['ListarAlmacenesGrid'])->name('grid');
+            Route::get('/', $imports['ListarAlmacenesGrid'])->name('home');
+            Route::get('/lista', $imports['ListarAlmacenes'])->name('lista');
     });
 
     // Rutas para realizar operaciones sobre los almacenes (crear, editar, eliminar)
@@ -68,8 +68,8 @@ Route::middleware('auth')->group(function () {
         ->middleware('sales')
         ->name('cliente.')
         ->group(function () use ($imports) {
-            Route::get('/', $imports['ListarClientes'])->name('home');
-            Route::get('/grid', $imports['ListarClientesGrid'])->name('grid');
+            Route::get('/', $imports['ListarClientesGrid'])->name('home');
+            Route::get('/lista', $imports['ListarClientes'])->name('lista');
     });
 
     // Rutas para operar sobre los clientes (crear, editar, eliminar)
@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('sales')
         ->name('cliente.')
         ->group(function () use ($imports) {
-            Route::get('/mostrar/{cliente}', [$imports['ClienteController'], 'showClient'])->name('show');
+            Route::get('/mostrar/{cliente}', [$imports['ClienteController'], 'showCliente'])->name('show');
             Route::get('/buscar', [$imports['ClienteController'], 'buscar'])->name('buscar');
             
             Route::get('/crear', [$imports['ClienteController'], 'create'])->name('crear');
@@ -95,8 +95,8 @@ Route::middleware('auth')->group(function () {
         ->middleware('rrhh')
         ->name('empleado.')
         ->group(function () use ($imports) {
-            Route::get('/', $imports['ListarEmpleados'])->name('home');
-            Route::get('/grid', $imports['ListarEmpleadosGrid'])->name('grid');
+            Route::get('/', $imports['ListarEmpleadosGrid'])->name('home');
+            Route::get('/lista', $imports['ListarEmpleados'])->name('lista');
             Route::get('/mostrar/{empleado}', [$imports['EmpleadoController'], 'showEmployee'])->name('show');
             
             Route::get('/crear', [$imports['EmpleadoController'], 'create'])->name('crear');
@@ -115,8 +115,8 @@ Route::middleware('auth')->group(function () {
         ->name('factura.')
         ->group(function () use ($imports) {
         
-            Route::get('/ventas', $imports['ListarFacturasVentas'])->name('ventas');
-            Route::get('/ventas-grid', $imports['ListarFacturasGridVentas'])->name('ventasgrid');
+            Route::get('/ventas', $imports['ListarFacturasGridVentas'])->name('ventas');
+            Route::get('/ventas-lista', $imports['ListarFacturasVentas'])->name('ventaslista');
     });
 
     // Rutas para realizar operaciones sobre las facturas de ventas (crear, eliminar)
@@ -140,8 +140,8 @@ Route::middleware('auth')->group(function () {
         ->name('factura.')
         ->group(function () use ($imports) {
 
-            Route::get('/compras', $imports['ListarFacturasCompras'])->name('compras');
-            Route::get('/compras-grid', $imports['ListarFacturasGridCompras'])->name('comprasgrid');
+            Route::get('/compras', $imports['ListarFacturasGridCompras'])->name('compras');
+            Route::get('/compras-listar', $imports['ListarFacturasCompras'])->name('compraslista');
     });
 
     // Rutas para operar sobre las facturas de compras (crear, eliminar)
@@ -162,8 +162,8 @@ Route::middleware('auth')->group(function () {
         ->middleware('warehouse')
         ->name('producto.')
         ->group(function () use ($imports) {
-            Route::get('/', $imports['ListarProductos'])->name('home');
-            Route::get('/grid', $imports['ListarProductosGrid'])->name('grid');
+            Route::get('/', $imports['ListarProductosGrid'])->name('home');
+            Route::get('/lista', $imports['ListarProductos'])->name('lista');
     });
 
     // Rutas para operar sobre los productos (crear, editar, eliminar)
@@ -189,8 +189,8 @@ Route::middleware('auth')->group(function () {
         ->name('proveedor.')
         ->group(function () use ($imports) {
 
-            Route::get('/', $imports['ListarProveedores'])->name('home');
-            Route::get('/grid', $imports['ListarProveedoresGrid'])->name('grid');
+            Route::get('/', $imports['ListarProveedoresGrid'])->name('home');
+            Route::get('/lista', $imports['ListarProveedores'])->name('lista');
     });
 
     // Rutas para operar sobre los proveedores (crear, editar, eliminar)
@@ -211,8 +211,8 @@ Route::middleware('auth')->group(function () {
     
     // Servicios
     Route::prefix('servicio')->name('servicio.')->group(function () use ($imports) {
-        Route::get('/', $imports['ListarServicios'])->name('home');
-        Route::get('/grid', $imports['ListarServiciosGrid'])->name('grid');
+        Route::get('/', $imports['ListarServiciosGrid'])->name('home');
+        Route::get('/lista', $imports['ListarServicios'])->name('lista');
         Route::get('/mostrar/{servicio}', [$imports['ServicioController'], 'showSupplier'])->name('show');
         
         Route::get('/crear', [$imports['ServicioController'], 'create'])->name('crear');

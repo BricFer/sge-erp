@@ -229,7 +229,8 @@ class FacturaController extends Controller
     }
 
     // TODO: Generar PDF factura
-    public function generarPDF(Factura $factura) {
+    public function generarPDF(Factura $factura): Response
+    {
         $factura->load('');
 
         $pdf = Pdf::loadView('layouts.facturas.pdf', compact('factura'));

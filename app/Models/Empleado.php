@@ -37,6 +37,7 @@ class Empleado extends Model
     {
         return $this->hasMany(Almacen::class, 'id_empleado');
     }
+
     public function presupuestos(): HasMany
     {
         return $this->hasMany(Presupuesto::class, 'id_empleado');
@@ -56,6 +57,7 @@ class Empleado extends Model
     {
         return $this->belongsTo(Empleado::class, 'id_servicio');
     }
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

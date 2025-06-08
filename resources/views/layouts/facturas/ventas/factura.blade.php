@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('factura.crear.ventas'),
-            'listUrl' => route('factura.ventas'),
-            'gridUrl' => route('factura.ventasgrid')])
+            'listUrl' => route('factura.ventaslista'),
+            'gridUrl' => route('factura.ventas')])
     </div>
     
     <div class="max-w-7xl h-screen p-16 m-auto w-full">

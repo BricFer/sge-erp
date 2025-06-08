@@ -23,8 +23,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('empleado.crear'),
-            'listUrl' => route('empleado.home'),
-            'gridUrl' => route('empleado.grid')])
+            'listUrl' => route('empleado.lista'),
+            'gridUrl' => route('empleado.home')])
     </div>
     
     <div class="text-sm/7 w-full flex flex-col">
@@ -124,9 +124,11 @@
                             </div>
             
                             <div class="flex flex-row items-center gap-2">
-            
-                                {{-- TODO: Corregir el link --}}
-                                <a class="block" href="{{ route('factura.productos', ['factura' => $factura->id]) }}">
+                                @php
+                                    $link = str_contains( $factura->facturable_type, 'Cliente') ? 'factura.ventas.productos' : 'factura.compras.productos';
+                                @endphp
+
+                                <a class="block" href="{{ route( $link, ['factura' => $factura->id]) }}">
                                     <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/show-icon.svg') }}" alt="show info button">
                                 </a>
                     
@@ -143,7 +145,16 @@
                 @endif
             @endif
         </div>
-        @include('layouts._partials.regresar')
+
+        <div>
+            <a
+                href="{{ route('empleado.edit') }}"
+                class="block ml-auto text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
+            >
+                Editar
+            </a>
+            @include('layouts._partials.regresar')
+        </div>
     </div>
 
 @endsection

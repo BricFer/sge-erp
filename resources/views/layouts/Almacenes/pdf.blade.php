@@ -69,7 +69,7 @@
     
                 <p>
                     <strong>Responsable: </strong>
-                    {{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}
+                    {{ $almacen->empleado ? $almacen->empleado->nombre_completo : 'Sin responsable' }}
                 </p>
             </div>
         </div>

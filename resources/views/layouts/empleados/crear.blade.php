@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('empleado.crear'),
-            'listUrl' => route('empleado.home'),
-            'gridUrl' => route('empleado.grid')])
+            'listUrl' => route('empleado.lista'),
+            'gridUrl' => route('empleado.home')])
     </div>
 
     <form
@@ -39,7 +39,7 @@
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[628px]">
-            <label for="dni_nif">Documento Nacional:</label>
+            <label for="dni_nif">DNI/NIF:</label>
             <input
                 name="dni_nif"
                 type="text"
@@ -78,6 +78,27 @@
             />
         </div>
 
+        <div class="flex flex-col gap-1 xl:w-[432px]">
+            <label for="cargo">Departamento:</label>
+            <select
+                name="departamento"
+                type="text"
+                id="cargo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            >
+                <option class="text-black font-bold" value="" selected disabled>Selecciona una opción</option>
+                <option class="text-black" value="IT">Departamento IT</option>
+                <option class="text-black" value="RRHH">Departamento RRHH</option>
+                <option class="text-black" value="Marketing">Departamento Marketing</option>
+                <option class="text-black" value="Finanzas">Departamento Finanzas</option>
+                <option class="text-black" value="Administracion">Departamento Administración</option>
+                <option class="text-black" value="Ventas">Departamento Ventas</option>
+                <option class="text-black" value="Almacen">Departamento Almacen</option>
+                <option class="text-black" value="Contabilidad">Departamento Contabilidad</option>
+                <option class="text-black" value="Compras">Departamento Compras</option>
+            </select>
+        </div>
+
         <div class="flex flex-col gap-1 xl:mr-auto xl:w-[412px]">
             <label for="fecha_contratacion">Fecha de alta:</label>
             <input
@@ -85,6 +106,26 @@
                 type="date"
                 id="fecha_contratacion"
                 class="uppercase dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[612px]">
+            <label for="correo_empresa">Correo empresa:</label>
+            <input
+                type="text"
+                name="correo_empresa"
+                id="correo_empresa"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            />
+        </div>
+        
+        <div class="flex flex-col gap-1 mr-auto xl:w-[412px]">
+            <label for="usuario">Usuario:</label>
+            <input
+                type="text"
+                name="usuario"
+                id="usuario"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
 

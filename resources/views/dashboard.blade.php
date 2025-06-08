@@ -15,9 +15,10 @@
     </head>
     <body class="relative p-1 bg-[#FDFDFC]/90 dark:bg-[#0a0a0a]/90 flex flex-col text-white">
         
-            @yield('content')
+        @yield('content')
 
-            @include('layouts._partials.advertencia')
+        @include('layouts._partials.advertencia')
+
         @livewireScripts
     </body>
 </html>

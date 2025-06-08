@@ -91,7 +91,7 @@ class AlmacenController extends Controller
         return view('layouts.almacenes.ajuste-almacen', compact('almacen', 'downloadUrl'));
     }
 
-    public function generarPDF(Almacen $almacen)
+    public function generarPDF(Almacen $almacen): Response
     {
         // Carga la relación de los productos
         $almacen->load('productos');

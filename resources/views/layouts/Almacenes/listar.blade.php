@@ -6,8 +6,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
+            'listUrl' => route('almacen.lista'),
+            'gridUrl' => route('almacen.home')])
     </div>
 
     <div class="w-full">
@@ -35,7 +35,7 @@
                     
                     <p class="w-[95px]"></p>
 
-                    <p class="w-[175px]">{{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}</p>
+                    <p class="w-[175px]">{{ $almacen->empleado ? $almacen->empleado->nombre_completo : 'Sin responsable' }}</p>
 
                     <p class="w-[95px]"></p>
                     

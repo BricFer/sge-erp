@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('producto.crear'),
-            'listUrl' => route('producto.home'),
-            'gridUrl' => route('producto.grid')])
+            'listUrl' => route('producto.lista'),
+            'gridUrl' => route('producto.home')])
     </div>
 
     <form

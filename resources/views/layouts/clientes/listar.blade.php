@@ -6,8 +6,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('cliente.crear'),
-            'listUrl' => route('cliente.home'),
-            'gridUrl' => route('cliente.grid')])
+            'listUrl' => route('cliente.lista'),
+            'gridUrl' => route('cliente.home')])
     </div>
     
     <div class="w-full">

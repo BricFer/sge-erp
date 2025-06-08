@@ -11,7 +11,7 @@ class ListarAlmacenes extends Component
 
     public function render()
     {
-        $almacenes = Almacen::with('empleados') // Cargar relación de empleado
+        $almacenes = Almacen::with('empleado') // Cargar relación de empleado
                     ->when($this->buscar, function ($query) {
                         // when($this->buscar, function ($query) { ... }) → Filtra solo si hay una búsqueda.
                         $query->where('nombre', 'LIKE', '%'.$this->buscar.'%')

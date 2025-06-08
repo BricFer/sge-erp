@@ -6,8 +6,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('empleado.crear'),
-            'listUrl' => route('empleado.home'),
-            'gridUrl' => route('empleado.grid')])
+            'listUrl' => route('empleado.lista'),
+            'gridUrl' => route('empleado.home')])
     </div>
 
     <div class="w-full flex flex-row flex-wrap gap-4 p-2 justify-center">

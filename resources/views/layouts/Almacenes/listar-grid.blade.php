@@ -6,8 +6,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
+            'listUrl' => route('almacen.lista'),
+            'gridUrl' => route('almacen.home')])
     </div>
 
     <div class="w-full flex flex-row flex-wrap gap-4 p-2 justify-center">
@@ -18,7 +18,7 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $almacen -> nombre }}</h2>
 
                 <p>
-                    <span class="font-bold">Responsable:</span> {{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}
+                    <span class="font-bold">Responsable:</span> {{ $almacen->empleado ? $almacen->empleado->nombre_completo : 'Sin responsable' }}
                 </p>
 
                 <p>
