@@ -127,7 +127,7 @@ Route::middleware('auth')->group(function () {
         
             Route::get('/ventas/{factura}/productos', [$imports['FacturaController'], 'show'])->name('ventas.productos');
             
-            Route::get('/crearventa', [$imports['FacturaController'], 'createSales'])->name('crear.ventas');
+            Route::get('/crearventa', [$imports['FacturaController'], 'create'])->name('crear.ventas');
             
             Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
             Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
@@ -151,7 +151,7 @@ Route::middleware('auth')->group(function () {
         ->group(function () use ($imports) {
         
             Route::get('/compras/{factura}/productos', [$imports['FacturaController'], 'show'])->name('compras.productos');    
-            Route::get('/crearcompras', [$imports['FacturaController'], 'createPurchases'])->name('crear.compras');
+            Route::get('/crearcompras', [$imports['FacturaController'], 'create'])->name('crear.compras');
             Route::post('/guardar', [$imports['FacturaController'], 'store'])->name('store');
             Route::delete('/destroy/{factura}', [$imports['FacturaController'], 'destroy'])->name('destroy');
     });

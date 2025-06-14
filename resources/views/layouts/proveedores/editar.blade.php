@@ -46,7 +46,7 @@
                 name="razon_social"
                 type="text"
                 id="razon_social"
-                value="{{ $proveedor->razon_social }}"
+                value="{{ old('razon_social', $proveedor->razon_social) }}"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 readonly
             />
@@ -67,7 +67,7 @@
         <div class="flex flex-col gap-1 xl:w-[828px]">
             <label for="domicilio">Domicilio:</label>
             <input
-                value="{{ $proveedor->domicilio }}"
+                value="{{ old('domicilio', $proveedor->domicilio) }}"
                 name="domicilio"
                 type="text"
                 id="domicilio"
@@ -79,7 +79,7 @@
             <label for="cod_postal">Codigo postal</label>
             <input
                 name="cod_postal"
-                value="{{ $proveedor->cod_postal }}"
+                value="{{ old('cod_postal', $proveedor->cod_postal) }}"
                 type="text"
                 id="cod_postal"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -90,7 +90,7 @@
             <label for="poblacion">Poblacion</label>
             <input
                 name="poblacion"
-                value="{{ $proveedor->poblacion }}"
+                value="{{ old('poblacion', $proveedor->poblacion) }}"
                 type="text"
                 id="poblacion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -101,7 +101,7 @@
             <label for="provincia">Provincia</label>
             <input
                 name="provincia"
-                value="{{ $proveedor->provincia }}"
+                value="{{ old('provincia', $proveedor->provincia) }}"
                 type="text"
                 id="provincia"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -112,7 +112,7 @@
             <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
-                value="{{ $proveedor->telefono }}"
+                value="{{ old('telefono', $proveedor->telefono) }}"
                 type="tel"
                 id="telefono"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -123,7 +123,7 @@
             <label for="correo">Correo</label>
             <input
                 name="correo"
-                value="{{ $proveedor->correo }}"
+                value="{{ old('correo', $proveedor->correo) }}"
                 type="email"
                 id="correo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"

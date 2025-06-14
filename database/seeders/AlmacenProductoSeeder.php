@@ -30,8 +30,9 @@ class AlmacenProductoSeeder extends Seeder
             foreach ($productos->random(rand(1, 15)) as $producto) { // Asigna de 1 a 15 productos a cada almacén
                 $almacen->productos()->attach($producto->id, [
                     'stock' => rand(1, 100), // Genera un stock aleatorio
+                    'precio_compra' => rand(1,700),
                 ]);
-            }
+            };
         }
     }
 }

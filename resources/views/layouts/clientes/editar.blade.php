@@ -25,7 +25,7 @@
             <label for="nombre_completo">Nombre del cliente</label>
             <input
                 name="nombre_completo"
-                value="{{ $cliente->nombre_completo }}"
+                value="{{ old('nombre_completo', $cliente->nombre_completo) }}"
                 type="text"
                 id="nombre_completo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -45,7 +45,7 @@
             <label for="razon_social">Razón social</label>
             <input
                 name="razon_social"
-                value="{{ $cliente->razon_social }}"
+                value="{{ old('razon_social', $cliente->razon_social) }}"
                 type="text"
                 id="razon_social"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -57,7 +57,7 @@
             <label for="nif">NIF</label>
             <input
                 name="nif"
-                value="{{ $cliente->nif }}"
+                value="{{ old('nif', $cliente->nif) }}"
                 type="text"
                 id="nif"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -69,7 +69,7 @@
             <label for="domicilio">Domicilio</label>
             <input
                 name="domicilio"
-                value="{{ $cliente->domicilio }}"
+                value="{{ old('domicilio', $cliente->domicilio) }}"
                 type="text"
                 id="domicilio"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -80,7 +80,7 @@
             <label for="cod_postal">Codigo postal</label>
             <input
                 name="cod_postal"
-                value="{{ $cliente->cod_postal }}"
+                value="{{ old('cod_postal', $cliente->cod_postal) }}"
                 type="text"
                 id="cod_postal"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -91,7 +91,7 @@
             <label for="poblacion">Poblacion</label>
             <input
                 name="poblacion"
-                value="{{ $cliente->poblacion }}"
+                value="{{ old('poblacion', $cliente->poblacion) }}"
                 type="text"
                 id="poblacion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -102,7 +102,7 @@
             <label for="provincia">Provincia</label>
             <input
                 name="provincia"
-                value="{{ $cliente->provincia }}"
+                value=" {{ old('provincia', $cliente->provincia) }}"
                 type="text"
                 id="provincia"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -113,7 +113,7 @@
             <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
-                value="{{ $cliente->telefono }}"
+                value="{{ old('telefono', $cliente->telefono) }}"
                 type="tel"
                 id="telefono"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -124,11 +124,13 @@
             <label for="correo">Correo</label>
             <input
                 name="correo"
-                value="{{ $cliente->correo }}"
+                value="{{ old('correo', $cliente->correo) }}"
                 type="email"
                 id="correo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
+
+            {{-- El old() me ayuda a trabajar con el withInput(), declarado en el controlador, para que en caso de errores los campos se autocompleten con los valores introducidos por el usuario --}}
         </div>
 
         @include('layouts._partials.submit-cancel')

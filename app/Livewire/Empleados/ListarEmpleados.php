@@ -12,7 +12,9 @@ class ListarEmpleados extends Component
 
     public function render()
     {
-        $empleados = $this->buscar ? Empleado::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Empleado::all();
+        $empleados = $this->buscar ? Empleado::where('nombre_completo', 'LIKE', '%'.$this->buscar.'%')
+                    ->orWhere('departamento', 'LIKE', '%'.$this->buscar.'%')
+                    ->get() : Empleado::all();
         
         return view('layouts.empleados.listar', compact('empleados'))
             ->extends('dashboard')

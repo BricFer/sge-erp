@@ -9,50 +9,61 @@ use Illuminate\View\View;
 
 class ServicioController extends Controller
 {
-    public function create():View
+    public function create(): View
     {
+        // Guardar la URL anterior en la sesión para que no se pierda si el usuario recarga la página
+        session(['previous_url' => url()->previous()]);
+
         return view('layouts.servicios.crear');
     }
 
     public function store(ServicioRequest $request): RedirectResponse
     {   
-        $servicio = new Servicio;
-        $servicio-> id_empleado = $request->id_empleado;
-        $servicio-> nombre = $request->nombre;
-        $servicio-> descripcion = $request->descripcion;
-        $servicio-> precio = $request->precio;
-        $servicio-> tipo_servicio = $request->tipo_servicio;
-        $servicio->save();
+        try {
+            $servicio = new Servicio;
+            $servicio->fill($request->all());
+            $servicio->save();
 
-        return redirect()->route('servicio.home')->with('success', 'servicio agregado correctamente');
+            return redirect()->route('servicio.home')->with('success', 'servicio agregado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al registrar el servicio: ' . $e->getMessage())->withInput();
+        }
     }
 
-    public function edit(Servicio $servicio):View
+    public function edit(Servicio $servicio): View
     {
+        // Guardar la URL anterior en la sesión para que no se pierda si el usuario recarga la página
+        session(['previous_url' => url()->previous()]);
+
         return view('layouts.servicios.editar', compact('servicio'));
     }
     
-    public function update(ServicioRequest $request, Servicio $servicio):RedirectResponse
+    public function update(ServicioRequest $request, Servicio $servicio): RedirectResponse
     {
-        $servicio-> id_empleado = $request->id_empleado;
-        $servicio-> nombre = $request->nombre;
-        $servicio-> descripcion = $request->descripcion;
-        $servicio-> precio = $request->precio;
-        $servicio-> tipo_servicio = $request->tipo_servicio;
-        $servicio->save();
-      
-        return redirect()->route('servicio.home')->with('success', 'servicio modificado correctamente');
+        try {
+            $servicio->fill($request->all());
+            $servicio->save();
+
+            return redirect()->route('servicio.home')->with('success', 'servicio actualizado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al actualizar el servicio: ' . $e->getMessage())->withInput();
+        }
     }
 
-    public function destroy(Servicio $servicio):RedirectResponse
+    public function destroy(Servicio $servicio): RedirectResponse
     {
-        $servicio -> delete();
+        try {
+            $servicio -> delete();
 
-        return redirect()->route('servicio.home')->with('danger','servicio eliminado correctamente');
+            return redirect()->route('servicio.home')->with('danger','servicio eliminado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al eliminar el servicio: ' . $e->getMessage())->withInput();
+        }
     }
     
-    public function showService(Servicio $servicio):View
+    public function showService(Servicio $servicio): View
     {
+        session(['previous_url' => url()->previous()]);
         return view('layouts.servicios.servicio', compact('servicio'));
     }
 }

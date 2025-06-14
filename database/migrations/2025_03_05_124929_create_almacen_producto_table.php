@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_producto')->constrained('productos', 'id')->onDelete('cascade');
             $table->foreignId('id_almacen')->constrained('almacens', 'id')->onDelete('cascade');
+            $table->decimal('precio_compra', 10, 2)->nullable();
             $table->integer('stock')->default(0);
             $table->timestamps();
         });

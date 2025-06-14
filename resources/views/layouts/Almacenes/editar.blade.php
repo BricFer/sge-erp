@@ -26,7 +26,7 @@
             <label for="nombre">Nombre/Alias:</label>
             <input
                 name="nombre"
-                value="{{ $almacen->nombre }}"
+                value="{{ old('nombre', $almacen->nombre) }}"
                 type="text"
                 id="nombre"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -37,7 +37,7 @@
             <label for="capacidad">Vol. del almacen:</label>
             <input
                 name="capacidad"
-                value="{{ $almacen->capacidad }}"
+                value="{{ old('capacidad', $almacen->capacidad) }}"
                 type="text"
                 id="capacidad"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -72,7 +72,7 @@
             <label>Ubicación</label>
             <input
                 name="ubicacion"
-                value="{{ $almacen->ubicacion }}"
+                value="{{ old('ubicacion', $almacen->ubicacion) }}"
                 type="text"
                 id="ubicacion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"

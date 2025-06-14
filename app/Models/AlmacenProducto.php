@@ -17,6 +17,7 @@ class AlmacenProducto extends Model
     protected $fillable = [
         'id_producto',
         'id_almacen',
+        'precio_compra',
         'stock',
     ];
 

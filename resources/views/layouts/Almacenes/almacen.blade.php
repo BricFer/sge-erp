@@ -10,8 +10,8 @@
 
         @include('layouts._partials.buscar', [
             'addUrl' => route('almacen.crear'),
-            'listUrl' => route('almacen.home'),
-            'gridUrl' => route('almacen.grid')])
+            'listUrl' => route('almacen.lista'),
+            'gridUrl' => route('almacen.home')])
     </div>
     
     <div class="text-sm/7 w-full flex flex-col">
@@ -65,92 +65,91 @@
 
             </div>
     
-            @section('campo1', 'Precio Compra')
-            @section('campo2', 'Precio Venta')
-            @section('campo3', 'IVA')
-            @section('campo4', 'Descripcion')
-            @section('campo7', 'Stock')
-    
-            @include('layouts._partials.secciones')
-
-            @if($almacen->productos->isEmpty())
-                <p>No hay registros</p>
-            @else
-                
-                @foreach($almacen->productos as $producto)
-
-                    <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between md:flex-nowrap">
-
-                        <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                            <p class="w-[175px] text-wrap">{{ $producto->nombre }}</p>
+            <div id="productos">
+                @section('campo1', 'Precio Compra')
+                @section('campo2', 'Precio Venta')
+                @section('campo3', 'IVA')
+                @section('campo4', 'Descripcion')
+                @section('campo7', 'Stock')
         
-                            <p class="w-[95px]">{{ $producto-> precio_compra }}€</p>
-        
-                            <p class="w-[115px]">{{ $producto-> precio_venta }}€</p>
-                            
-                            <p class="w-[225px]">{{ $producto-> iva}}%</p>
-                            
-                            <p class="w-[425px] text-wrap">{{ $producto -> descripcion}}</p>
+                @include('layouts._partials.secciones')
 
-                            <p class="w-[95px] text-wrap">{{ $producto->pivot-> stock}}</p>
+                @if($almacen->productos->isEmpty())
+                    <p>No hay registros</p>
+                @else
+                    
+                    @foreach($almacen->productos as $producto)
 
-                        </div>
+                        <div class="flex flex-row items-center gap-4 p-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between md:flex-nowrap">
 
-                        <form
-                            id="stock-{{ $producto->id }}"
-                            action="{{ route('almacen.stock', [$almacen->id, $producto->id]) }}"
-                            method="post"
-                            class="flex flex-row items-center justify-center bg-transparent m-0 hidden"
-                        >
-                            @method('PUT')
-                            @csrf
-                            <input
-                                type="text"
-                                name="stock"
-                                value="{{ $producto->pivot->stock }}"
-                                class="w-[75px] dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
-                            />
+                            <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
+                                <p class="w-[175px] text-wrap">{{ $producto->nombre }}</p>
+            
+                                <p class="w-[95px]">{{ $producto->pivot->precio_compra }}€</p>
+            
+                                <p class="w-[115px]">{{ $producto->precio_venta }}€</p>
+                                
+                                <p class="w-[225px]">{{ $producto->iva }}%</p>
+                                
+                                <p class="w-[425px] text-wrap">{{ $producto->descripcion }}</p>
 
-                            <input type="image" src="{{ asset('assets/icons/confirm-icon.svg') }}">
+                                <p class="w-[95px] text-wrap">{{ $producto->pivot->stock }}</p>
 
-                            <button class="m-0 inline-block" onclick="ocultarFormulario('stock-{{ $producto->id }}')">
-                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/x-icon.svg') }}" alt="cancel button">
-                            </button>
-                        </form>
-        
-                        <div class="flex flex-row items-center gap-2">
-        
-                        {{-- Debe permitirme editar solo el stock --}}
-        
-                            <button onclick="mostrarFormulario('stock-{{ $producto->id }}')">
-                                <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
-                            </button>
-                
-                            <img
-                                data-action="{{ route('almacen.destroy', $almacen->id) }}"
-                                id="warning-img"
-                                src="{{ asset('assets/icons/trash-icon.svg') }}"
-                                class="warning-img w-[24px] h-[24px] rounded-lg cursor-pointer"
+                            </div>
+
+                            <form
+                                id="stock-{{ $producto->id }}"
+                                action="{{ route('almacen.stock', [$almacen->id, $producto->id]) }}"
+                                method="post"
+                                class="flex flex-row items-center justify-center bg-transparent m-0 hidden"
                             >
+                                @method('PUT')
+                                @csrf
+                                <input
+                                    type="text"
+                                    name="stock"
+                                    value="{{ $producto->pivot->stock }}"
+                                    class="w-[75px] dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                                />
+
+                                <input type="image" src="{{ asset('assets/icons/confirm-icon.svg') }}">
+
+                                <button class="m-0 inline-block" onclick="cancelarEdicionStock('stock-{{ $producto->id }}')">
+                                    <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/x-icon.svg') }}" alt="cancel button">
+                                </button>
+                            </form>
+            
+                            <div class="flex flex-row items-center gap-2">
+            
+                                <button onclick="habilitarEdicionStock('stock-{{ $producto->id }}')">
+                                    <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
+                                </button>
+                    
+                                <img
+                                    data-action="{{ route('almacen.destroy', $almacen->id) }}"
+                                    id="warning-img"
+                                    src="{{ asset('assets/icons/trash-icon.svg') }}"
+                                    class="warning-img w-[24px] h-[24px] rounded-lg cursor-pointer"
+                                >
+                            </div>
+            
                         </div>
-        
-                    </div>
-                @endforeach
-                
-            @endif
+                    @endforeach
+                @endif
+            </div>
         </div>
 
-        @include('layouts._partials.regresar')
+        <div class="flex gap-4">
+            <button
+                id="agregar-prod"
+                class="ml-auto block text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
+            >
+                Agregar producto
+            </button>
+            @include('layouts._partials.regresar')
+        </div>
 
     </div>
+
+    <script src="{{ asset('js/almacen.js') }}" defer></script>
 @endsection
-
-<script>
-    const mostrarFormulario = (idFormulario) => {
-        document.getElementById(idFormulario).classList.remove('hidden');
-    }
-
-    const ocultarFormulario = (idFormulario) => {
-        document.getElementById(idFormulario).classList.add('hidden');
-    }
-</script>

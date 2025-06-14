@@ -27,17 +27,27 @@
                 type="text"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
                 id="nombre"
+                value="{{ old('nombre', '')}}"
             />
         </div>
         
         <div class="flex flex-col gap-1 xl:w-[415px]">
-            <label for="precio_compra">Precio de compra:</label>
-            <input
-                name="precio_compra"
+            <label for="categoria">Categoria:</label>
+            <select
+                name="categoria"
                 type="text"
-                id="precio_compra"
-                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
-            />
+                id="categorias"
+                class="w-[417px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+            >
+                <option class="text-black" value="" selected disabled>Selecciona una categoría</option>
+                <option class="text-black" value="informatica">Informática</option>
+                <option class="text-black" value="tablets y ordenadores">Tablets & Ordenadores</option>
+                <option class="text-black" value="gaming">Gaming</option>
+                <option class="text-black" value="telefonia">Telefonía</option>
+                <option class="text-black" value="accesorios de informatica">Accesorios de informática</option>
+                <option class="text-black" value="television">Televisión</option>
+                <option class="text-black" value="otras categorias">Otras categorías</option>
+            </select>
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[415px]">
@@ -47,6 +57,7 @@
                 type="text"
                 id="precio_venta"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('precio_venta', '')}}"
             />
         </div>
         
@@ -57,6 +68,7 @@
                 type="text"
                 id="iva"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('iva', '')}}"
             />
         </div>
         
@@ -67,6 +79,7 @@
                 type="text"
                 id="descripcion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('descripcion', '')}}"
             />
         </div>
 

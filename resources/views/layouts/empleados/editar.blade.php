@@ -49,7 +49,7 @@
             <label for="telefono">Teléfono</label>
             <input
                 name="telefono"
-                value="{{ $empleado->telefono }}"
+                value="{{ old('telefono', $empleado->telefono) }}"
                 type="tel"
                 id="telefono"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
@@ -72,12 +72,42 @@
             <label for="cargo">Cargo que ocupa:</label>
             <input
                 name="cargo"
-                value="{{ $empleado->cargo }}"
+                value="{{ old('cargo', $empleado->cargo) }}"
                 type="text"
                 id="cargo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
-        </div>       
+        </div>
+
+        <div class="flex flex-col gap-1 xl:w-[417px]">
+            <label for="cargo">Departamento:</label>
+            <select
+                name="departamento"
+                type="text"
+                id="cargo"
+                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+            >
+                <option class="text-black font-bold" value="" selected disabled>Selecciona una opción</option>
+                <option class="text-black" value="IT" {{ $empleado->departamento == 'IT' ? 'selected' : '' }}>
+                    Departamento IT</option>
+                <option class="text-black" value="RRHH" {{ $empleado->departamento == 'RRHH' ? 'selected' : '' }}>
+                    Departamento RRHH</option>
+                <option class="text-black" value="Marketing" {{ $empleado->departamento == 'Marketing' ? 'selected' : '' }}>
+                    Departamento Marketing</option>
+                <option class="text-black" value="Finanzas" {{ $empleado->departamento == 'Finanzas' ? 'selected' : '' }}>
+                    Departamento Finanzas</option>
+                <option class="text-black" value="Administracion" {{ $empleado->departamento == 'Administracion' ? 'selected' : '' }}>
+                    Departamento Administración</option>
+                <option class="text-black" value="Ventas" {{ $empleado->departamento == 'Ventas' ? 'selected' : '' }}>
+                    Departamento Ventas</option>
+                <option class="text-black" value="Almacen" {{ $empleado->departamento == 'Almacen' ? 'selected' : '' }}>
+                    Departamento Almacen</option>
+                <option class="text-black" value="Contabilidad" {{ $empleado->departamento == 'Contabilidad' ? 'selected' : '' }}>
+                    Departamento Contabilidad</option>
+                <option class="text-black" value="Compras" {{ $empleado->departamento == 'Compras' ? 'selected' : '' }}>
+                    Departamento Compras</option>
+            </select>
+        </div>
             
         <div class="flex flex-col gap-1 xl:w-[417px]">
             <label for="fecha_contratacion">Fecha alta:</label>
@@ -92,18 +122,32 @@
         </div>
 
         <div class="flex flex-col gap-1 xl:w-[417px]">
-            <label for="estado">Estado del empleado:</label>
+            <label for="fecha_fin">Fecha baja:</label>
             <input
-                name="estado"
-                value="{{ ucfirst($empleado->estado) }}"
-                type="text"
-                id="estado"
-                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
-                {{ $empleado->estado == 'despido' ? 'readonly' : '' }}
+                name="fecha_fin"
+                type="date"
+                id="fecha_contratacion"
+                class="uppercase dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
             />
         </div>
+
+        <div class="flex flex-col gap-1 xl:w-[417px]">
+            <label for="estado">Estado del empleado:</label>
+            <select
+                name="facturable_id"
+                type="text"
+                id="estados"
+                class="w-[417px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                {{ $empleado->estado == 'despido' ? 'readonly' : '' }}
+            >
+                <option class="text-black" value="activo" {{ $empleado->estado == 'activo' ? 'selected' : '' }}>Activo</option>
+                <option class="text-black" value="excedencia" {{ $empleado->estado == 'excedencia' ? 'selected' : '' }}>Excedencia</option>
+                <option class="text-black" value="baja voluntaria" {{ $empleado->estado == 'baja voluntaria' ? 'selected' : '' }}>Baja Voluntaria</option>
+                <option class="text-black" value="despido" {{ $empleado->estado == 'despido' ? 'selected' : '' }}>Despido</option>
+            </select>
+        </div>
         
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1 xl:w-[417px]">
             <label for="legajo">Legajo:</label>
             <input
                 id="legajo"

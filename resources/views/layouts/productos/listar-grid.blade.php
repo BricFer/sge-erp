@@ -13,19 +13,21 @@
     <div class="w-full flex flex-row flex-wrap gap-4 p-2 justify-center">
 
         @forelse ($productos as $producto)
-            <div class="text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
+            <div class="flex flex-col justify-between text-sm/7 border-solid border-2 border-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-500/25 w-[360px] max-md:w-full">
 
-                <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $producto -> nombre }}</h2>
-
-                <p>
-                    <span class="font-bold">Codigo:</span> {{ $producto-> codigo}}
-                </p>
-                <p>
-                    <span class="font-bold">Precio venta:</span> {{ $producto-> precio_venta}}€
-                </p>
-                <p>
-                    <span class="font-bold">IVA:</span> {{ $producto-> iva }}%
-                </p>
+                <div class="w-full">
+                    <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $producto -> nombre }}</h2>
+    
+                    <p>
+                        <span class="font-bold">Codigo:</span> {{ $producto-> codigo}}
+                    </p>
+                    <p>
+                        <span class="font-bold">Precio venta:</span> {{ $producto-> precio_venta}}€
+                    </p>
+                    <p>
+                        <span class="font-bold">IVA:</span> {{ $producto-> iva }}%
+                    </p>
+                </div>
 
                 <div class="flex flex-row gap-2 mt-4">
                     <a class="block w-[24px] h-[24px]" href="{{ route('producto.almacenes', ['producto' => $producto->id]) }}">

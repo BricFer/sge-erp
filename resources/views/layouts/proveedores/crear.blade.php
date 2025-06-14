@@ -27,6 +27,7 @@
                 type="text"
                 id="nombre_completo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('nombre_completo', '')}}"
             />
             <input name="cod_proveedor" type="hidden" id="cod_proveedor" value="SUP-{{ date("Y") }}{{ $nextId }}">
         </div>
@@ -38,6 +39,7 @@
                 type="text"
                 id="razon_social"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('razon_social', '')}}"
             />
         </div>
         
@@ -48,6 +50,7 @@
                 type="text"
                 id="cif"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('cif', '')}}"
             />
         </div>
 
@@ -58,6 +61,7 @@
                 type="text"
                 id="domicilio"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('domicilio', '')}}"
             />
         </div>
 
@@ -68,6 +72,7 @@
                 type="text"
                 id="cod_postal"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('cod_postal', '')}}"
             />
         </div>
 
@@ -78,6 +83,7 @@
                 type="text"
                 id="poblacion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('poblacion', '')}}"
             />
         </div>
 
@@ -88,6 +94,7 @@
                 type="text"
                 id="poblacion"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('provincia', '')}}"
             />
         </div>
 
@@ -98,6 +105,7 @@
                 type="tel"
                 id="telefono"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('telefono', '')}}"
             />
         </div>
 
@@ -108,6 +116,7 @@
                 type="email"
                 id="correo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('correo', '')}}"
             />
         </div>
 

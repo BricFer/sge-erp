@@ -11,7 +11,10 @@ class EmpleadoController extends Controller
 {
     public function create():View
     {
-        $lastEmployee = Empleado::latest()->first(); 
+        // Guardar la URL anterior en la sesión para que no se pierda si el usuario recarga la página
+        session(['previous_url' => url()->previous()]);
+
+        $lastEmployee = Empleado::latest()->first();
         $nextId = $lastEmployee ? $lastEmployee->id + 1 : 1;
 
         return view('layouts.empleados.crear', compact(['nextId']));
@@ -19,65 +22,51 @@ class EmpleadoController extends Controller
 
     public function store(EmpleadoRequest $request): RedirectResponse
     {   
-        $empleado = new Empleado;
-        $empleado->legajo = $request->legajo;
-        $empleado-> nombre_completo = $request->nombre_completo;
-        $empleado-> dni_nif = $request->dni_nif;
-        $empleado-> telefono = $request->telefono;
-        $empleado-> correo = $request->correo;
-        $empleado-> cargo = $request->cargo;
-        $empleado-> departamento = $request->departamento;
-        $empleado-> fecha_contratacion = $request->fecha_contratacion;
-        $empleado-> fecha_fin = $request->fecha_fin;
-        $empleado-> estado = $request->estado;
-        $empleado->user_id = $request->user_id;
-        $empleado->save();
-
-        return redirect()->route('empleado.home')->with('success', 'Empleado agregado correctamente');
+        try {
+            $empleado = new Empleado;
+            $empleado->fill($request->all());
+            $empleado->save();
+    
+            return redirect()->route('empleado.home')->with('success', 'Empleado agregado correctamente');
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al dar de alta el empleado: ' . $e->getMessage())->withInput();
+        }
     }
 
     public function edit(Empleado $empleado):View
     {
+        // Guardar la URL anterior en la sesión para que no se pierda si el usuario recarga la página
+        session(['previous_url' => url()->previous()]);
+
         return view('layouts.empleados.editar', compact('empleado'));
     }
     
     public function update(EmpleadoRequest $request, Empleado $empleado):RedirectResponse
     {
-        $empleado->legajo = $request->legajo;
-        $empleado-> nombre_completo = $request->nombre_completo;
-        $empleado-> dni_nif = $request->dni_nif;
-        $empleado-> telefono = $request->telefono;
-        $empleado-> correo = $request->correo;
-        $empleado-> cargo = $request->cargo;
-        $empleado-> departamento = $request->departamento;
-        $empleado-> fecha_contratacion = $request->fecha_contratacion;
-        $empleado-> fecha_fin = $request->fecha_fin;
-        $empleado-> estado = $request->estado;
-        $empleado->user_id = $request->user_id;
-        $empleado->save();
-      
-        return redirect()->route('empleado.home')->with('success', 'Empleado modificado correctamente');
-
+        try {
+            $empleado->fill($request->all());
+            $empleado->save();
+          
+            return redirect()->route('empleado.home')->with('success', 'Empleado modificado correctamente');
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al actualizar los datos empleado: ' . $e->getMessage())->withInput();
+        }
     }
 
     public function destroy(Empleado $empleado):RedirectResponse
     {
-        $empleado -> delete();
+        try {
+            $empleado -> delete();
 
-        return redirect()->route('empleado.home')->with('danger','Empleado eliminado correctamente');
+            return redirect()->route('empleado.home')->with('success','Empleado eliminado correctamente');
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error-db', 'Error al dar de baja al empleado: ' . $e->getMessage());
+        }
     }
     
     public function showEmployee(Empleado $empleado):View
     {
-        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
-
-        return view('layouts.empleados.empleado', compact(['empleado', 'managers']));
-    }
-
-    public function listarFacturas(Empleado $empleado): View
-    {
-        $factura->load('facturas');
-
-        return view('layouts.facturas.factura', compact('factura'));
+        session(['previous_url' => url()->previous()]);
+        return view('layouts.empleados.empleado', compact(['empleado']));
     }
 }

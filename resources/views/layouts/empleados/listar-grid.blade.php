@@ -32,16 +32,20 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado -> nombre_completo }}</h2>
 
                 <p>
-                    <span class="font-bold">Cargo:</span> {{ $empleado-> cargo}}
+                    <span class="font-bold">Cargo:</span> {{ $empleado->cargo}}
+                </p>
+
+                <p>
+                    <span class="font-bold">Departamento:</span> {{ $empleado->departamento}}
                 </p>
                 
                 <p>
-                    <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
+                    <span class="font-bold">Correo:</span> {{ $empleado->correo}}
                 </p>
                 <p>
                     <span class="font-bold">Estado: </span>
                     <span class="font-bold {{ $estado }}">
-                        {{ ucfirst($empleado-> estado) }}
+                        {{ ucfirst($empleado->estado) }}
                     </span>
                 </p>
 

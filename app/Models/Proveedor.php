@@ -7,7 +7,6 @@ use App\Models\Factura;
 use App\Models\Presupuesto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Proveedor extends Model

@@ -11,45 +11,37 @@ use App\Models\Factura;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Http\Requests\FacturaRequest;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use DB;
 
 class FacturaController extends Controller
 {
-    public function createSales():View
+    public function create(): View
     {
-        $clientes = Cliente::all()->sortBy('nombre_completo');
-        $empleados = Empleado::all()->sortBy('nombre');
+        session(['previous_url' => url()->previous()]);
+
+        $isClient = str_contains(Route::currentRouteName(), 'ventas');
+        $socios = $isClient
+                ? Cliente::all()->sortBy('nombre_completo')
+                : Proveedor::all()->sortBy('nombre_completo');
+
+        $empleados = Empleado::all()->sortBy('nombre_completo');
+        $lastFactura = Factura::latest()->first(); 
+        $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
+        
         // Esta línea obtiene todos los almacenes (Almacen::get()) y, al mismo tiempo, precarga los productos relacionados con cada almacén, incluyendo el campo stock de la tabla intermedia de la relación muchos a muchos.
         $almacenes = Almacen::with(['productos' => function ($query) {
             $query->withPivot('stock');
-        }])->get();  
+        }])->get(); 
 
-        $lastFactura = Factura::latest()->first(); 
-        $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
+        // Se crea un array de cargos que se contrastará con el cargo del empleado para determinar los permisos que tiene en la vista de crear
+        $managers = ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'];
 
-        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
-
-        return view('layouts.facturas.ventas.ventas', compact(['clientes', 'empleados', 'managers', 'nextId', 'almacenes']));
+        return view('layouts.facturas.crear', compact(['socios', 'isClient', 'empleados', 'managers', 'nextId', 'almacenes']));
     }
-
-    public function createPurchases():View
-    {
-        $proveedores = Proveedor::all()->sortBy('nombre_completo');
-        $empleados = Empleado::all()->sortBy('nombre');
-        $almacenes = Almacen::with(['productos' => function ($query) {
-            $query->withPivot('stock');
-        }])->get();  
-
-        $lastFactura = Factura::latest()->first(); 
-        $nextId = $lastFactura ? $lastFactura->id + 1 : 1;
-
-        $managers = (array) Empleado::whereIn('cargo', ['Supervisora de Ventas', 'Encargado de Zona', 'Ejecutiva de Cuentas'])->pluck('cargo')->toArray();
-
-        return view('layouts.facturas.compras.compras', compact(['proveedores', 'managers', 'empleados', 'nextId', 'almacenes']));
-    }
-
+    
     public function store(FacturaRequest $request): RedirectResponse
     {   
         DB::transaction(function () use ($request) {
@@ -61,6 +53,7 @@ class FacturaController extends Controller
                 'serie' => $request->serie,
                 'id_empleado' => $request->id_empleado,
                 'porcentaje_descuento' => $request->porcentaje_descuento,
+                'plazo_pago' => $request->plazo_pago,
                 'fecha_emision' => $request->fecha_emision,
                 'monto_subtotal' => $request->monto_subtotal,
                 'monto_descuento' => $request->monto_descuento,
@@ -214,11 +207,13 @@ class FacturaController extends Controller
             $factura->delete();
         });
 
-        return redirect()->back()->with('danger','Factura eliminada correctamente');
+        return redirect()->back()->with('success','Factura eliminada correctamente');
     }
     
     public function show(Factura $factura):View
     {
+        session(['previous_url' => url()->previous()]);
+
         if( str_contains( $factura->facturable_type, 'Cliente') ) {
 
             return view('layouts.facturas.ventas.factura', compact('factura'));

@@ -33,28 +33,28 @@
                 <h2 class="text-lg font-bold tracking-wide text-indigo-600">{{ $empleado->nombre_completo }}</h2>
             
                 <p>
-                    <span class="font-bold">Correo:</span> {{ $empleado-> correo}}
+                    <span class="font-bold">Correo:</span> {{ $empleado->correo}}
                 </p>
 
                 <p>
-                    <span class="font-bold">Legajo:</span> {{ $empleado-> legajo}}
+                    <span class="font-bold">Legajo:</span> {{ $empleado->legajo}}
                 </p>
 
                 <p>
-                    <span class="font-bold">DNI/NIF:</span> {{ $empleado-> dni_nif}}
+                    <span class="font-bold">DNI/NIF:</span> {{ $empleado->dni_nif}}
                 </p>
 
                 <p>
-                    <span class="font-bold">Teléfono:</span> {{ $empleado-> telefono}}
+                    <span class="font-bold">Teléfono:</span> {{ $empleado->telefono}}
                 </p>
 
                 <p>
                     <span class="font-bold">Estado: </span>
-                    <span class="font-bold {{ $estado }}">{{ ucfirst($empleado-> estado) }}</span>
+                    <span class="font-bold {{ $estado }}">{{ ucfirst($empleado->estado) }}</span>
                 </p>
 
                 <p>
-                    <span class="font-bold">Fecha de contratación:</span> {{ $empleado-> fecha_contratacion}}
+                    <span class="font-bold">Fecha de contratación:</span> {{ $empleado->fecha_contratacion}}
                 </p>
                 
                 @if($empleado->estado === 'despido' || $empleado->estado === 'baja voluntaria')
@@ -62,16 +62,16 @@
                 @endif
                 
                 <p>
-                    <span class="font-bold">Cargo:</span> {{ $empleado-> cargo}}
+                    <span class="font-bold">Cargo:</span> {{ $empleado->cargo}}
                 </p>
                 
                 <p>
-                    <span class="font-bold">Departamento:</span> {{ $empleado-> departamento}}
+                    <span class="font-bold">Departamento:</span> {{ $empleado->departamento}}
                 </p>
 
                 <div class="flex flex-row gap-2 mt-4 w-full">
     
-                    <a class="block ml-auto" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
+                    <a class="block" href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}">
                         <img class="block w-[24px] h-[24px]" src="{{ asset('assets/icons/edit-icon.svg') }}" alt="edit button">
                     </a>
         
@@ -85,7 +85,7 @@
             </div>
 
             
-            @if( in_array(( Auth::user()->empleado?->cargo ), $managers) || Auth::user()->isAdmin )
+            @can('verFacturas', $empleado)
                 @section('campo1', 'Serie')
                 @section('campo2', 'Emitida por')
                 @section('campo3', 'F. Emisión')
@@ -109,7 +109,7 @@
 
                                 <p class="w-[95px]">{{ $factura->serie }}</p>
             
-                                <p class="w-[115px]">{{ $factura->empleado->nombre_completo }}</p>
+                                <p class="w-[115px]">{{ $empleado->nombre_completo }}</p>
                                 
                                 <p class="w-[225px]">{{ $factura->fecha_emision}}</p>
                                 
@@ -143,12 +143,12 @@
                     @endforeach
                 
                 @endif
-            @endif
+            @endcan
         </div>
 
-        <div>
+        <div class="flex gap-4">
             <a
-                href="{{ route('empleado.edit') }}"
+                href="{{ route('empleado.edit', ['empleado' => $empleado->id]) }}"
                 class="block ml-auto text-center border-2 border-indigo-600 p-2 bg-indigo-600 my-8 text-white rounded-lg w-36 hover:bg-teal-500 hover:border-teal-500 hover:font-bold"
             >
                 Editar

@@ -12,7 +12,7 @@ class ListarProductosGrid extends Component
 
     public function render()
     {
-        $productos = $this->buscar ? Producto::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Producto::all();
+        $productos = $this->buscar ? Producto::where('nombre', 'LIKE', '%'.$this->buscar.'%')->orWhere('categoria', 'LIKE', '%'.$this->buscar.'%')->get() : Producto::all();
 
         return view('layouts.productos.listar-grid', compact('productos'))
             ->extends('dashboard')

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Servicio extends Model
@@ -50,7 +50,7 @@ class Servicio extends Model
     //     return $this->hasMany(DetallePresupuestoServicio::class, 'id_servicio');
     // }
 
-    public function facturas()
+    public function facturas(): BelongsToMany
     {
         return $this->belongsToMany(Factura::class, 'detalle_factura_servicio', 'id_factura', 'id_servicio')
                     ->withPivot('fecha_inicio', 'fecha_fin', 'estado', 'prioridad', 'descuento', 'subtotal');

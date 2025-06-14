@@ -11,6 +11,9 @@ class ListarAlmacenes extends Component
 
     public function render()
     {
+        /* // Me permite imprimir informacion en los logs
+        \Log::info('Valor de búsqueda:', ['buscar' => $this->buscar]);
+        */
         $almacenes = Almacen::with('empleado') // Cargar relación de empleado
                     ->when($this->buscar, function ($query) {
                         // when($this->buscar, function ($query) { ... }) → Filtra solo si hay una búsqueda.

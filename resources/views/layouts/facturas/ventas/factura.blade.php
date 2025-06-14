@@ -63,6 +63,10 @@
                                 {{$factura->fecha_emision}}
                             </p>
                             <p>
+                                <strong>Plazo de pago: </strong>
+                                {{$factura->plazo_pago}} días
+                            </p>
+                            <p>
                                 <strong>Almacén origen: </strong>
                                 {{ $factura->almacen->ubicacion}}
                             </p>

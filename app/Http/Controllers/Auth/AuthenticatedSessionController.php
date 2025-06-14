@@ -40,7 +40,27 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('home', absolute: false));
+        // Accede al departamento del empleado
+        $departamento = strtolower(optional($user->empleado)->departamento);
+
+        // Redirige según el departamento
+        switch($departamento) {
+            case 'rrhh':
+                return redirect()->intended(route('empleado.home'));
+            case 'marketing':
+                return redirect()->intended(route('producto.home'));
+            case 'ventas':
+                return redirect()->intended(route('factura.ventas'));
+            case 'compras':
+                return redirect()->intended(route('factura.compras'));
+            case 'almacén':
+                return redirect()->intended(route('almacen.home'));
+            case 'it':
+            default:
+                return redirect()->intended(route('home')); // TODO: Cambiar para que tenga accesos pero solo de lectura
+        }
+
+        // return redirect()->intended(route('home', absolute: false));
 
         // Validación en caso de usar otro modelo que no sea el de autenticación que viene por defecto con Laravel
         // $request->validate([

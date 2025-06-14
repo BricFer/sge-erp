@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Producto;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductoRequest extends FormRequest
 {
@@ -33,20 +34,26 @@ class ProductoRequest extends FormRequest
                 'min:3',
                 'max:255'],
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
-            'precio_compra' => ['required'],
-            'precio_venta' => ['required'],
-            'iva' => ['required'],
-            'descripcion' => ['string'],
+            'categoria' => ['required', 'string'],
+            'precio_venta' => ['required', 'numeric', 'min:0'],
+            'iva' => ['required', 'numeric', 'between:0,25'],
+            'descripcion' => ['nullable', 'string', 'max:500'],
+            
+
         ];
     }
 
     public function messages(): array
     {
         return [
+            'codigo.required' => 'El código del producto es obligatorio.',
+            'codigo.unique' => 'Este código ya está registrado.',
             'nombre.required' => 'Por favor, incluye un nombre de producto.',
-            'precio_compra.required' => 'Es obligatorio incluir el precio de compra por unidad.',
+            'categoria.required' => 'Selecciona una categoria',
             'precio_venta.required' => 'Es obligatorio incluir el precio de venta por unidad.',
+            'precio_venta.numeric' => 'Introduce un valor numérico válido.',
             'iva.required' => 'Incluye el porcentaje (%) de iva del género.',
+            'iva.numeric' => 'Introduce un valor numérico válido.',
         ];
     }
 }

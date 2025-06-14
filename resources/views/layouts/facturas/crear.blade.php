@@ -4,61 +4,63 @@
 
 @section('content')
     <div class="border-b-solid border-b-2 border-b-indigo-600/25 mb-16">
-
         @include('layouts._partials.messages')
-        
-        @include('layouts._partials.nav-bar', ['backUrl' => route('factura.ventas')])
+
+        {{-- TODO: Asignar backUrl dependiendo de si es cliente o no --}}
+        @include('layouts._partials.nav-bar', ['backUrl' => route('factura.compras')])
     </div>
 
     <form
         id="factura-form"
         method="POST"
         action="{{ route('factura.store') }}"
-        class="flex flex-col w-full gap-6 border-solid border-2 border-indigo-600 rounded-2xl shadow-lg shadow-indigo-500/50 xl:max-w-7xl xl:m-auto"
+        class="flex flex-col w-full gap-6 border-solid border-2 border-indigo-600 rounded-2xl shadow-lg shadow-indigo-500/50 xl:max-w-7xl xl:m-auto bg-transparent"
     >
         @csrf
-        
         <div class="w-full p-6">
 
             <h2 class="border-b-solid border-b-2 border-b-indigo-600/30 mb-4 text-lg font-bold uppercase">factura</h2>
 
             <div class="w-full flex flex-wrap gap-1 justify-content">
-                <div class="flex flex-col gap-1 w-[205px]">
+                <div class="flex flex-col gap-1 w-[205px] ">
                     <span class="w-full">Factura tipo: </span>
-                    <p class="h-[42px] p-2 w-full dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">Venta</p>
+                    <p class="h-[42px] p-2 w-full dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                        {{ $isClient ? 'Venta' : 'Compra'}}
+                    </p>
                     <input
                         name="facturable_type"
                         type="text"
                         class="hidden"
-                        value="App\Models\Cliente"
+                        value="{{ $isClient ? 'App\Models\Cliente' : 'App\Models\Proveedor' }}"
                         readonly
                     />
                 </div>
 
                 <div class="flex flex-col gap-1 w-[456px]">
-                    <label for="clientes" class="w-full">ID | Nombre:</label>
+                    <label for="{{ $isClient ? 'clientes' : 'proveedores' }}" class="w-full">ID | Nombre:</label>
                     <div class="w-full flex gap-1">
-                        <p id="id_cliente" class="h-[42px] w-[45px] p-2 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"></p>
+                        <p id="{{ $isClient ? 'id_proveedor' : 'id_cliente'}}" class="h-[42px] w-[45px] p-2 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"></p>
         
                         <select
                             name="facturable_id"
                             type="text"
-                            id="clientes"
+                            id="{{ $isClient ? 'clientes' : 'proveedores'}}"
                             class="w-[405px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                            onchange="autocompletarInputs()"
+                            onchange="autocompletarInputs(this)"
                         >
                     
-                        <option class="font-bold bg-transparent" disabled selected>Seleccionar cliente</option>
+                            <option class="font-bold bg-transparent" disabled selected>Seleccionar {{ $isClient ? 'cliente' : 'proveedor'}}</option>
         
-                            @foreach ($clientes as $cliente)
+                            @foreach ($socios as $socio)
                                 <option
                                     class="text-black"
-                                    value="{{$cliente->id}}"
+                                    name="facturable_id"
+                                    value="{{$socio->id}}"
                                     readonly
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
-                                    data-info='@json($cliente)'
+                                    data-info='@json($socio)'
                                 >
-                                    {{ $cliente->nombre_completo }}
+                                    {{ $socio->nombre_completo }}
                                 </option>
                             @endforeach
             
@@ -67,8 +69,8 @@
                 </div>
         
                 <div class="flex flex-col gap-1 w-[215px]">
-                    <span for="dni_nif" class="w-full">DNI/NIF</span>
-                    <p id="dni_nif" class="h-[42px] p-2 w-full dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"></p>
+                    <span for="cif" class="w-full">{{ $isClient ? 'DNI/NIF' : 'CIF'}}</span>
+                    <p id="cif" class="h-[42px] p-2 w-full dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"></p>
                 </div>
         
                 <div class="flex flex-col w-[315px] gap-1">
@@ -84,7 +86,6 @@
                         id="serie"
                         class="w-full bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                         value="{{ date("Y") }}/{{ $nextId }}"
-                        readonly
                     />
                 </div>
     
@@ -111,6 +112,11 @@
                 <div class="flex flex-col gap-1">
                     <label for="porcentaje_descuento" class="w-full">Descuento (%)</label>
                     <input type="text" id="porcentaje_descuento" name="porcentaje_descuento" class="calcularSubtotal w-full h-[42px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="plazo_pago" class="w-full">Plazo de pago (días)</label>
+                    <input type="text" id="plazo_pago" name="plazo_pago" class="calcularSubtotal w-full h-[42px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal" value="30">
                 </div>
                 
                 <div class="flex flex-col gap-1 w-[278px]">
@@ -167,15 +173,15 @@
                             type="text"
                             id="empleados"
                             class="w-[365px] bg-transparent dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                            onchange="autocompletarDatosEmpleados()"
+                            onchange="autocompletarDatosEmpleados(this)"
                             {{ in_array(( Auth::user()->empleado?->cargo ), $managers) || Auth::user()->isAdmin ? '' : 'readonly' }}
                         >
                     
-                            <option value="" class="font-bold text-black" disabled>Seleccionar empleado</option>
+                            <option value="" class="font-bold text-black bg-transparent" disabled>Seleccionar empleado</option>
 
                             @foreach ($empleados as $empleado)
                                 <option
-                                    class="text-black"
+                                    class="bg-transparent text-black"
                                     value="{{$empleado->id}}"
                                     {{-- Esto obtendrá un JSON por lo que TIENE que ir con comillas simples de lo contrario se creará una mala estructura en el JSON --}}
                                     data-info='@json($empleado)'
@@ -202,7 +208,6 @@
         </div>
 
         <div class="w-full border-y-solid border-y-2 border-y-indigo-600/25 flex flex-row gap-1 justify-between items-center font-bold py-2 px-4">
-
             <p class="w-[50px]">#</p>
             <p class="w-[295px]">Producto</p>
             <p class="w-[175px]">Código</p>
@@ -211,10 +216,12 @@
             <p class="w-[75px]">Precio (€)</p>
             <p class="w-[75px]">Dto. (€)</p>
             <p class="w-[95px]">Subtotal (€)</p>
+            <img id="agregar-detalle" src="{{ asset('assets/icons/plus-icon.svg') }}" class="w-[24px] cursor-pointer"/>
         </div>
 
         <div id="detalles">
-            <div class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+            <div id="detalle-row-1" class="detalle-row w-full flex flex-row justify-between items-center py-2 px-4 m-0">
+
                 <input
                     type="text"
                     name="num_linea[]"
@@ -230,7 +237,7 @@
                     <option
                         disabled
                         selected
-                        class="text-black"
+                        class="bg-transparent"
                     >
                         Lista productos
                     </option>
@@ -241,6 +248,7 @@
                     type="text"
                     placeholder="Código producto"
                     class="codigo w-[175px] border-none p-0 bg-transparent"
+                    readonly
                 />
     
                 <input
@@ -263,9 +271,9 @@
     
                 <input
                     type="text"
-                    placeholder="P.V"
+                    placeholder="P.U"
                     name="precio[]"
-                    class="precio_venta w-[75px] border-none p-0 bg-transparent"
+                    class="precio calcularSubtotal w-[75px] border-none p-0 bg-transparent"
                 />
     
                 <input
@@ -283,7 +291,14 @@
                     class="subtotal w-[95px] border-none p-0 bg-transparent"
                     readonly
                 />
+
+                <img
+                    src="{{ asset('assets/icons/trash-icon.svg') }}"
+                    class="eliminar-detalle w-[24px] h-[24px] rounded-lg cursor-pointer"
+                    onclick="eliminarRow(this)"
+                >
             </div>
+
         </div>
 
         <div class="flex flex-col ml-auto gap-2">
@@ -357,17 +372,6 @@
             @include('layouts._partials.submit-cancel')
         </div>
     </form>
-    
-    {{-- <script>
-        // Los productos han de pasarse a un array ya que de lo contrario estoy pasando un objeto de Eloquent que no se reconocerá
-        window.productos = @json($productos->toArray());
-        
-        // Este es un paso adicional que ha de hacerse ya que el paso anterior lo que me devuelve es un objeto cuya clave es un índice
-        const productosArray = Object.values(window.productos);
 
-        // Al hacer lo anterior el script factura.js recibe y procesa los productos para mostrarlos
-        
-    </script> --}}
-
-    <script src="{{ asset('js/ventas.js') }}" defer></script>
+    <script src="{{ asset('js/facturas.js') }}" defer></script>
 @endsection

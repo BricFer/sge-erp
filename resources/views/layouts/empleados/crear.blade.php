@@ -27,6 +27,7 @@
                 type="text"
                 id="nombre"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('nombre_completo', '')}}"
             />
             <input
                 name="legajo"
@@ -45,6 +46,7 @@
                 type="text"
                 id="dni_nif"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('dni_nif', '')}}"
             />
         </div>
 
@@ -55,6 +57,7 @@
                 type="tel"
                 id="telefono"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('telefono', '')}}"
             />
         </div>
 
@@ -65,6 +68,7 @@
                 name="correo"
                 type="email"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('correo', '')}}"
             />
         </div>
 
@@ -75,6 +79,7 @@
                 type="text"
                 id="cargo"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('cargo', '')}}"
             />
         </div>
 
@@ -106,16 +111,7 @@
                 type="date"
                 id="fecha_contratacion"
                 class="uppercase dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
-            />
-        </div>
-
-        <div class="flex flex-col gap-1 xl:w-[612px]">
-            <label for="correo_empresa">Correo empresa:</label>
-            <input
-                type="text"
-                name="correo_empresa"
-                id="correo_empresa"
-                class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('fecha_contratacion', '')}}"
             />
         </div>
         
@@ -126,6 +122,7 @@
                 name="usuario"
                 id="usuario"
                 class="dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal bg-transparent"
+                value="{{ old('usuario', '')}}"
             />
         </div>
 

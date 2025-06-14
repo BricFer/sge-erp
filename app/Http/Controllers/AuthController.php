@@ -44,7 +44,7 @@ class AuthController extends Controller
         //     'token' => $user->createToken('API TOKEN').plainTextToken,
         // ], 200);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('empleado')->where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return back()->withErrors([
@@ -54,7 +54,13 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        /*// Verifica el objeto empleado
+        Log::info('Empleado:', ['empleado' => $user->empleado]);
+
+        // Verifica el valor del departamento
+        $departamento = optional($user->empleado)->departamento;
+        Log::info('Departamento:', ['departamento' => $departamento]); */
+
     }
 
     public function logout(Request $request)

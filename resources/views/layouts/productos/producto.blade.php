@@ -71,15 +71,15 @@
                     <div class="flex flex-row items-center gap-4 py-4 border-b-solid border-b-2 border-b-indigo-600/25 justify-between w-full md:flex-nowrap">
 
                         <div class="flex flex-row flex-wrap items-center gap-6 text-nowrap">
-                            <p class="w-[175px] text-wrap">{{ $almacen-> nombre }}</p>
+                            <p class="w-[175px] text-wrap">{{ $almacen->nombre }}</p>
         
                             <p class="w-[215px]">{{ $almacen->empleados ? $almacen->empleados->nombre_completo : 'Sin responsable' }}</p>
         
-                            <p class="w-[315px] text-wrap">{{ $almacen-> ubicacion }}</p>
+                            <p class="w-[315px] text-wrap">{{ $almacen->ubicacion }}</p>
                             
-                            <p class="w-[115px]">{{ ucfirst($almacen-> estado) }}</p>
+                            <p class="w-[115px]">{{ ucfirst($almacen->estado) }}</p>
 
-                            <p class="w-[95px] text-wrap">{{ $almacen->pivot-> stock}}</p>
+                            <p class="w-[95px] text-wrap">{{ $almacen->pivot->stock}}</p>
         
                         </div>
         

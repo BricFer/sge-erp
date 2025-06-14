@@ -8,6 +8,7 @@ use App\Models\Servicio;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Factura extends Model
@@ -20,6 +21,7 @@ class Factura extends Model
         'serie',
         'id_empleado',
         'porcentaje_descuento',
+        'plazo_pago',
         'fecha_emision',
         'monto_subtotal',
         'monto_descuento',
@@ -45,7 +47,7 @@ class Factura extends Model
                     ->withPivot('fecha_inicio', 'fecha_fin', 'estado', 'prioridad', 'descuento', 'subtotal');
     }
 
-    public function productos()
+    public function productos(): BelongsToMany
     {
         return $this->belongsToMany(Producto::class, 'detalle_factura_producto', 'id_factura', 'id_producto')->withPivot('num_linea', 'precio', 'iva', 'cantidad', 'descuento', 'subtotal');
     }

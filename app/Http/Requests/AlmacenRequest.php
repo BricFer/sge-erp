@@ -24,9 +24,9 @@ class AlmacenRequest extends FormRequest
         return [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'ubicacion' => ['required', 'string', 'min:3', 'max:255'],
-            'capacidad',
+            'capacidad' => ['nullable', 'numeric', 'min:0'], // min:0 se agrega para indicar que ha de ser un valor positivo
             'estado' => ['required', 'string', 'min:3'],
-            'id_empleado',
+            'id_empleado' => ['nullable', 'numeric'],
         ];
     }
 
@@ -34,7 +34,12 @@ class AlmacenRequest extends FormRequest
     {
         return [
             'nombre.required' => 'Es obligatorio el nombre/alias del almacen.',
+            'nombre.min' => 'Introduce un nombre válido.',
+            'nombre.max' => 'El nombre es demasiado largo.',
             'ubicacion.required' => 'Es obligatoria la ubicación del almacen.',
+            'ubicacion.min' => 'Introduce una ubicación válido.',
+            'ubicacion.max' => 'La ubicación es demasiado larga.',
+            'capacidad.numeric' => 'Introduce un valor válido.'
         ];
     }
 }

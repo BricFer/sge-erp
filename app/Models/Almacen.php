@@ -8,6 +8,8 @@ use App\Models\Producto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class Almacen extends Model
 {
@@ -21,10 +23,10 @@ class Almacen extends Model
         'id_empleado',
     ];
 
-    public function productos()
+    public function productos(): BelongsToMany
     {
         return $this->belongsToMany(Producto::class, 'almacen_producto', 'id_almacen', 'id_producto')
-                    ->withPivot('stock');
+                    ->withPivot('stock', 'precio_compra');
     }
 
     public function empleado(): BelongsTo

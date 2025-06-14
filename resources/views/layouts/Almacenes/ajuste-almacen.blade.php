@@ -78,12 +78,13 @@
 
     </div>
 
-    <div class="flex gap-4">
-
-        @include('layouts._partials.regresar')
+    <div class="flex gap-4 justify-end">
 
         @include('layouts._partials.descargar', [
             'downloadUrl'
         ])
+        
+        @include('layouts._partials.regresar')
+
     </div>
 </div>

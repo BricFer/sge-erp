@@ -6,56 +6,14 @@
 
         <title>Inventario PDF</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                font-family: "Poppins", sans-serif;
-            }
-            .warehouse-info {
-                border: #000 solid .1rem;
-                padding: 1.5rem;
-                border-radius: 2rem;
-            }
-            .productos {
-                margin-top: 3rem;
-            }
-            .header-productos p {
-                font-weight: 600;
-                display: inline-block;
-            }
-            .detalle-container {
-                width: 100%;
-            }
-            .header-productos, .detalle-prod {
-                width: 100%;
-            }
-            .detalle-prod p {
-                display: inline-block;
-            }
-            .header-productos p:nth-child(1), .detalle-prod p:nth-child(1) {
-                width: 215px;
-            }
-            .header-productos p:nth-child(2), .detalle-prod p:nth-child(2) {
-                width: 115px;
-            }
-            .header-productos p:nth-child(3), .detalle-prod p:nth-child(3) {
-                width: 175px;
-            }
-            .header-productos p:nth-child(4), .detalle-prod p:nth-child(4) {
-                width: 95px;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ public_path('css/pdf-style.css')}}">
     </head>
 <body>
     
     <div class="container">
-        <h2 class="text-base">Inventario</h2>
-
+        
         <div class="warehouse-info">
+            <h1 class="text-base">Control de inventario</h1>
             <div class="header">
                 <p>
                     <strong>Almacén: </strong>
@@ -77,7 +35,7 @@
         <div class="productos">
             <div class="header-productos">
                 <p>Producto</p>
-                <p>P. Compra</p>
+                <p>P.U</p>
                 <p>SKU</p>
                 <p>Stock</p>
                 <p>Estado</p>
@@ -96,11 +54,11 @@
                     }
                 @endphp
                     <div class="detalle-prod">
-                        <p class="w-[295px]">{{ $producto->nombre }}</p>
-                        <p class="w-[115px]">{{ number_format($producto->precio_compra, 2) }}€</p>
-                        <p class="w-[225px]">{{ $producto->codigo }}</p>
-                        <p class="w-[95px]">{{ $stock }}uds.</p>
-                        <p class="w-[175px]">{{ $texto }}</p>
+                        <p>{{ $producto->nombre }}</p>
+                        <p>{{ $producto->pivot->precio_compra }}€</p>
+                        <p>{{ $producto->codigo }}</p>
+                        <p>{{ $stock }}uds.</p>
+                        <p>{{ $texto }}</p>
                     </div>
                 @endforeach
             </div>

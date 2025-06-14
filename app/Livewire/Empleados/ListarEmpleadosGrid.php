@@ -11,10 +11,17 @@ class ListarEmpleadosGrid extends Component
 
     public function render()
     {
-        $empleados = $this->buscar ? Empleado::where('nombre', 'LIKE', '%'.$this->buscar.'%')->get() : Empleado::all();
+        try {
+            $empleados = $this->buscar ? Empleado::where('nombre_completo', 'LIKE', '%'.$this->buscar.'%')
+                    ->orWhere('departamento', 'LIKE', '%'.$this->buscar.'%')
+                    ->get() : Empleado::all();
         
-        return view('layouts.empleados.listar-grid', compact('empleados'))
-            ->extends('dashboard')
-            ->section('content');
+            return view('layouts.empleados.listar-grid', compact('empleados'))
+                ->extends('dashboard')
+                ->section('content');
+        } catch (\Exception $e) {
+            // return redirect()->back()->with('error-db', 'Error al dar de alta el empleado: ' . $e->getMessage());
+        }
+        
     }
 }
