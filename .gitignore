@@ -1,4 +1,10 @@
+#################################
+# Unit Tests
+#################################
 /.phpunit.cache
+/.phpunit.result.cache
+
+#################################
 /node_modules
 /public/build
 /public/hot
@@ -22,6 +28,128 @@ yarn-error.log
 /.vscode
 /.zed
 
-notas.txt
-/resources/views/dashboard2.blade.php
-/routes/web_1_0.php
+#################################
+# Log files and Databases
+#################################
+*.log
+*.sql
+*.sqlite
+#################################
+# Compiled files
+#################################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+#################################
+# Packaged files
+#################################
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+#################################
+# OS Generated Files
+#################################
+ehthumbs.db
+Thumbs.db
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+#################################
+# Editor Files
+#################################
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+_ide_helper.php
+/.vagrant
+
+#################################
+# Eclipse Project Files
+#################################
+.buildpath
+.project
+.settings/
+#################################
+# Cache
+#################################
+.cache/
+#################################
+# Backup and Temporary Files
+#################################
+*.bak
+*.orig
+#################################
+# System Files
+#################################
+.bash_history
+LICENSE_AFL.txt
+LICENSE.html
+LICENSE.txt
+LICENSE_EE*
+RELEASE_NOTES.txt
+.ssh/
+error_log
+.htpasswds
+php.ini.sample
+.modgit/
+_vti_bin/
+_vti_cnf/
+_vti_inf.html
+_vti_log/
+_vti_pvt/
+_vti_txt/
+tmp/
+php.ini
+_old/
+.htpasswds/
+.htpasswd
+.viminfo
+.profile
+.bashrc
+.bash_logout
+.modman/
+pkginfo
+nohup.out
+
+#################################
+# Node.js and JS Compilers
+#################################
+yarn.lock
+/public/mix-manifest.json
+
+#################################
+# Public Assets
+#################################
+/public/css/*
+/public/js/*
+/public/assets/js/*
+/public/assets/css/*
+/public/assets/vendor/*
+!/public/assets/*
+#################################
+# Laravel
+#################################
+bootstrap/compiled.php
+app/storage/
+storage/framework/cache
+storage/framework/views
+vendor/
+/public/.htaccess.env
+bootstrap/cache/*
+#################################
+# Docker Specific
+#################################
+docker-compose.override.yml
+#################################
+# Lock Files
+#################################
+*.lock
